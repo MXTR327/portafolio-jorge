@@ -1,6 +1,7 @@
 <div class="navbar bg-base-100 shadow-sm">
+  <!-- Logo -->
   <div class="navbar-start">
-    <a [routerLink]="['/']" class="btn btn-ghost text-xl font-montserrat">
+    <a [routerLink]="['/']" class="btn btn-ghost font-montserrat text-xl">
       Ramsua
       <span class="text-secondary">| Services</span>
     </a>
@@ -8,27 +9,28 @@
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
       <li>
-        <a [routerLink]="['/gender/men']" routerLinkActive="text-secondary" class="btn btn-ghost">
+        <a [routerLink]="['/home']" routerLinkActive="text-secondary" class="btn btn-ghost">
           Home
         </a>
       </li>
       <li>
-        <a [routerLink]="['/gender/woman']" routerLinkActive="text-secondary" class="btn btn-ghost">
+        <a [routerLink]="['/about-us']" routerLinkActive="text-secondary" class="btn btn-ghost">
           About Us
         </a>
       </li>
       <li>
-        <a [routerLink]="['/gender/kid']" routerLinkActive="text-secondary" class="btn btn-ghost">
+        <a [routerLink]="['/services']" routerLinkActive="text-secondary" class="btn btn-ghost">
           Services
         </a>
       </li>
       <li>
-        <a [routerLink]="['/gender/kid']" routerLinkActive="text-secondary" class="btn btn-ghost">
+        <a [routerLink]="['/projects']" routerLinkActive="text-secondary" class="btn btn-ghost">
           Projects
         </a>
       </li>
     </ul>
   </div>
+  <!-- Contactanos -->
   <div class="navbar-end">
     <a
       class="btn"
@@ -37,7 +39,7 @@
       }}&type=phone_number&app_absent=0"
       target="_blank"
     >
-      Contact
+      Contact Us
       <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 256 258">
         <defs>
           <linearGradient id="SVGBRLHCcSy" x1="50%" x2="50%" y1="100%" y2="0%">

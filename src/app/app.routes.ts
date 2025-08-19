@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: "",
-    loadChildren: () => import( "./portafolio-front/portafolio-front.routes" ),
+    path: '',
+    loadChildren: () => import('./portafolio-front/portafolio-front.routes'),
   },
 ];

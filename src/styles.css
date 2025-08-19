@@ -17,5 +17,5 @@
     format('truetype');
 }
 @plugin "daisyui" {
-  themes: black --default;
+  themes: night --default;
 }

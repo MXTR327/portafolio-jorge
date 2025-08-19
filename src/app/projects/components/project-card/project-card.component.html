@@ -1,0 +1,25 @@
+<div
+  class="card bg-base-100 h-full w-100 rounded-none border-3 border-transparent shadow-sm hover:border-orange-500"
+>
+  <!-- Imagen -->
+  <figure class="overflow-hidden">
+    <img class="h-150 w-full object-cover" [src]="project().image" />
+  </figure>
+
+  <!-- Info -->
+  <div class="card-body flex flex-col bg-white">
+    <!-- Bloque superior -->
+    <div class="flex flex-col gap-1">
+      <h4 class="text-sm font-medium text-gray-500">Construcción de casa</h4>
+      <h2 class="card-title text-2xl text-black">
+        {{ project().title }}
+      </h2>
+      <h3 class="mt-auto text-sm font-semibold text-gray-400">
+        {{ project().date }}
+      </h3>
+    </div>
+
+    <!-- Descripción (siempre alineada abajo) -->
+    <p class="mt-2 text-gray-600">{{ project().description | slice: 0 : 70 }}...</p>
+  </div>
+</div>

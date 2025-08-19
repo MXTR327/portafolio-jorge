@@ -1,0 +1,29 @@
+<div class="mx-47 flex flex-col items-center justify-center gap-20 py-8">
+  <div class="flex w-full flex-row items-center justify-center gap-40">
+    <!-- Columna 1: Título -->
+    <div class="flex flex-col items-center text-center">
+      <span class="mb-2 text-base font-semibold text-orange-400 uppercase">Nuestros servicios</span>
+      <h2 class="text-4xl font-bold">Servicios de construcción de alta calidad</h2>
+    </div>
+    <!-- Columna 2: Descripción -->
+    <div class="mb-8 text-left text-base text-gray-600">
+      Brindamos múltiples servicios para usted, ofreciendo confianza y seguridad en la construcción.
+    </div>
+    <!-- Columna 3: Botón -->
+    <div class="flex justify-center">
+      <a class="btn btn-primary rounded-sm px-8 py-4 text-base">Contact Us</a>
+    </div>
+  </div>
+
+  <!-- Carrusel -->
+  <div>
+    <service-card
+      [service]="{
+        title: 'Enchapes de Porcelanato',
+        description:
+          'Realizacion de enchapes de porcelanato para pisos y paredes, garantizando acabados de alta calidad y durabilidad.',
+        image: 'assets/img/services/service-1.jpg',
+      }"
+    />
+  </div>
+</div>
