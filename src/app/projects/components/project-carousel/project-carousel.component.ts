@@ -5,4 +5,5 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './project-carousel.component.html',
 })
-export class ProjectCarouselComponent {}
+export class ProjectCarouselComponent
+{}

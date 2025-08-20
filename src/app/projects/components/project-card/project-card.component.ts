@@ -7,6 +7,7 @@ import { Project } from '@projects/interfaces/project.interface';
   imports: [SlicePipe],
   templateUrl: './project-card.component.html',
 })
-export class ProjectCardComponent {
+export class ProjectCardComponent
+{
   project = input.required<Project>();
 }

@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
 @import 'tailwindcss';
 @theme {
+  --font-montserrat-alternates: 'Montserrat-alternates', 'sans-serif';
   --font-montserrat: 'Montserrat', 'sans-serif';
   --animate-fadeIn: fadeIn 0.3s ease-in-out;
   @keyframes fadeIn {
@@ -12,10 +14,15 @@
   }
 }
 @font-face {
-  font-family: Montserrat;
+  font-family: Montserrat-alternates;
   src: url('/assets/fonts/montserrat-alternates/montserrat-alternates-medium.ttf')
     format('truetype');
 }
 @plugin "daisyui" {
   themes: night --default;
+}
+@layer base {
+  body {
+    @apply font-montserrat;
+  }
 }

@@ -6,7 +6,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
 })
-export class NavbarComponent {
+export class NavbarComponent
+{
   phone: string = '992901012';
   message: string =
     'Hola mi nombre es [Nombre], vivo en [Ciudad], me gustaría contactarte para hablar sobre un trabajo de [...].';

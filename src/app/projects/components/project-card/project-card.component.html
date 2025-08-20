@@ -1,25 +1,27 @@
 <div
-  class="card bg-base-100 h-full w-100 rounded-none border-3 border-transparent shadow-sm hover:border-orange-500"
+  class="flex h-full w-full flex-col bg-gradient-to-br from-[rgba(75,30,133,1)] to-[rgba(75,30,133,0.01)] text-white backdrop-blur-[12px] hover:outline-3 hover:outline-[rgba(75,30,133,0.5)]"
 >
   <!-- Imagen -->
-  <figure class="overflow-hidden">
-    <img class="h-150 w-full object-cover" [src]="project().image" />
-  </figure>
+  <img
+    [src]="project().image"
+    alt="{{ project().title }}"
+    class="h-129 w-full overflow-clip object-cover"
+  />
 
-  <!-- Info -->
-  <div class="card-body flex flex-col bg-white">
-    <!-- Bloque superior -->
-    <div class="flex flex-col gap-1">
-      <h4 class="text-sm font-medium text-gray-500">Construcción de casa</h4>
-      <h2 class="card-title text-2xl text-black">
-        {{ project().title }}
-      </h2>
-      <h3 class="mt-auto text-sm font-semibold text-gray-400">
-        {{ project().date }}
-      </h3>
-    </div>
+  <div class="flex flex-grow flex-col px-6 pt-8 pb-16">
+    <span>Construcción de casa</span>
+    <!-- Titutlo -->
+    <h2 class="my-2 h-full text-2xl font-semibold">{{ project().title }}</h2>
 
-    <!-- Descripción (siempre alineada abajo) -->
-    <p class="mt-2 text-gray-600">{{ project().description | slice: 0 : 70 }}...</p>
+    <!-- Fecha -->
+    <span class="mt-auto mb-6 font-medium text-gray-400">
+      {{ project().date }}
+    </span>
+
+    <!-- Descripción -->
+    <p class="text-gray-200">
+      {{ project().description | slice: 0 : 80 }}
+      {{ project().description.length > 80 ? '...' : '' }}
+    </p>
   </div>
 </div>

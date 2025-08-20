@@ -1,29 +1,32 @@
-<div class="mx-47 flex flex-col items-center justify-center gap-20 py-8">
-  <div class="flex w-full flex-row items-center justify-center gap-40">
-    <!-- Columna 1: Título -->
-    <div class="flex flex-col items-center text-center">
-      <span class="mb-2 text-base font-semibold text-orange-400 uppercase">Nuestros servicios</span>
-      <h2 class="text-4xl font-bold">Servicios de construcción de alta calidad</h2>
+<div class="relative mx-auto grid max-w-[1120px] gap-20 pb-18">
+  <div class="grid grid-cols-[0.4fr_0.4fr_max-content] items-center justify-between">
+    <div>
+      <h3 class="mb-2 text-center text-base font-semibold">NUESTROS SERVICIOS</h3>
+      <h2 class="text-center text-4xl font-bold">
+        Servicios de construcción <br />
+        de alta calidad
+      </h2>
     </div>
-    <!-- Columna 2: Descripción -->
-    <div class="mb-8 text-left text-base text-gray-600">
+
+    <p class="mb-8">
       Brindamos múltiples servicios para usted, ofreciendo confianza y seguridad en la construcción.
-    </div>
-    <!-- Columna 3: Botón -->
-    <div class="flex justify-center">
-      <a class="btn btn-primary rounded-sm px-8 py-4 text-base">Contact Us</a>
-    </div>
+    </p>
+
+    <a href="#contact" class="btn btn-primary px-8 py-4 text-base">Contáctenos</a>
   </div>
 
-  <!-- Carrusel -->
-  <div>
-    <service-card
-      [service]="{
-        title: 'Enchapes de Porcelanato',
-        description:
-          'Realizacion de enchapes de porcelanato para pisos y paredes, garantizando acabados de alta calidad y durabilidad.',
-        image: 'assets/img/services/service-1.jpg',
-      }"
-    />
+  <div class="services__swiper swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+    <div class="relative flex h-full w-full">
+      @for (service of services; track service)
+      {
+        <service-card [service]="service" />
+      }
+    </div>
+    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+  </div>
+
+  <div class="flex justify-center gap-4">
+    <a href="#slide1" class="btn btn-circle">❮</a>
+    <a href="#slide3" class="btn btn-circle">❯</a>
   </div>
 </div>

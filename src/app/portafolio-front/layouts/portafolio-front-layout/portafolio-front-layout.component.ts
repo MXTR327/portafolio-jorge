@@ -8,4 +8,5 @@ import { NavbarComponent } from '@shared/navbar/navbar.component';
   imports: [RouterOutlet, NavbarComponent],
   templateUrl: './portafolio-front-layout.component.html',
 })
-export class PortafolioFrontLayoutComponent {}
+export class PortafolioFrontLayoutComponent
+{}

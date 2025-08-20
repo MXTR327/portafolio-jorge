@@ -5,7 +5,8 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './footer.component.html',
 })
-export class FooterComponent {
+export class FooterComponent
+{
   year: Number = new Date().getFullYear();
 
   email: string = 'ramsua.jorlui@gmail.com';

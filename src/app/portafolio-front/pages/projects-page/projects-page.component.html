@@ -1,20 +1,23 @@
-<div class="m-10">
-  <div class="mb-12 text-center">
-    <span class="text-lg font-bold text-orange-400 uppercase">Nuestros proyectos</span>
-    <h2 class="mt-2 text-4xl leading-tight font-bold">
-      Últimos proyectos <br />
-      completados
-    </h2>
+<div>
+  <h3 class="text-secondary mb-2 text-center text-base font-semibold uppercase">
+    NUESTROS PROYECTOS
+  </h3>
+  <h2 class="text-primary mb-6 text-center text-3xl font-bold">
+    Últimos proyectos <br />
+    completados
+  </h2>
+
+  <div class="mx-auto grid grid-cols-[repeat(3,350px)] justify-center gap-8 pt-20 pb-16">
+    <!-- Carta 1 -->
+    @for (project of projects; track $index)
+    {
+      <project-card [project]="project" />
+    }
   </div>
 
   <div class="carousel w-full justify-center px-10">
     <!-- Slide 1 -->
-    <div class="carousel-item flex gap-9">
-      <!-- Carta 1 -->
-      @for (image of images; track $index) {
-        <project-card [project]="image" />
-      }
-    </div>
+
     <!-- Botones Slide
     <div class="absolute top-1/2 right-5 left-5 flex -translate-y-1/2 transform justify-between">
       <a href="#slide4" class="btn btn-circle">❮</a>
