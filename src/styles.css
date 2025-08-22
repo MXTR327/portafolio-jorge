@@ -19,7 +19,7 @@
     format('truetype');
 }
 @plugin "daisyui" {
-  themes: night --default;
+  themes: bumblebee --default;
 }
 @layer base {
   body {

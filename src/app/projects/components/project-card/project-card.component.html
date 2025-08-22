@@ -1,27 +1,22 @@
-<div
-  class="flex h-full w-full flex-col bg-gradient-to-br from-[rgba(75,30,133,1)] to-[rgba(75,30,133,0.01)] text-white backdrop-blur-[12px] hover:outline-3 hover:outline-[rgba(75,30,133,0.5)]"
->
-  <!-- Imagen -->
-  <img
-    [src]="project().image"
-    alt="{{ project().title }}"
-    class="h-129 w-full overflow-clip object-cover"
-  />
+<a class="group card h-200 bg-slate-900 text-white">
+  <div class="flex h-42 overflow-hidden rounded-2xl">
+    <!-- Imagen -->
+    <img
+      class="h-full w-full overflow-clip object-cover transition duration-100 sm:group-hover:scale-[120%]"
+      [src]="project().image"
+      alt="{{ project().title }}"
+    />
+  </div>
 
-  <div class="flex flex-grow flex-col px-6 pt-8 pb-16">
-    <span>Construcción de casa</span>
-    <!-- Titutlo -->
-    <h2 class="my-2 h-full text-2xl font-semibold">{{ project().title }}</h2>
-
-    <!-- Fecha -->
-    <span class="mt-auto mb-6 font-medium text-gray-400">
-      {{ project().date }}
-    </span>
-
-    <!-- Descripción -->
-    <p class="text-gray-200">
+  <div class="px-6 pt-8 pb-16">
+    <h1 class="relative mb-2 ml-1 text-xl font-bold">{{ project().title }}</h1>
+    <span class="badge badge-error mb-2 rounded-lg text-white">{{ project().date }}</span>
+    <h2 class="relative text-base">
       {{ project().description | slice: 0 : 80 }}
       {{ project().description.length > 80 ? '...' : '' }}
-    </p>
+    </h2>
+    <span class="badge badge-neutral mt-4 bg-slate-500 text-white"
+      >Construcción de casa</span
+    >
   </div>
-</div>
+</a>
