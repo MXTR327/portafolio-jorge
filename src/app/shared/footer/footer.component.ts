@@ -6,6 +6,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   selector: 'front-footer',
   imports: [SvgIconComponent, RouterLink, RouterLinkActive],
   templateUrl: './footer.component.html',
+  styleUrl: './footer.component.css',
 })
 export class FooterComponent
 {
@@ -21,7 +22,7 @@ export class FooterComponent
   logoFbSvgStyles = { height: '1.15rem' };
 
   logoWhatsappSvg = 'assets/icons/logo-whatsapp.svg';
-  logoWhatsappSvgStyles = { height: '1.4rem' };
+  logoWhatsappSvgStyles = { height: '1.3rem' };
 
   message: string =
     'Hola mi nombre es (nombre),%0A' +

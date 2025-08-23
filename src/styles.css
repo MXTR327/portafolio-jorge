@@ -3,6 +3,7 @@
 @theme {
   --font-montserrat-alternates: 'Montserrat-alternates', 'sans-serif';
   --font-montserrat: 'Montserrat', 'sans-serif';
+  --shadow-neumorphism: 10px 10px 20px #666666, -10px -10px 20px #ffffff;
   --animate-fadeIn: fadeIn 0.3s ease-in-out;
   @keyframes fadeIn {
     0% {

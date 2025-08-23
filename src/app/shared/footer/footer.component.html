@@ -1,11 +1,11 @@
 <footer
-  class="footer footer-horizontal text-white justify-between bg-neutral-900 px-60 py-8"
+  class="footer footer-horizontal justify-between bg-neutral-900 px-60 py-8 text-white"
 >
   <!-- Columna Logo -->
   <nav>
     <p class="footer-title">Web built by</p>
     <!-- Logo Max -->
-    <div class="flex items-center gap-2">
+    <div class="logo-style flex items-center gap-1 rounded-xl">
       <svg-icon [src]="logoMaxSvg" [svgStyle]="logoMaxSvgStyles" />
       <!-- Empresa -->
       <p class="font-montserrat-alternates font-semibold">
@@ -41,17 +41,18 @@
   <!-- Columna Redes -->
   <nav>
     <h6 class="footer-title">social networks</h6>
-    <div class="grid w-full grid-flow-col place-items-center gap-4">
+    <!-- Buttons -->
+    <div class="grid w-full grid-flow-col place-items-center">
       <!-- Gmail Logo -->
-      <a [href]="hrefGmail" target="_blank">
+      <a [href]="hrefGmail" target="_blank" class="btn-black-neumorphism rounded-xl">
         <svg-icon [src]="logoGmailSvg" [svgStyle]="logoGmailSvgStyles" />
       </a>
       <!-- Facebook Logo -->
-      <a [href]="hrefFb" target="_blank">
+      <a [href]="hrefFb" target="_blank" class="btn-black-neumorphism rounded-xl">
         <svg-icon [src]="logoFbSvg" [svgStyle]="logoFbSvgStyles" />
       </a>
       <!-- WhatsApp Logo -->
-      <a [href]="hrefWhatsapp" target="_blank">
+      <a [href]="hrefWhatsapp" target="_blank" class="btn-black-neumorphism rounded-xl">
         <svg-icon [src]="logoWhatsappSvg" [svgStyle]="logoWhatsappSvgStyles" />
       </a>
     </div>
