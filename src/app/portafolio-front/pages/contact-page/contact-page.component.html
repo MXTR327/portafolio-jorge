@@ -1,42 +1,77 @@
-<section class="container mx-auto my-50">
+<section class="container mx-auto mb-8">
   <div>
-    <p class="mb-2 text-base font-semibold text-gray-600">Contáctanos</p>
-    <h2 class="text-2xl font-semibold">Escríbanos y construya</h2>
-    <div class="grid grid-cols-2 gap-15 py-14">
-      <img
-        class="h-[500px] w-full overflow-clip object-cover"
-        src="/assets/images/escalera.png"
-        alt="imagen"
-      />
+    <p class="mb-2 flex justify-center text-xl font-semibold text-amber-500">Contáctanos</p>
+    <h2 class="flex justify-center text-2xl font-semibold uppercase">Escríbanos y construya</h2>
+    <div class="grid grid-cols-2 pt-14 pb-16">
+      <div class="flex h-full w-full items-center justify-center">
+        <p class="browser-warning">
+          If this looks wonky to you it's because this browser doesn't support the CSS property
+          'aspect-ratio'.
+        </p>
+        <div class="stack w-7/12">
+          <div class="card">
+            <img
+              class="relative aspect-square w-full overflow-clip border-4 object-cover"
+              src="/assets/images/img-trabajador.png"
+              alt="imagen"
+            />
+          </div>
+        </div>
+      </div>
+
       <div class="grid grid-cols-2 gap-8">
         <div
           class="flex min-h-60 flex-col rounded-xl border border-gray-200 bg-white shadow-2xs dark:border-neutral-700 dark:bg-neutral-900 dark:shadow-neutral-700/70"
         >
           <div class="flex flex-auto flex-col items-center justify-center p-4 md:p-5">
-            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Card title</h3>
-            <p class="mt-2 text-gray-500 dark:text-neutral-400">
-              With supporting text below as a natural lead-in to additional content.
-            </p>
+            <svg-icon
+              src="assets/icons/icon-ubication.svg"
+              class="mb-2"
+              [svgStyle]="{ 'height.px': '50' }"
+            />
+            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Ubicacion</h3>
+            <p class="mt-2 text-gray-500 dark:text-neutral-400">Perú - Lima</p>
+            <p class="mt-2 text-gray-500 dark:text-neutral-400">Santa María #15135</p>
           </div>
         </div>
         <div
           class="flex min-h-60 flex-col rounded-xl border border-gray-200 bg-white shadow-2xs dark:border-neutral-700 dark:bg-neutral-900 dark:shadow-neutral-700/70"
         >
           <div class="flex flex-auto flex-col items-center justify-center p-4 md:p-5">
-            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Card title</h3>
-            <p class="mt-2 text-gray-500 dark:text-neutral-400">
-              With supporting text below as a natural lead-in to additional content.
-            </p>
+            <svg-icon
+              src="assets/icons/icon-call.svg"
+              class="mb-2"
+              [svgStyle]="{ 'height.px': '50' }"
+            />
+            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Llamanos</h3>
+            <p class="mt-2 text-gray-500 dark:text-neutral-400">+51 992 901 012</p>
+            <p class="mt-2 text-gray-500 dark:text-neutral-400">+51 941 748 553</p>
           </div>
         </div>
+
         <div
           class="flex min-h-60 flex-col rounded-xl border border-gray-200 bg-white shadow-2xs dark:border-neutral-700 dark:bg-neutral-900 dark:shadow-neutral-700/70"
         >
           <div class="flex flex-auto flex-col items-center justify-center p-4 md:p-5">
-            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Card title</h3>
-            <p class="mt-2 text-gray-500 dark:text-neutral-400">
-              With supporting text below as a natural lead-in to additional content.
-            </p>
+            <svg-icon
+              src="assets/icons/icon-inbox.svg"
+              class="mb-2"
+              [svgStyle]="{ 'height.px': '50' }"
+            />
+            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Escribenos</h3>
+            <!-- Social  -->
+            <div>
+              @for (link of contactLinks; track link)
+              {
+                <a
+                  class="inline-flex size-10 items-center justify-center gap-x-2 rounded-lg border border-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+                  [href]="link.url"
+                  target="_blank"
+                >
+                  <svg-icon [src]="link.icon" [svgStyle]="link.style" />
+                </a>
+              }
+            </div>
           </div>
         </div>
       </div>

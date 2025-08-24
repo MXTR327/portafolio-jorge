@@ -1,5 +1,5 @@
-import { ProjectCardComponent } from 'src/app/projects/components/project-card/project-card.component';
 import { Component } from '@angular/core';
+import { ProjectCardComponent } from '@proyectos/components/project-card/project-card.component';
 
 @Component({
   selector: 'projects-page',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ServiceCardComponent } from 'src/app/services/components/service-card/service-card.component';
+import { ServiceCardComponent } from '@servicios/components/service-card/service-card.component';
 
 @Component({
   selector: 'services-page',

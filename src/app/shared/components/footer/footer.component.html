@@ -10,7 +10,7 @@
           <div class="flex items-center gap-2">
             <svg-icon [src]="icoMaxSrc" [svgStyle]="icoMaxStyle" />
             <!-- Empresa -->
-            <p class="font-montserrat-alternates mb-1 font-semibold">
+            <p class="font-montserrat-alternates font-semibold">
               MAXtr <br />
               SERVICES
             </p>
@@ -73,30 +73,18 @@
       <!-- Redes -->
       <div class="col-span-1">
         <h4 class="font-semibold text-gray-100">Redes Sociales</h4>
-
         <!-- Social  -->
         <div>
-          <a
-            class="inline-flex size-10 items-center justify-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-white hover:bg-white/10 focus:bg-white/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
-            [href]="facebookHref"
-            target="_blank"
-          >
-            <svg-icon [src]="icoFacebookSrc" [svgStyle]="icoFacebookStyle" />
-          </a>
-          <a
-            class="inline-flex size-10 items-center justify-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-white hover:bg-white/10 focus:bg-white/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
-            [href]="gmailHref"
-            target="_blank"
-          >
-            <svg-icon [src]="icoGmailSrc" [svgStyle]="icoGmailStyle" />
-          </a>
-          <a
-            class="inline-flex size-10 items-center justify-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-white hover:bg-white/10 focus:bg-white/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
-            [href]="whatsappHref"
-            target="_blank"
-          >
-            <svg-icon [src]="icoWhatsappSrc" [svgStyle]="icoWhatsappStyle" />
-          </a>
+          @for (link of contactLinks; track link)
+          {
+            <a
+              class="inline-flex size-10 items-center justify-center gap-x-2 rounded-lg border border-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+              [href]="link.url"
+              target="_blank"
+            >
+              <svg-icon [src]="link.icon" [svgStyle]="link.style" />
+            </a>
+          }
         </div>
       </div>
       <!-- End Col -->

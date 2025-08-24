@@ -6,8 +6,15 @@
     "baseUrl": "./",
     "paths": {
       // TODO: agregar rutas
-      "@shared/*": ["./src/app/shared/*"],
-      "@projects/*": ["./src/app/projects/*"]
+      "@shared/*": [
+        "./src/app/shared/*"
+      ],
+      "@proyectos/*": [
+        "./src/app/proyectos/*"
+      ],
+      "@servicios/*": [
+        "./src/app/servicios/*"
+      ],
     },
     "strict": true,
     "noImplicitOverride": true,
