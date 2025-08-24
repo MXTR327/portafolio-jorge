@@ -1,8 +1,13 @@
 import { Routes } from '@angular/router';
+import { PortafolioFrontLayoutComponent } from './portafolio-front/layouts/portafolio-front-layout/portafolio-front-layout.component';
 
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./portafolio-front/portafolio-front.routes'),
+    component: PortafolioFrontLayoutComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];

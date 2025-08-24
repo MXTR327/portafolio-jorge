@@ -12,7 +12,7 @@ export class ProjectsPageComponent
   projects = [
     {
       image: `${this.ruta}/escalera.png`,
-      title: 'Escalera con mayolica asdasd asdas dsad asd ',
+      title: 'Escalera con mayolica asdasd asdas dsad asd',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sapiente omnis dignissimos excepturi veritatis accusamus harum officia illo deserunt mollitia quibusdam autem asperiores incidunt nam quam tempora, voluptatum modi repudiandae!',
       date: 'Julio 16, 2025',
@@ -21,7 +21,7 @@ export class ProjectsPageComponent
       image: `${this.ruta}/lavadero.png`,
       title: 'Lavadero enchapado',
       description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sapiente omnis dignissimos excepturi veritatis accusamus harum officia illo deserunt mollitia quibusdam autem asperiores incidunt nam quam tempora, voluptatum modi repudiandae!',
+        'Lorem ipsum dolor siasdadasdasdasdasdsa sadad sadsasda sad asd asd asd asd asd sad a dasdt amet consectetur adipisicing elit. Dolorem sapiente omnis dignissimos excepturi veritatis accusamus harum officia illo deserunt mollitia quibusdam autem asperiores incidunt nam quam tempora, voluptatum modi repudiandae!',
       date: 'Agosto 5, 2025',
     },
     {

@@ -1,4 +1,4 @@
-<div class="mx-auto grid max-w-[1120px] gap-20 py-10 pb-18">
+<section class="container mx-auto my-50">
   <div>
     <h3 class="text-neutral mb-2 text-center text-base font-semibold uppercase">
       NUESTROS PROYECTOS
@@ -9,11 +9,11 @@
     </h2>
   </div>
 
-  <div class="mx-auto grid grid-cols-[repeat(3,350px)] justify-center gap-8">
+  <div class="grid gap-8 sm:flex dark:divide-neutral-600">
     <!-- Carta 1 -->
     @for (project of projects; track $index)
     {
       <project-card [project]="project" />
     }
   </div>
-</div>
+</section>

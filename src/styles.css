@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
 @import 'tailwindcss';
+@import 'preline/variants.css';
+@source "../node_modules/preline/dist/*.js";
+
 @theme {
   --font-montserrat-alternates: 'Montserrat-alternates', 'sans-serif';
   --font-montserrat: 'Montserrat', 'sans-serif';
-  --shadow-neumorphism: 10px 10px 20px #666666, -10px -10px 20px #ffffff;
+  --shadow-white-neumorphic-flat: 10px 10px 20px #666666, -10px -10px 20px #ffffff;
+  --shadow-white-neumorphic-pressed: inset 10px 10px 20px #666666, inset -10px -10px 20px #ffffff;
   --animate-fadeIn: fadeIn 0.3s ease-in-out;
   @keyframes fadeIn {
     0% {
@@ -14,13 +18,16 @@
     }
   }
 }
+@utility bg-white-concave {
+  background-image: linear-gradient(145deg, #e6e6e6, #ffffff);
+}
+@utility bg-white-convex {
+  background-image: linear-gradient(145deg, #ffffff, #e6e6e6);
+}
 @font-face {
   font-family: Montserrat-alternates;
   src: url('/assets/fonts/montserrat-alternates/montserrat-alternates-medium.ttf')
     format('truetype');
-}
-@plugin "daisyui" {
-  themes: bumblebee --default;
 }
 @layer base {
   body {

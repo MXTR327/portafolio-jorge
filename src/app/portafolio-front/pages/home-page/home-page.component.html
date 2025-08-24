@@ -1,2 +1,76 @@
-<p>home-page works!</p>
-,
+<section class="home section" id="home">
+  <img src="images/lineas.svg" alt="image" class="home__lines" />
+
+  <div class="home__container container grid">
+    <div
+      class="home__content grid"
+      data-sr-id="0"
+      style="
+        visibility: visible;
+        opacity: 1;
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transition:
+          all,
+          opacity 2.5s cubic-bezier(0.5, 0, 0, 1) 0.4s,
+          transform 2.5s cubic-bezier(0.5, 0, 0, 1) 0.4s;
+      "
+    >
+      <div class="home__data">
+        <h1 class="home__title">
+          Crea las <br />
+          construcciones <br />
+          que deseas aquí
+        </h1>
+
+        <p class="home__description">
+          Brindamos los mejores servicios de diseño, construcción y mantenimiento de viviendas para
+          usted y su familia.
+        </p>
+
+        <div class="home__buttons">
+          <a href="#services" class="button">Nuestros Servicios</a>
+
+          <a href="" class="button__link">
+            <span>Ver Proyectos</span>
+            <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="home__info">
+        <div>
+          <h3 class="home__info-title">20+</h3>
+          <p class="home__info-description">
+            Años de <br />
+            Experiencia
+          </p>
+        </div>
+
+        <div>
+          <h3 class="home__info-title">250</h3>
+          <p class="home__info-description">
+            Proyectos <br />
+            Completados
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="home__images"
+      data-sr-id="5"
+      style="
+        visibility: visible;
+        opacity: 1;
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transition:
+          all,
+          opacity 2.5s cubic-bezier(0.5, 0, 0, 1) 1s,
+          transform 2.5s cubic-bezier(0.5, 0, 0, 1) 1s;
+      "
+    >
+      <img src="images/obrero01.jpg" alt="image" class="home__img-1" />
+      <img src="images/obrero02.jpg" alt="image" class="home__img-2" />
+    </div>
+  </div>
+</section>

@@ -1,34 +1,32 @@
-<div class="mx-auto grid max-w-[1120px] gap-20 py-10 pb-18">
-  <div class="grid grid-cols-[0.4fr_0.4fr_max-content] items-center justify-between">
-    <div>
-      <h3 class="text-neutral mb-2 text-center text-base font-semibold">
-        NUESTROS SERVICIOS
-      </h3>
-      <h2 class="text-accent text-center text-4xl font-bold">
-        Servicios de construcción <br />
-        de alta calidad
-      </h2>
+<section class="container mx-auto py-11 pb-18">
+  <div class="grid gap-20">
+    <div class="grid grid-cols-[0.4fr_0.4fr_max-content] items-center justify-between">
+      <div>
+        <h3 class="mb-2 text-center text-base font-semibold text-orange-300">NUESTROS SERVICIOS</h3>
+        <div class="text-center text-4xl font-bold">
+          Servicios de construcción <br />
+          de alta calidad
+        </div>
+      </div>
+      <p class="mb-8">
+        Brindamos múltiples servicios para usted, ofreciendo confianza y seguridad en la
+        construcción.
+      </p>
+      <a class="btn btn-primary shadow-white-neumorphic-flat px-8 py-4 text-base"> Contáctenos </a>
     </div>
-    <p class="mb-8">
-      Brindamos múltiples servicios para usted, ofreciendo confianza y seguridad en la
-      construcción.
-    </p>
-    <a href="#contact" class="btn btn-primary shadow-neumorphism px-8 py-4 text-base">
-      Contáctenos
-    </a>
-  </div>
 
-  <div class="grid h-full w-full gap-8">
-    <div class="grid grid-cols-3 gap-8">
-      @for (service of services; track service)
-      {
-        <service-card [service]="service" />
-      }
-    </div>
-    <!-- Botones -->
-    <div class="flex justify-center gap-4">
-      <a href="#slide1" class="btn btn-circle shadow-neumorphism">❮</a>
-      <a href="#slide3" class="btn btn-circle shadow-neumorphism">❯</a>
+    <div class="grid h-full w-full gap-8">
+      <div class="grid grid-cols-3 gap-8">
+        @for (service of services; track service)
+        {
+          <service-card [service]="service" />
+        }
+      </div>
+      <!-- Botones -->
+      <div class="flex justify-center gap-2">
+        <a href="#slide1" class="btn btn-circle shadow-white-neumorphic-flat bg-white-concave">❮</a>
+        <a href="#slide3" class="btn btn-circle shadow-white-neumorphic-flat bg-white-concave">❯</a>
+      </div>
     </div>
   </div>
-</div>
+</section>

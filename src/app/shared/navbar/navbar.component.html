@@ -1,53 +1,82 @@
-<div class="navbar bg-zinc-950 px-60 text-white shadow-sm">
-  <!-- Logo -->
-  <div class="navbar-start">
-    <a [routerLink]="['/']" class="link link-hover font-montserrat-alternates text-xl">
+<header
+  class="flex w-full flex-wrap bg-white py-3 text-sm select-none sm:flex-nowrap sm:justify-start dark:bg-neutral-800"
+>
+  <nav
+    class="mx-auto flex w-full max-w-[85rem] basis-full flex-wrap items-center justify-between px-4"
+  >
+    <!-- Logo -->
+    <a
+      class="font-montserrat-alternates flex-none cursor-pointer text-xl font-semibold focus:opacity-80 focus:outline-hidden sm:order-1 dark:text-white"
+      (click)="gotoAnchor('home')"
+    >
       Ramsua
-      <span class="text-info">| Services</span>
+      <span class="text-blue-500">| Services</span>
     </a>
-  </div>
-  <div class="navbar-end gap-8">
-    <ul class="menu menu-horizontal gap-5 px-1">
-      <li>
+    <div class="flex items-center gap-x-2 sm:order-3">
+      <!-- Responsividad Hamburger -->
+      <button
+        type="button"
+        class="hs-collapse-toggle relative flex size-9 items-center justify-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:bg-gray-50 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 sm:hidden dark:border-neutral-700 dark:bg-transparent dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10"
+        id="hs-navbar-alignment-collapse"
+        aria-expanded="false"
+        aria-controls="hs-navbar-alignment"
+        aria-label="Toggle navigation"
+        data-hs-collapse="#hs-navbar-alignment"
+      >
+        <svg-icon
+          class="hs-collapse-open:hidden shrink-0"
+          [src]="icoHamburberSrc"
+          [svgStyle]="icoHamburgerStyle"
+        />
+        <svg-icon
+          class="hs-collapse-open:block hidden shrink-0"
+          [src]="icoCloseSrc"
+          [svgStyle]="icoCloseStyle"
+        />
+        <span class="sr-only">Toggle</span>
+      </button>
+      <!-- Boton -->
+      <a
+        (click)="gotoAnchor('contact')"
+        class="inline-flex items-center gap-x-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-800 shadow-2xs hover:bg-gray-50 focus:bg-gray-50 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+      >
+        Contact Us
+        <svg-icon [src]="icoWhatsappSrc" [svgStyle]="icoWhatsappStyle" />
+      </a>
+    </div>
+    <!-- Menu -->
+    <div
+      id="hs-navbar-alignment"
+      class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 sm:order-2 sm:block sm:grow-0 sm:basis-auto"
+      aria-labelledby="hs-navbar-alignment-collapse"
+    >
+      <div class="mt-5 flex flex-col gap-5 sm:mt-0 sm:flex-row sm:items-center sm:ps-5">
         <a
-          [routerLink]="['/home']"
-          routerLinkActive="text-success"
-          class="link link-hover text-base"
+          class="cursor-pointer font-medium text-blue-500 focus:outline-hidden"
+          (click)="gotoAnchor('home')"
+          aria-current="page"
         >
           Home
         </a>
-      </li>
-      <li>
         <a
-          [routerLink]="['/about-us']"
-          routerLinkActive="text-success"
-          class="link link-hover text-base"
+          class="cursor-pointer font-medium text-gray-600 hover:text-gray-400 focus:text-gray-400 focus:outline-hidden dark:text-neutral-400 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
+          (click)="gotoAnchor('about-us')"
         >
           About Us
         </a>
-      </li>
-      <li>
         <a
-          [routerLink]="['/services']"
-          routerLinkActive="text-success"
-          class="link link-hover text-base"
+          class="cursor-pointer font-medium text-gray-600 hover:text-gray-400 focus:text-gray-400 focus:outline-hidden dark:text-neutral-400 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
+          (click)="gotoAnchor('services')"
         >
           Services
         </a>
-      </li>
-      <li>
         <a
-          [routerLink]="['/projects']"
-          routerLinkActive="text-success"
-          class="link link-hover text-base"
+          class="cursor-pointer font-medium text-gray-600 hover:text-gray-400 focus:text-gray-400 focus:outline-hidden dark:text-neutral-400 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
+          (click)="gotoAnchor('projects')"
         >
           Projects
         </a>
-      </li>
-    </ul>
-    <a class="btn btn-success" [href]="hrefWhatsapp" target="_blank">
-      Contact Us
-      <svg-icon [src]="logoWhatsappSvg" [svgStyle]="logoWhatsappSvgStyles" />
-    </a>
-  </div>
-</div>
+      </div>
+    </div>
+  </nav>
+</header>

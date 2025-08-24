@@ -1,22 +1,27 @@
-<a class="group card h-200 bg-slate-900 text-white">
-  <div class="flex h-42 overflow-hidden rounded-2xl">
-    <!-- Imagen -->
-    <img
-      class="h-full w-full overflow-clip object-cover transition duration-100 sm:group-hover:scale-[120%]"
-      [src]="project().image"
-      alt="{{ project().title }}"
-    />
-  </div>
-
-  <div class="px-6 pt-8 pb-16">
-    <h1 class="relative mb-2 ml-1 text-xl font-bold">{{ project().title }}</h1>
-    <span class="badge badge-error mb-2 rounded-lg text-white">{{ project().date }}</span>
-    <h2 class="relative text-base">
+<div
+  class="flex h-full flex-[1_0_0%] flex-col overflow-hidden rounded-sm border-2 border-transparent bg-white hover:border-amber-600 dark:bg-neutral-800"
+>
+  <img
+    class="h-[500px] w-full overflow-clip object-cover"
+    [src]="project().image"
+    alt="{{ project().title }}"
+  />
+  <div class="flex flex-1 flex-col justify-between p-4 md:p-5">
+    <div>
+      <p class="mt-1 text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
+        Card subtitle
+      </p>
+      <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+        {{ project().title }}
+      </h3>
+    </div>
+    <p class="mt-2 text-gray-500 dark:text-neutral-400">
       {{ project().description | slice: 0 : 80 }}
       {{ project().description.length > 80 ? '...' : '' }}
-    </h2>
-    <span class="badge badge-neutral mt-4 bg-slate-500 text-white"
-      >Construcción de casa</span
-    >
+    </p>
   </div>
-</a>
+
+  <div class="border-t border-gray-200 p-4 sm:px-5 dark:border-neutral-700">
+    <p class="text-xs text-gray-500 dark:text-neutral-500">Subido en {{ project().date }}</p>
+  </div>
+</div>

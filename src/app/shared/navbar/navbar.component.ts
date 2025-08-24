@@ -1,22 +1,37 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'front-navbar',
-  imports: [RouterLink, RouterLinkActive, SvgIconComponent],
+  imports: [SvgIconComponent],
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent
 {
-  logoWhatsappSvg = 'assets/icons/logo-whatsapp.svg';
-  logoWhatsappSvgStyles = { height: '1.4rem' };
+  private viewportScroller = inject(ViewportScroller);
 
-  message: string =
-    'Hola mi nombre es (nombre),%0A' +
-    'Vivo en (lugar),%0A' +
-    'Me gustaría que conversemos para hablar sobre un trabajo de ...';
+  public gotoAnchor(anchorName: string): void
+  {
+    this.viewportScroller.setOffset([0, 67]);
+    this.viewportScroller.scrollToAnchor(anchorName);
+  }
+
+  icoUrl = 'assets/icons';
+
+  icoHamburberSrc = `${this.icoUrl}/icon-menu-hamburger.svg`;
+  icoHamburgerStyle = {
+    width: '24px',
+    height: '24px',
+  };
+  icoCloseSrc = `${this.icoUrl}/icon-menu-close.svg`;
+  icoCloseStyle = {
+    width: '24px',
+    height: '24px',
+  };
+
+  icoWhatsappSrc = `${this.icoUrl}/icon-logo-whatsapp.svg`;
+  icoWhatsappStyle = { height: '1.3rem' };
 
   phone: string = '992901012';
-  hrefWhatsapp: string = `https://api.whatsapp.com/send/?phone=${this.phone}&text=${this.message}`;
 }
