@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { SvgIconComponent } from 'angular-svg-icon';
-import { ViewportScroller } from '@angular/common';
-import { ContactService } from '@shared/services/contact.service';
+import { ContactService, SocialLink } from '@shared/services/contact.service';
+import { linkPage, LinksService } from '@shared/services/links.service';
 
 @Component({
   selector: 'front-footer',
@@ -12,16 +12,16 @@ import { ContactService } from '@shared/services/contact.service';
 export class FooterComponent
 {
   year: Number = new Date().getFullYear();
-  contactService = inject(ContactService);
-  private viewportScroller = inject(ViewportScroller);
-  contactLinks = this.contactService.socialLinks;
 
-  icoMaxSrc = 'assets/icons/icon-logo-max.svg';
-  icoMaxStyle = { height: '40px', fill: 'white' };
+  private contactService: ContactService = inject(ContactService);
+  contactLinks: SocialLink[] = this.contactService.socialLinks;
+  lugar: string = `${this.contactService.country}, ${this.contactService.city}`;
+  calle: string = `${this.contactService.street}, #${this.contactService.streetNumber}`;
+  phone: string = this.contactService.phone;
 
-  public gotoAnchor(anchorName: string): void
-  {
-    this.viewportScroller.setOffset([0, 67]);
-    this.viewportScroller.scrollToAnchor(anchorName);
-  }
+  linksService: LinksService = inject(LinksService);
+  linksPages: linkPage[] = this.linksService.linksPages;
+
+  icoMaxSrc: string = 'assets/icons/icon-logo-max.svg';
+  icoMaxStyle: Record<string, string> = { height: '40px', fill: 'white' };
 }

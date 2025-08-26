@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ContactService } from '@shared/services/contact.service';
+import { ContactService, SocialLink } from '@shared/services/contact.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
@@ -10,6 +10,10 @@ import { SvgIconComponent } from 'angular-svg-icon';
 })
 export class ContactPageComponent
 {
-  contactService = inject(ContactService);
-  contactLinks = this.contactService.socialLinks;
+  private contactService = inject(ContactService);
+  contactLinks: SocialLink[] = this.contactService.socialLinks;
+
+  lugar: string = `${this.contactService.country}, ${this.contactService.city}`;
+  calle: string = `${this.contactService.street}, #${this.contactService.streetNumber}`;
+  phone: string = this.contactService.phone;
 }

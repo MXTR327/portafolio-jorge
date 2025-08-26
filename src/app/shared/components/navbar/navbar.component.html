@@ -1,81 +1,86 @@
 <header
-  class="flex w-full flex-wrap bg-white py-3 text-sm select-none sm:flex-nowrap sm:justify-start dark:bg-neutral-800"
+  class="stick inset-x-0 top-4 z-50 flex w-full flex-wrap select-none before:absolute before:inset-0 before:mx-2 before:max-w-5xl before:rounded-[26px] before:bg-neutral-800/60 before:backdrop-blur-md md:flex-nowrap md:justify-start lg:before:mx-auto"
 >
   <nav
-    class="mx-auto flex w-full max-w-[85rem] basis-full flex-wrap items-center justify-between px-4"
+    class="relative mx-2 flex w-full max-w-5xl basis-full flex-wrap items-center justify-between py-2 ps-5 pe-2 md:flex-nowrap md:py-0 lg:mx-auto"
   >
-    <!-- Logo -->
-    <a
-      class="font-montserrat-alternates flex-none cursor-pointer text-xl font-semibold focus:opacity-80 focus:outline-hidden sm:order-1 dark:text-white"
-      (click)="gotoAnchor('home')"
-    >
-      Ramsua
-      <span class="text-blue-500">| Services</span>
-    </a>
-    <div class="flex items-center gap-x-2 sm:order-3">
-      <!-- Responsividad Hamburger -->
-      <button
-        type="button"
-        class="hs-collapse-toggle relative flex size-9 items-center justify-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:bg-gray-50 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 sm:hidden dark:border-neutral-700 dark:bg-transparent dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10"
-        id="hs-navbar-alignment-collapse"
-        aria-expanded="false"
-        aria-controls="hs-navbar-alignment"
-        aria-label="Toggle navigation"
-        data-hs-collapse="#hs-navbar-alignment"
-      >
-        <svg-icon
-          class="hs-collapse-open:hidden shrink-0"
-          [src]="icoHamburberSrc"
-          [svgStyle]="icoHamburgerStyle"
-        />
-        <svg-icon
-          class="hs-collapse-open:block hidden shrink-0"
-          [src]="icoCloseSrc"
-          [svgStyle]="icoCloseStyle"
-        />
-        <span class="sr-only">Toggle</span>
-      </button>
-      <!-- Boton -->
+    <!-- 1ra columna -->
+    <div class="flex items-center">
+      <!-- Logo -->
       <a
-        (click)="gotoAnchor('contact')"
-        class="inline-flex items-center gap-x-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-800 shadow-2xs hover:bg-gray-50 focus:bg-gray-50 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+        class="inline-block flex-none rounded-md text-xl font-semibold focus:opacity-80 focus:outline-hidden"
+        (click)="linksService.gotoAnchor(linksPages[0].href)"
       >
-        Contact Us
+        <span class="text-white"> Ramsua </span>
+        <span class="text-[#ff0]">| Services</span>
       </a>
+      <!-- End Logo -->
     </div>
-    <!-- Menu -->
-    <div
-      id="hs-navbar-alignment"
-      class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 sm:order-2 sm:block sm:grow-0 sm:basis-auto"
-      aria-labelledby="hs-navbar-alignment-collapse"
-    >
-      <div class="mt-5 flex flex-col gap-5 sm:mt-0 sm:flex-row sm:items-center sm:ps-5">
+    <!-- Fin 1ra columna -->
+
+    <!-- 3ra columna -->
+    <div class="flex items-center gap-x-3 md:order-3">
+      <div class="md:ps-3">
         <a
-          class="cursor-pointer font-medium text-blue-500 focus:outline-hidden"
-          (click)="gotoAnchor('home')"
-          aria-current="page"
+          class="group inline-flex cursor-pointer items-center gap-x-2 rounded-full bg-[#ff0] px-3 py-2 text-sm font-medium text-nowrap text-neutral-800 focus:outline-hidden"
+          (click)="linksService.gotoAnchor(linksPages[4].href)"
         >
-          Home
-        </a>
-        <a
-          class="cursor-pointer font-medium text-gray-600 hover:text-gray-400 focus:text-gray-400 focus:outline-hidden dark:text-neutral-400 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
-          (click)="gotoAnchor('about-us')"
-        >
-          About Us
-        </a>
-        <a
-          class="cursor-pointer font-medium text-gray-600 hover:text-gray-400 focus:text-gray-400 focus:outline-hidden dark:text-neutral-400 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
-          (click)="gotoAnchor('services')"
-        >
-          Services
-        </a>
-        <a
-          class="cursor-pointer font-medium text-gray-600 hover:text-gray-400 focus:text-gray-400 focus:outline-hidden dark:text-neutral-400 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
-          (click)="gotoAnchor('projects')"
-        >
-          Projects
+          <span> Contact Us </span>
+          <svg-icon
+            src="assets/icons/icon-call.svg"
+            [svgStyle]="{ 'height.px': 15, 'fill': 'black' }"
+          />
         </a>
       </div>
+
+      <div class="md:hidden">
+        <button
+          type="button"
+          class="hs-collapse-toggle flex size-9 items-center justify-center rounded-full bg-neutral-800 text-sm font-semibold text-white disabled:pointer-events-none disabled:opacity-50"
+          id="hs-navbar-floating-dark-collapse"
+          aria-expanded="false"
+          aria-controls="hs-navbar-floating-dark"
+          aria-label="Toggle navigation"
+          data-hs-collapse="#hs-navbar-floating-dark"
+        >
+          <svg-icon
+            class="hs-collapse-open:hidden shrink-0"
+            [src]="icoHamburberSrc"
+            [svgStyle]="icoHamburgerStyle"
+          />
+          <svg-icon
+            class="hs-collapse-open:block hidden shrink-0"
+            [src]="icoCloseSrc"
+            [svgStyle]="icoCloseStyle"
+          />
+        </button>
+      </div>
     </div>
+    <!-- Fin 3ra columna -->
+
+    <!-- 2da columna -->
+    <div
+      id="hs-navbar-floating-dark"
+      class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block"
+      aria-labelledby="hs-navbar-floating-dark-collapse"
+    >
+      <div
+        class="flex flex-col gap-y-3 py-2 md:flex-row md:items-center md:justify-end md:py-0 md:ps-7"
+      >
+        @for (linP of linksPages; track linP.name; let last = $last)
+        {
+          @if (!last)
+          {
+            <a
+              class="cursor-pointer ps-px pe-3 text-sm text-white hover:text-neutral-300 focus:text-neutral-300 focus:outline-hidden sm:px-3 md:py-4"
+              (click)="linksService.gotoAnchor(linP.href)"
+            >
+              {{ linP.name }}
+            </a>
+          }
+        }
+      </div>
+    </div>
+    <!-- Fin 2da columna -->
   </nav>
 </header>

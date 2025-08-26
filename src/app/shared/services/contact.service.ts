@@ -13,11 +13,16 @@ export interface SocialLink
 })
 export class ContactService
 {
-  private readonly icoUrl = 'assets/icons';
+  private readonly icoUrl: string = 'assets/icons';
 
-  private readonly email = 'ramsua.jorlui@gmail.com';
-  private readonly phone = '992901012';
-  private readonly facebook = 'jorje.ramirez.71619';
+  country: string = 'Perú';
+  city: string = 'Lima';
+  street: string = 'Santa María';
+  streetNumber: string = '15135';
+
+  phone: string = '992901012';
+  private readonly email: string = 'ramsua.jorlui@gmail.com';
+  private readonly facebook: string = 'jorje.ramirez.71619';
 
   private get message(): string
   {

@@ -1,5 +1,5 @@
-import { ViewportScroller } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { linkPage, LinksService } from '@shared/services/links.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
@@ -9,29 +9,22 @@ import { SvgIconComponent } from 'angular-svg-icon';
 })
 export class NavbarComponent
 {
-  private viewportScroller = inject(ViewportScroller);
+  linksService = inject(LinksService);
+  linksPages: linkPage[] = this.linksService.linksPages;
 
-  public gotoAnchor(anchorName: string): void
-  {
-    this.viewportScroller.setOffset([0, 67]);
-    this.viewportScroller.scrollToAnchor(anchorName);
-  }
-
-  icoUrl = 'assets/icons';
-
-  icoHamburberSrc = `${this.icoUrl}/icon-menu-hamburger.svg`;
-  icoHamburgerStyle = {
-    width: '24px',
-    height: '24px',
-  };
-  icoCloseSrc = `${this.icoUrl}/icon-menu-close.svg`;
-  icoCloseStyle = {
-    width: '24px',
-    height: '24px',
-  };
-
-  icoWhatsappSrc = `${this.icoUrl}/icon-logo-whatsapp.svg`;
-  icoWhatsappStyle = { height: '1.3rem' };
-
+  icoUrl: string = 'assets/icons';
+  icoHamburberSrc: string = `${this.icoUrl}/icon-menu-hamburger.svg`;
+  icoCloseSrc: string = `${this.icoUrl}/icon-menu-close.svg`;
+  icoWhatsappSrc: string = `${this.icoUrl}/icon-logo-whatsapp.svg`;
   phone: string = '992901012';
+
+  icoHamburgerStyle: Record<string, string> = {
+    width: '20px',
+    height: '20px',
+  };
+  icoCloseStyle: Record<string, string> = {
+    width: '20px',
+    height: '20px',
+  };
+  icoWhatsappStyle: Record<string, string> = { height: '1.3rem' };
 }
