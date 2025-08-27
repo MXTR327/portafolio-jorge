@@ -8,7 +8,7 @@
   --font-montserrat: 'Montserrat', 'sans-serif';
   --shadow-white-neumorphic-flat: 10px 10px 20px #666666, -10px -10px 20px #ffffff;
   --shadow-white-neumorphic-pressed: inset 10px 10px 20px #666666, inset -10px -10px 20px #ffffff;
-  --animate-fadeIn: fadeIn 0.3s ease-in-out;
+  --animate-fadeIn: fadeIn 0.8s ease-in-out;
   @keyframes fadeIn {
     0% {
       opacity: 0;

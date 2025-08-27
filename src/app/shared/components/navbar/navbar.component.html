@@ -1,5 +1,5 @@
 <header
-  class="stick inset-x-0 top-4 z-50 flex w-full flex-wrap select-none before:absolute before:inset-0 before:mx-2 before:max-w-5xl before:rounded-[26px] before:bg-neutral-800/60 before:backdrop-blur-md md:flex-nowrap md:justify-start lg:before:mx-auto"
+  class="fixed inset-x-0 top-4 z-50 flex w-full flex-wrap select-none before:absolute before:inset-0 before:mx-2 before:max-w-5xl before:rounded-[26px] before:bg-neutral-800/40 before:backdrop-blur-md md:flex-nowrap md:justify-start lg:before:mx-auto"
 >
   <nav
     class="relative mx-2 flex w-full max-w-5xl basis-full flex-wrap items-center justify-between py-2 ps-5 pe-2 md:flex-nowrap md:py-0 lg:mx-auto"
@@ -8,8 +8,8 @@
     <div class="flex items-center">
       <!-- Logo -->
       <a
-        class="inline-block flex-none rounded-md text-xl font-semibold focus:opacity-80 focus:outline-hidden"
-        (click)="linksService.gotoAnchor(linksPages[0].href)"
+        class="inline-block flex-none cursor-pointer rounded-md text-xl font-semibold focus:opacity-80 focus:outline-hidden"
+        (click)="linksService.gotoAnchor(linksService.getByName('Home')!.href)"
       >
         <span class="text-white"> Ramsua </span>
         <span class="text-[#ff0]">| Services</span>
@@ -23,12 +23,12 @@
       <div class="md:ps-3">
         <a
           class="group inline-flex cursor-pointer items-center gap-x-2 rounded-full bg-[#ff0] px-3 py-2 text-sm font-medium text-nowrap text-neutral-800 focus:outline-hidden"
-          (click)="linksService.gotoAnchor(linksPages[4].href)"
+          (click)="linksService.gotoAnchor(linksService.getByName('Contact Us')!.href)"
         >
           <span> Contact Us </span>
           <svg-icon
             src="assets/icons/icon-call.svg"
-            [svgStyle]="{ 'height.px': 15, 'fill': 'black' }"
+            [svgStyle]="{ 'height.px': 15, fill: 'black' }"
           />
         </a>
       </div>
@@ -65,15 +65,16 @@
       aria-labelledby="hs-navbar-floating-dark-collapse"
     >
       <div
-        class="flex flex-col gap-y-3 py-2 md:flex-row md:items-center md:justify-end md:py-0 md:ps-7"
+        class="flex flex-col gap-y-3 py-2 font-semibold md:flex-row md:items-center md:justify-end md:py-0 md:ps-7"
       >
         @for (linP of linksPages; track linP.name; let last = $last)
         {
           @if (!last)
           {
             <a
-              class="cursor-pointer ps-px pe-3 text-sm text-white hover:text-neutral-300 focus:text-neutral-300 focus:outline-hidden sm:px-3 md:py-4"
-              (click)="linksService.gotoAnchor(linP.href)"
+              class="cursor-pointer ps-px pe-3 text-sm hover:text-neutral-300 focus:text-neutral-300 focus:outline-hidden sm:px-3 md:py-4"
+              (click)="scrollTo(linP.href)"
+              [ngClass]="isActive(linP.href) ? 'text-amber-600' : 'text-white'"
             >
               {{ linP.name }}
             </a>

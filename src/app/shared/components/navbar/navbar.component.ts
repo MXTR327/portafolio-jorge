@@ -1,16 +1,33 @@
-import { Component, inject } from '@angular/core';
-import { linkPage, LinksService } from '@shared/services/links.service';
+import { NgClass } from '@angular/common';
+import { Component, computed, ElementRef, inject, QueryList, ViewChildren } from '@angular/core';
+import { ActiveSectionService } from '@shared/services/active-section.service';
+import { LinkPage, LinksService } from '@shared/services/links.service';
+import { ScrollStateService } from '@shared/services/scroll-state.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'front-navbar',
-  imports: [SvgIconComponent],
+  imports: [SvgIconComponent, NgClass],
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent
 {
-  linksService = inject(LinksService);
-  linksPages: linkPage[] = this.linksService.linksPages;
+  linksService: LinksService = inject(LinksService);
+  linksPages: readonly LinkPage[] = this.linksService.linksPages;
+
+  private activeSvc = inject(ActiveSectionService);
+  activeSection = computed(() => this.activeSvc.active());
+
+  scrollTo(href: string)
+  {
+    const id = href.startsWith('#') ? href.slice(1) : href;
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  isActive(href: string): boolean
+  {
+    return this.activeSection() === href;
+  }
 
   icoUrl: string = 'assets/icons';
   icoHamburberSrc: string = `${this.icoUrl}/icon-menu-hamburger.svg`;
