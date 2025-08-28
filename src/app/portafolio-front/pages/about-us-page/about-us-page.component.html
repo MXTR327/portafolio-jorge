@@ -1,69 +1,53 @@
-<section class="about section h-screen">
-  <div class="about__container container grid">
-    <div
-      class="about__data"
-      data-sr-id="8"
-      style="
-        visibility: visible;
-        opacity: 1;
-        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-        transition:
-          all,
-          opacity 2.5s cubic-bezier(0.5, 0, 0, 1) 0.4s,
-          transform 2.5s cubic-bezier(0.5, 0, 0, 1) 0.4s;
-      "
-    >
-      <span class="section__subtitle">Sobre Nosotros</span>
-      <h2 class="section__title">
-        Brindamos el mejor <br />
-        servicio para construir
-      </h2>
+<section
+  [class.animate-fadeIn]="isSectionActive()"
+  [class.invisible]="!isSectionActive()"
+  class="flex h-screen flex-col py-20"
+>
+  <div class="text-center">
+    <h2 class="mb-4 text-4xl font-semibold uppercase">About Us</h2>
+    <h3 class="mb-16 text-base text-gray-600 italic">Lorem ipsum dolor sit amet consectetur.</h3>
+  </div>
 
-      <p class="about__description">
-        Nos esforzamos por brindar los mejores profesionales para hacer de sus proyectos una obra
-        maestra de construcción, algo único e inigualable.
-      </p>
+  <!-- Loader -->
+  <div class="flex h-full w-full justify-center">
+    <div class="loader w-2 bg-red-600">
+      <!-- Barra de llenado -->
+      <div class="bar bg-blue-600"></div>
+      <!-- Fin barra de llenado -->
 
-      <ul class="about__list grid">
-        <li class="about__list-item">
-          <i class="ri-checkbox-circle-line"></i>
-          <span>Trabajadores profesionales</span>
-        </li>
-
-        <li class="about__list-item">
-          <i class="ri-checkbox-circle-line"></i>
-          <span>Calidad garantizada</span>
-        </li>
-
-        <li class="about__list-item">
-          <i class="ri-checkbox-circle-line"></i>
-          <span>Amplia experiencia</span>
-        </li>
-
-        <li class="about__list-item">
-          <i class="ri-checkbox-circle-line"></i>
-          <span>Visitamos tu proyecto</span>
-        </li>
-      </ul>
-
-      <a href="#projects" class="button">Ver proyectos</a>
-    </div>
-
-    <div
-      class="about__images"
-      data-sr-id="6"
-      style="
-        visibility: visible;
-        opacity: 1;
-        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-        transition:
-          all,
-          opacity 2.5s cubic-bezier(0.5, 0, 0, 1) 0.4s,
-          transform 2.5s cubic-bezier(0.5, 0, 0, 1) 0.4s;
-      "
-    >
-      <img src="images/obrero01.jpg" alt="image" class="about__img-1" />
-      <img src="images/elementos.jpg" alt="image" class="about__img-2" />
+      <!-- Contenedor de checks -->
+      <div class="check-bar-container items-center">
+        <div class="check flex h-20 w-20 p-1">
+          <img
+            class="h-full w-full rounded-full object-cover object-center"
+            src="/assets/images/img-trabajador.png"
+            alt="imagen"
+          />
+        </div>
+        <div class="check flex h-20 w-20 p-1">
+          <img
+            class="h-full w-full rounded-full object-cover object-center"
+            src="/assets/images/img-trabajador.png"
+            alt="imagen"
+          />
+        </div>
+        <div class="check flex h-20 w-20 p-1">
+          <img
+            class="h-full w-full rounded-full object-cover object-center"
+            src="/assets/images/img-trabajador.png"
+            alt="imagen"
+          />
+        </div>
+        <div class="check flex h-20 w-20 p-1">
+          <img
+            class="h-full w-full rounded-full object-cover object-center"
+            src="/assets/images/img-trabajador.png"
+            alt="imagen"
+          />
+        </div>
+      </div>
+      <!-- Fin contenedor de checks -->
     </div>
   </div>
+  <!-- Fin loader -->
 </section>

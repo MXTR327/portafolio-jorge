@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { LinksService, LinkPage } from '@shared/services/links.service';
+import { LinkPage, LinksRouteService } from '@shared/services/links-route.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
@@ -10,6 +10,6 @@ import { SvgIconComponent } from 'angular-svg-icon';
 })
 export class BackToTopComponent
 {
-  linksService: LinksService = inject(LinksService);
+  linksService: LinksRouteService = inject(LinksRouteService);
   linksPages: readonly LinkPage[] = this.linksService.linksPages;
 }

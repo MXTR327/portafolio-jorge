@@ -1,0 +1,142 @@
+@keyframes loadingBarVertical {
+  0% {
+    height: 0%;
+    animation-timing-function: ease-out;
+  }
+  30% {
+    height: 33%;
+    animation-timing-function: ease-out;
+  }
+  60% {
+    height: 66%;
+    animation-timing-function: ease-out;
+  }
+  90% {
+    height: 100%;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    height: 100%;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes checkScale0 {
+  0% {
+    transform: scale(1);
+    background-color: rgb(0, 205, 0);
+  }
+  8% {
+    transform: scale(1);
+    background-color: rgb(0, 205, 0);
+  }
+  9% {
+    transform: scale(1.5);
+    background-color: rgb(0, 205, 0);
+  }
+  100% {
+    transform: scale(1.5);
+    background-color: rgb(0, 205, 0);
+  }
+}
+
+@keyframes checkScale1 {
+  0% {
+    transform: scale(1);
+    background-color: #535353;
+  }
+  28% {
+    transform: scale(1);
+    background-color: #535353;
+  }
+  29% {
+    transform: scale(1.5);
+    background-color: rgb(0, 205, 0);
+  }
+  100% {
+    transform: scale(1.5);
+    background-color: rgb(0, 205, 0);
+  }
+}
+
+@keyframes checkScale2 {
+  0% {
+    transform: scale(1);
+    background-color: #535353;
+  }
+  58% {
+    transform: scale(1);
+    background-color: #535353;
+  }
+  59% {
+    transform: scale(1.5);
+    background-color: rgb(0, 205, 0);
+  }
+  100% {
+    transform: scale(1.5);
+    background-color: rgb(0, 205, 0);
+  }
+}
+
+@keyframes checkScale3 {
+  0% {
+    transform: scale(1);
+    background-color: #535353;
+  }
+  88% {
+    transform: scale(1);
+    background-color: #535353;
+  }
+  89% {
+    transform: scale(1.5);
+    background-color: rgb(0, 205, 0);
+  }
+  100% {
+    transform: scale(1.5);
+    background-color: rgb(0, 205, 0);
+  }
+}
+
+.loader {
+  position: relative;
+  border-radius: calc(infinity * 1px);
+  height: 100%;
+}
+
+.bar {
+  position: absolute;
+  top: 0;
+  border-radius: calc(infinity * 1px);
+  width: 100%;
+  height: 100%;
+  border-radius: 1em;
+  animation: loadingBarVertical 6s linear infinite;
+}
+
+.check-bar-container {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.check {
+  border-radius: calc(infinity * 1px);
+  transform: scale(0.75);
+}
+
+.check-bar-container .check:nth-of-type(1) {
+  animation: checkScale0 6s linear infinite;
+}
+.check-bar-container .check:nth-of-type(2) {
+  animation: checkScale1 6s linear infinite;
+}
+.check-bar-container .check:nth-of-type(3) {
+  animation: checkScale2 6s linear infinite;
+}
+.check-bar-container .check:nth-of-type(4) {
+  animation: checkScale3 6s linear infinite;
+}

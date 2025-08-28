@@ -28,10 +28,13 @@ import { ActiveSectionService } from '@shared/services/active-section.service';
 })
 export class PortafolioFrontLayoutComponent implements AfterViewInit
 {
-  private activeSvc = inject(ActiveSectionService);
+  // Servicios (inyectados)
+  private readonly _activeSectionService = inject(ActiveSectionService);
 
-  @ViewChildren('observeSection') sectionRefs!: QueryList<ElementRef<HTMLElement>>;
+  // ViewChildren para observar las secciones
+  @ViewChildren('observeSection') sectionsRef!: QueryList<ElementRef<HTMLElement>>;
 
+  // Metodos (public for template)
   ngAfterViewInit()
   {
     const observer = new IntersectionObserver(
@@ -39,26 +42,24 @@ export class PortafolioFrontLayoutComponent implements AfterViewInit
       {
         for (const entry of entries)
         {
-          if (entry.isIntersecting)
+          const id = (entry.target as HTMLElement).id;
+          if (!id) continue;
+
+          this._activeSectionService.setVisible(id, entry.isIntersecting);
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5)
           {
-            const id = (entry.target as HTMLElement).id;
-            if (id)
-            {
-              this.activeSvc.setActive(id);
-            }
+            this._activeSectionService.setActive(id);
           }
         }
       },
       {
-        // Ajusta si tienes navbar fijo. El bottom negativo
-        // reduce el umbral visible útil y mejora la UX.
         root: null,
-        threshold: 0.5,
-        rootMargin: '0px 0px -25% 0px',
+        threshold: [0.1, 0.5],
       },
     );
 
-    this.sectionRefs.forEach((ref) =>
+    this.sectionsRef.forEach((ref) =>
     {
       const el = ref.nativeElement as HTMLElement;
       observer.observe(el);

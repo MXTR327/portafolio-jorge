@@ -1,4 +1,8 @@
-<section class="flex h-screen flex-col items-center justify-center py-20">
+<section
+  [class.animate-fadeIn]="isSectionActive()"
+  [class.invisible]="!isSectionActive()"
+  class="flex h-screen flex-col items-center justify-center py-20"
+>
   <!-- 1ra fila -->
   <div>
     <p class="mb-2 text-center text-xl font-semibold text-amber-500">Contáctanos</p>
@@ -68,14 +72,14 @@
           <h3 class="text-lg font-bold text-gray-800 dark:text-white">Escribenos</h3>
           <!-- Social  -->
           <div>
-            @for (link of contactLinks; track link)
+            @for (socialLink of socialLinks; track socialLink)
             {
               <a
-                class="inline-flex size-10 items-center justify-center gap-x-2 rounded-lg border border-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
-                [href]="link.url"
+                class="inline-flex size-10 items-center justify-center rounded-lg border border-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+                [href]="socialLink.path"
                 target="_blank"
               >
-                <svg-icon [src]="link.icon" [svgStyle]="link.style" />
+                <svg-icon [src]="socialLink.icon" [svgStyle]="socialLink.style" />
               </a>
             }
           </div>

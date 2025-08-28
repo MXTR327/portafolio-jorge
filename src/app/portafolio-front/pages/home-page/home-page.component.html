@@ -1,4 +1,8 @@
-<section class="flex h-screen md:gap-10 md:px-4 lg:px-7 animate-fadeIn">
+<section
+  [class.animate-fadeIn]="isSectionActive()"
+  [class.invisible]="!isSectionActive()"
+  class="flex h-screen md:gap-10 md:px-4 lg:px-7"
+>
   <!-- 1ra columna -->
   <div class="flex flex-col justify-center md:flex-5">
     <!-- Frase -->
@@ -30,7 +34,7 @@
       <!-- Btn contacto -->
       <button
         class="relative inline-flex overflow-hidden rounded-lg p-[3px] focus:outline-none active:scale-95 md:h-9 md:w-35 lg:h-12 lg:w-40"
-        (click)="linksService.gotoAnchor('contact')"
+        (click)="gotoAnchor('contact')"
       >
         <span
           class="absolute inset-[-1000%] z-0 animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"

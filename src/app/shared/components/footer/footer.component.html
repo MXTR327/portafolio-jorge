@@ -9,7 +9,7 @@
           aria-label="Brand"
         >
           <div class="flex items-center gap-2">
-            <svg-icon [src]="icoMaxSrc" [svgStyle]="icoMaxStyle" />
+            <svg-icon src="/assets/icons/icon-logo-max.svg" [svgStyle]="icoMaxStyle" />
             <!-- Empresa -->
             <p class="font-montserrat-alternates font-semibold">
               MAXtr <br />
@@ -41,7 +41,7 @@
           {
             <a
               class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 focus:text-gray-200 focus:outline-hidden dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus:text-neutral-200"
-              (click)="linksService.gotoAnchor(linP.href)"
+              (click)="scrollTo(linP.href)"
             >
               {{ linP.name }}
             </a>
@@ -55,14 +55,14 @@
         <h4 class="font-semibold text-gray-100">Redes Sociales</h4>
         <!-- Social  -->
         <div>
-          @for (link of contactLinks; track link)
+          @for (socialLink of socialLinks; track socialLink)
           {
             <a
               class="inline-flex size-10 items-center justify-center rounded-lg border border-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
-              [href]="link.url"
+              [href]="socialLink.path"
               target="_blank"
             >
-              <svg-icon [src]="link.icon" [svgStyle]="link.style" />
+              <svg-icon [src]="socialLink.icon" [svgStyle]="socialLink.style" />
             </a>
           }
         </div>

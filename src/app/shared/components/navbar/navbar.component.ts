@@ -1,47 +1,45 @@
-import { NgClass } from '@angular/common';
-import { Component, computed, ElementRef, inject, QueryList, ViewChildren } from '@angular/core';
-import { ActiveSectionService } from '@shared/services/active-section.service';
-import { LinkPage, LinksService } from '@shared/services/links.service';
-import { ScrollStateService } from '@shared/services/scroll-state.service';
+import { Component, computed, effect, inject } from '@angular/core';
 import { SvgIconComponent } from 'angular-svg-icon';
+import { ActiveSectionService } from '@shared/services/active-section.service';
+import { LinkPage, LinksRouteService } from '@shared/services/links-route.service';
 
 @Component({
   selector: 'front-navbar',
-  imports: [SvgIconComponent, NgClass],
+  imports: [SvgIconComponent],
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent
 {
-  linksService: LinksService = inject(LinksService);
-  linksPages: readonly LinkPage[] = this.linksService.linksPages;
+  // Servicios (inyectados)
+  private readonly _activeSectionService = inject(ActiveSectionService);
+  private readonly _linksService = inject(LinksRouteService);
 
-  private activeSvc = inject(ActiveSectionService);
-  activeSection = computed(() => this.activeSvc.active());
+  // Data de servicios
+  readonly linksPages: readonly LinkPage[] = this._linksService.linksPages;
 
-  scrollTo(href: string)
+  // Reactive/computed states
+  readonly visibleSections = computed(() => this._activeSectionService.visibleSections);
+  readonly activeSecion = computed(() => this._activeSectionService.activeSection);
+
+  // Configuracion estatica y constantes
+  private readonly _icoUrl: string = 'assets/icons';
+  readonly icoHamburberSrc: string = `${this._icoUrl}/icon-menu-hamburger.svg`;
+  readonly icoCloseSrc: string = `${this._icoUrl}/icon-menu-close.svg`;
+  readonly icoWhatsappSrc: string = `${this._icoUrl}/icon-logo-whatsapp.svg`;
+  readonly phone: string = '992901012';
+
+  // Estilos
+  readonly icoHamburgerStyle: Record<string, string> = { width: '20px', height: '20px' };
+  readonly icoCloseStyle: Record<string, string> = { width: '20px', height: '20px' };
+  readonly icoWhatsappStyle: Record<string, string> = { height: '1.3rem' };
+
+  // Metodos (public for template)
+  public getByName(name: string): LinkPage | undefined
   {
-    const id = href.startsWith('#') ? href.slice(1) : href;
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    return this._linksService.getByName(name);
   }
-
-  isActive(href: string): boolean
+  public scrollTo(href: string): void
   {
-    return this.activeSection() === href;
+    this._linksService.gotoAnchor(href);
   }
-
-  icoUrl: string = 'assets/icons';
-  icoHamburberSrc: string = `${this.icoUrl}/icon-menu-hamburger.svg`;
-  icoCloseSrc: string = `${this.icoUrl}/icon-menu-close.svg`;
-  icoWhatsappSrc: string = `${this.icoUrl}/icon-logo-whatsapp.svg`;
-  phone: string = '992901012';
-
-  icoHamburgerStyle: Record<string, string> = {
-    width: '20px',
-    height: '20px',
-  };
-  icoCloseStyle: Record<string, string> = {
-    width: '20px',
-    height: '20px',
-  };
-  icoWhatsappStyle: Record<string, string> = { height: '1.3rem' };
 }

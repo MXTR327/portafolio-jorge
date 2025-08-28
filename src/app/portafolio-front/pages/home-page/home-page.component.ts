@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { LinksService } from '@shared/services/links.service';
+import { Component, computed, inject } from '@angular/core';
+import { ActiveSectionService } from '@shared/services/active-section.service';
+import { LinksRouteService } from '@shared/services/links-route.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
@@ -10,7 +11,20 @@ import { SvgIconComponent } from 'angular-svg-icon';
 })
 export class HomePageComponent
 {
-  linksService = inject(LinksService);
-  imgUrl: string = '/assets/images';
-  imagen: string = `${this.imgUrl}/perfil.png`;
+  // Servicios (inyectados)
+  private readonly _activeSectionService = inject(ActiveSectionService);
+  private readonly _linksRouteService = inject(LinksRouteService);
+
+  // Reactive/computed states
+  readonly isSectionActive = computed(
+    () => this._activeSectionService.activeSection === 'home',
+  );
+  // Configuracion estatica y constantes
+  //
+
+  // Metodos (public for template)
+  gotoAnchor(section: string): void
+  {
+    this._linksRouteService.gotoAnchor(section);
+  }
 }

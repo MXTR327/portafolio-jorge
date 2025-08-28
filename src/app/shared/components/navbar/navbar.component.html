@@ -9,7 +9,7 @@
       <!-- Logo -->
       <a
         class="inline-block flex-none cursor-pointer rounded-md text-xl font-semibold focus:opacity-80 focus:outline-hidden"
-        (click)="linksService.gotoAnchor(linksService.getByName('Home')!.href)"
+        (click)="scrollTo(getByName('Home')!.href)"
       >
         <span class="text-white"> Ramsua </span>
         <span class="text-[#ff0]">| Services</span>
@@ -23,7 +23,7 @@
       <div class="md:ps-3">
         <a
           class="group inline-flex cursor-pointer items-center gap-x-2 rounded-full bg-[#ff0] px-3 py-2 text-sm font-medium text-nowrap text-neutral-800 focus:outline-hidden"
-          (click)="linksService.gotoAnchor(linksService.getByName('Contact Us')!.href)"
+          (click)="scrollTo(getByName('Contact Us')!.href)"
         >
           <span> Contact Us </span>
           <svg-icon
@@ -72,9 +72,9 @@
           @if (!last)
           {
             <a
-              class="cursor-pointer ps-px pe-3 text-sm hover:text-neutral-300 focus:text-neutral-300 focus:outline-hidden sm:px-3 md:py-4"
+              class="cursor-pointer ps-px pe-3 text-sm text-[#ff0] sm:px-3 md:py-4"
               (click)="scrollTo(linP.href)"
-              [ngClass]="isActive(linP.href) ? 'text-amber-600' : 'text-white'"
+              [class]="activeSecion() !== linP.href ? 'text-white hover:text-neutral-300' : ''"
             >
               {{ linP.name }}
             </a>

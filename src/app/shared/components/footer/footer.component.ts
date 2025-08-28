@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { SvgIconComponent } from 'angular-svg-icon';
-import { ContactService, SocialLink } from '@shared/services/contact.service';
-import { LinkPage, LinksService } from '@shared/services/links.service';
+import { LinkPage, LinksRouteService } from '@shared/services/links-route.service';
+import { LinksContactService, SocialLink } from '@shared/services/links-contact.service';
 
 @Component({
   selector: 'front-footer',
@@ -10,17 +10,29 @@ import { LinkPage, LinksService } from '@shared/services/links.service';
 })
 export class FooterComponent
 {
-  year: Number = new Date().getFullYear();
+  // Servicios (inyectados)
+  private readonly _linksService = inject(LinksRouteService);
+  private readonly _linksContactService = inject(LinksContactService);
 
-  private contactService: ContactService = inject(ContactService);
-  contactLinks: SocialLink[] = this.contactService.socialLinks;
-  lugar: string = `${this.contactService.country}, ${this.contactService.city}`;
-  calle: string = `${this.contactService.street}, #${this.contactService.streetNumber}`;
-  phone: string = this.contactService.phone;
+  // Data de servicios
+  readonly linksPages: readonly LinkPage[] = this._linksService.linksPages;
+  readonly socialLinks: SocialLink[] = this._linksContactService.socialLinks;
 
-  linksService: LinksService = inject(LinksService);
-  linksPages: readonly LinkPage[] = this.linksService.linksPages;
+  // Reactive/computed states
+  //
 
-  icoMaxSrc: string = 'assets/icons/icon-logo-max.svg';
-  icoMaxStyle: Record<string, string> = { height: '40px', fill: 'white' };
+  // Configuracion estatica y constantes
+  readonly year: Number = new Date().getFullYear();
+  readonly lugar: string = `${this._linksContactService.country}, ${this._linksContactService.city}`;
+  readonly calle: string = `${this._linksContactService.street}, #${this._linksContactService.streetNumber}`;
+  readonly phone: string = this._linksContactService.phone;
+
+  // Estilos
+  readonly icoMaxStyle: Record<string, string> = { height: '40px', fill: 'white' };
+
+  // Metodos (public for template)
+  public scrollTo(href: string): void
+  {
+    this._linksService.gotoAnchor(href);
+  }
 }
