@@ -12,10 +12,10 @@ export class NavbarComponent
 {
   // Servicios (inyectados)
   private readonly _activeSectionService = inject(ActiveSectionService);
-  private readonly _linksService = inject(LinksRouteService);
+  private readonly _linksRouteService = inject(LinksRouteService);
 
   // Data de servicios
-  readonly linksPages: readonly LinkPage[] = this._linksService.linksPages;
+  readonly linksPages: readonly LinkPage[] = this._linksRouteService.linksPages;
 
   // Reactive/computed states
   readonly visibleSections = computed(() => this._activeSectionService.visibleSections);
@@ -36,10 +36,10 @@ export class NavbarComponent
   // Metodos (public for template)
   public getByName(name: string): LinkPage | undefined
   {
-    return this._linksService.getByName(name);
+    return this._linksRouteService.getByName(name);
   }
   public scrollTo(href: string): void
   {
-    this._linksService.gotoAnchor(href);
+    this._linksRouteService.gotoAnchor(href);
   }
 }

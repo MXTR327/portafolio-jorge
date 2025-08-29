@@ -44,7 +44,7 @@ export class LinksRouteService
 
   public gotoAnchor(anchorName: string): void
   {
-    // this.viewportScroller.setOffset([0, 67]);
+    this._viewportScroller.setOffset([0, 70]);
     this._viewportScroller.scrollToAnchor(anchorName);
   }
 

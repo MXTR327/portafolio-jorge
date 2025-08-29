@@ -1,18 +1,39 @@
-@keyframes loadingBarVertical {
+@keyframes bar0percent {
   0% {
     height: 0%;
     animation-timing-function: ease-out;
   }
-  30% {
+  100% {
+    height: 0%;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes bar30percent {
+  0% {
+    height: 0%;
+    animation-timing-function: ease-out;
+  }
+  100% {
     height: 33%;
     animation-timing-function: ease-out;
   }
-  60% {
+}
+
+@keyframes bar60percent {
+  0% {
+    height: 0%;
+    animation-timing-function: ease-out;
+  }
+  100% {
     height: 66%;
     animation-timing-function: ease-out;
   }
-  90% {
-    height: 100%;
+}
+
+@keyframes bar100percent {
+  0% {
+    height: 0%;
     animation-timing-function: ease-out;
   }
   100% {
@@ -31,11 +52,11 @@
     background-color: rgb(0, 205, 0);
   }
   9% {
-    transform: scale(1.5);
+    transform: scale(1.1);
     background-color: rgb(0, 205, 0);
   }
   100% {
-    transform: scale(1.5);
+    transform: scale(1.1);
     background-color: rgb(0, 205, 0);
   }
 }
@@ -50,11 +71,11 @@
     background-color: #535353;
   }
   29% {
-    transform: scale(1.5);
+    transform: scale(1.1);
     background-color: rgb(0, 205, 0);
   }
   100% {
-    transform: scale(1.5);
+    transform: scale(1.1);
     background-color: rgb(0, 205, 0);
   }
 }
@@ -69,11 +90,11 @@
     background-color: #535353;
   }
   59% {
-    transform: scale(1.5);
+    transform: scale(1.1);
     background-color: rgb(0, 205, 0);
   }
   100% {
-    transform: scale(1.5);
+    transform: scale(1.1);
     background-color: rgb(0, 205, 0);
   }
 }
@@ -88,47 +109,59 @@
     background-color: #535353;
   }
   89% {
-    transform: scale(1.5);
+    transform: scale(1.1);
     background-color: rgb(0, 205, 0);
   }
   100% {
-    transform: scale(1.5);
+    transform: scale(1.1);
     background-color: rgb(0, 205, 0);
   }
 }
 
 .loader {
   position: relative;
-  border-radius: calc(infinity * 1px);
-  height: 100%;
+  background-color: #e5e7eb;
+  min-height: 100%;
 }
 
 .bar {
   position: absolute;
   top: 0;
-  border-radius: calc(infinity * 1px);
+  left: 0;
   width: 100%;
-  height: 100%;
-  border-radius: 1em;
-  animation: loadingBarVertical 6s linear infinite;
 }
 
 .check-bar-container {
-  position: absolute;
-  top: 0;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  align-items: center;
   width: 100%;
 }
 
 .check {
   border-radius: calc(infinity * 1px);
-  transform: scale(0.75);
+  transform: scale(1);
 }
 
-.check-bar-container .check:nth-of-type(1) {
+.bar-0 {
+  animation: bar0percent 6s linear forwards;
+}
+
+.bar-30 {
+  animation: bar30percent 3s linear forwards;
+}
+
+.bar-60 {
+  animation: bar60percent 3s linear forwards;
+}
+
+.bar-100 {
+  animation: bar100percent 3s linear forwards;
+}
+
+/* .check-bar-container .check:nth-of-type(1) {
   animation: checkScale0 6s linear infinite;
 }
 .check-bar-container .check:nth-of-type(2) {
@@ -139,4 +172,4 @@
 }
 .check-bar-container .check:nth-of-type(4) {
   animation: checkScale3 6s linear infinite;
-}
+} */

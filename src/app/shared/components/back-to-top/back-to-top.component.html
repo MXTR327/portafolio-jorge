@@ -1,6 +1,8 @@
 <a
+  [class.invisible]="isSectionActive()"
+  [class.animate-fadeIn]="isSectionActive()"
   class="btn-back-to-top text-amber-600"
-  (click)="linksService.gotoAnchor(linksService.getByName('Home')!.href)"
+  (click)="scrollTo(getByName('Home')!.href)"
 >
   <div class="text">
     <span>Back</span>

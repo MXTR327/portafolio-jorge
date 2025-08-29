@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  inject,
-  QueryList,
-  ViewChildren,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, viewChildren } from '@angular/core';
 import { AboutUsPageComponent } from '../../pages/about-us-page/about-us-page.component';
 import { ContactPageComponent } from '../../pages/contact-page/contact-page.component';
 import { HomePageComponent } from '../../pages/home-page/home-page.component';
@@ -28,15 +21,19 @@ import { ActiveSectionService } from '@shared/services/active-section.service';
 })
 export class PortafolioFrontLayoutComponent implements AfterViewInit
 {
-  // Servicios (inyectados)
+  // Servicios
   private readonly _activeSectionService = inject(ActiveSectionService);
 
-  // ViewChildren para observar las secciones
-  @ViewChildren('observeSection') sectionsRef!: QueryList<ElementRef<HTMLElement>>;
+  // ViewChildren con signals (Angular 17+)
+  sectionsRef = viewChildren<ElementRef<HTMLElement>>('observeSection');
 
-  // Metodos (public for template)
-  ngAfterViewInit()
+  ngAfterViewInit(): void
   {
+    const sections = this.sectionsRef();
+    if (!sections || sections.length === 0) return;
+
+    console.log(sections);
+
     const observer = new IntersectionObserver(
       (entries) =>
       {
@@ -59,7 +56,7 @@ export class PortafolioFrontLayoutComponent implements AfterViewInit
       },
     );
 
-    this.sectionsRef.forEach((ref) =>
+    sections.forEach((ref) =>
     {
       const el = ref.nativeElement as HTMLElement;
       observer.observe(el);

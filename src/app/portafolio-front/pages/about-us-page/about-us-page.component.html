@@ -1,53 +1,57 @@
 <section
   [class.animate-fadeIn]="isSectionActive()"
   [class.invisible]="!isSectionActive()"
-  class="flex h-screen flex-col py-20"
+  class="flex h-full w-full flex-col"
 >
-  <div class="text-center">
-    <h2 class="mb-4 text-4xl font-semibold uppercase">About Us</h2>
-    <h3 class="mb-16 text-base text-gray-600 italic">Lorem ipsum dolor sit amet consectetur.</h3>
+  <!-- 1ra fila -->
+  <div class="mb-10 text-center">
+    <h2 class="mb-4 text-4xl font-bold uppercase">About us</h2>
+    <h3 class="text-base text-gray-500 italic">
+      Más de 20 años levantando hogares, espacios y sueños, siempre con dedicación y compromiso.
+    </h3>
   </div>
+  <!-- Fin 1ra fila -->
 
-  <!-- Loader -->
-  <div class="flex h-full w-full justify-center">
-    <div class="loader w-2 bg-red-600">
+  <!-- 2da fila -->
+  <div class="relative flex h-full w-full justify-center">
+    <div class="loader h-full w-0.5 bg-gray-200">
       <!-- Barra de llenado -->
-      <div class="bar bg-blue-600"></div>
+      <div class="bar bar-30 bg-gray-600"></div>
       <!-- Fin barra de llenado -->
 
       <!-- Contenedor de checks -->
-      <div class="check-bar-container items-center">
-        <div class="check flex h-20 w-20 p-1">
-          <img
-            class="h-full w-full rounded-full object-cover object-center"
-            src="/assets/images/img-trabajador.png"
-            alt="imagen"
-          />
-        </div>
-        <div class="check flex h-20 w-20 p-1">
-          <img
-            class="h-full w-full rounded-full object-cover object-center"
-            src="/assets/images/img-trabajador.png"
-            alt="imagen"
-          />
-        </div>
-        <div class="check flex h-20 w-20 p-1">
-          <img
-            class="h-full w-full rounded-full object-cover object-center"
-            src="/assets/images/img-trabajador.png"
-            alt="imagen"
-          />
-        </div>
-        <div class="check flex h-20 w-20 p-1">
-          <img
-            class="h-full w-full rounded-full object-cover object-center"
-            src="/assets/images/img-trabajador.png"
-            alt="imagen"
-          />
+      <div class="check-bar-container w-full gap-20">
+        @for (timeRange of timeRanges; track timeRange; let e = $even)
+        {
+          <div class="check relative flex h-40 w-40 items-center bg-gray-200 p-1.5">
+            <div
+              [class.text-right]="e"
+              [class.right-50]="e"
+              [class.left-50]="!e"
+              class="absolute w-112 font-semibold"
+            >
+              <h4 class="text-2xl">{{ timeRange.yearRange }}</h4>
+              <h4 class="mb-2 text-2xl">{{ timeRange.title }}</h4>
+              <p class="font-normal text-gray-500">{{ timeRange.description }}</p>
+            </div>
+
+            <img
+              class="h-full w-full overflow-clip rounded-full object-cover object-center"
+              src="{{ timeRange.imageUrl }}"
+            />
+          </div>
+        }
+
+        <div class="check flex h-40 w-40 items-center bg-gray-200 p-1.5">
+          <div
+            class="flex h-full w-full items-center justify-center rounded-full bg-yellow-500 p-10 text-center font-semibold text-white"
+          >
+            ¡Ven y se parte de nuestra historia!
+          </div>
         </div>
       </div>
       <!-- Fin contenedor de checks -->
     </div>
   </div>
-  <!-- Fin loader -->
+  <!-- Fin 2da fila -->
 </section>
