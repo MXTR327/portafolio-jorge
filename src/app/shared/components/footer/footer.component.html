@@ -1,16 +1,15 @@
-<footer class="mt-auto w-full cursor-default bg-gray-900 dark:bg-neutral-950">
+<footer class="mt-auto w-full cursor-default overflow-hidden bg-gray-900 dark:bg-neutral-950">
   <div class="mx-auto mt-auto w-full max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:pt-20">
     <!-- 1ra fila -->
     <div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
       <!-- 1ra columna -->
-      <div class="col-span-full lg:col-span-1">
+      <div class="col-span-full lg:col-span-1" data-aos="zoom-out-right" data-aos-duration="700">
         <a
           class="flex-none text-sm font-semibold text-white focus:opacity-80 focus:outline-hidden"
           aria-label="Brand"
         >
           <div class="flex items-center gap-2">
             <svg-icon src="/assets/icons/icon-logo-max.svg" [svgStyle]="icoMaxStyle" />
-            <!-- Empresa -->
             <p class="font-montserrat-alternates font-semibold">
               MAXtr <br />
               SERVICES
@@ -18,67 +17,82 @@
           </div>
         </a>
       </div>
-      <!-- Fin 1ra columna -->
 
       <!-- 2da Columna -->
-      <div class="col-span-1">
+      <div
+        class="col-span-1"
+        data-aos="zoom-out-right"
+        data-aos-duration="800"
+        data-aos-delay="200"
+      >
         <h4 class="font-semibold text-gray-100">Información</h4>
-
         <div class="mt-3 grid text-neutral-400">
           <p class="text-gray-500 dark:text-neutral-400">{{ lugar }}</p>
           <p class="mb-1 text-gray-500 dark:text-neutral-400">{{ calle }}</p>
           <p class="text-gray-500 dark:text-neutral-400">+51 {{ phone }}</p>
         </div>
       </div>
-      <!-- Fin 2da Columna -->
 
       <!-- 3ra Columna -->
-      <div class="col-span-1">
+      <div class="col-span-1" data-aos="zoom-out-left" data-aos-duration="800" data-aos-delay="400">
         <h4 class="font-semibold text-gray-100">Compañia</h4>
-
         <div class="mt-3 grid space-y-3">
           @for (linP of linksPages; track linP.name)
           {
             <a
               class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 focus:text-gray-200 focus:outline-hidden dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus:text-neutral-200"
               (click)="scrollTo(linP.href)"
+              data-aos="zoom-out-up"
+              data-aos-duration="700"
             >
               {{ linP.name }}
             </a>
           }
         </div>
       </div>
-      <!-- Fin 3ra Columna -->
 
       <!-- 4ta Columna -->
-      <div class="col-span-1">
+      <div class="col-span-1" data-aos="zoom-out-left" data-aos-delay="600">
         <h4 class="font-semibold text-gray-100">Redes Sociales</h4>
-        <!-- Social  -->
-        <div>
-          @for (socialLink of socialLinks; track socialLink)
+        <div class="mt-2 flex gap-2">
+          @for (socialLink of socialLinks; track socialLink; let i = $index)
           {
             <a
               class="inline-flex size-10 items-center justify-center rounded-lg border border-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
               [href]="socialLink.path"
               target="_blank"
+              [attr.data-aos]="
+                i === 0
+                  ? 'fade-up-right'
+                  : i === 1
+                    ? 'fade-up'
+                    : i === 2
+                      ? 'fade-up-left'
+                      : 'zoom-in'
+              "
+              [attr.data-aos-delay]="500 * i"
+              data-aos-duration="1000"
             >
               <svg-icon [src]="socialLink.icon" [svgStyle]="socialLink.style" />
             </a>
           }
         </div>
       </div>
-      <!-- Fin 4ta Columna -->
     </div>
-    <!-- Fin 1ra fila -->
 
     <!-- 2da fila -->
-    <div class="mt-5 grid gap-y-2 sm:mt-12 sm:flex sm:items-center sm:justify-between sm:gap-y-0">
+    <div
+      class="mt-5 grid gap-y-2 sm:mt-12 sm:flex sm:items-center sm:justify-between sm:gap-y-0"
+      data-aos="zoom-in-up"
+      data-aos-duration="800"
+      data-aos-delay="1300"
+      data-aos-once="true"
+    >
       <div class="flex flex-wrap items-center justify-between gap-2">
         <p class="text-sm text-gray-400 dark:text-neutral-400">
           © {{ year }} - Todos los derechos reservados a Ramsua-services.
         </p>
       </div>
     </div>
-    <!-- Fin 2da fila -->
   </div>
 </footer>
