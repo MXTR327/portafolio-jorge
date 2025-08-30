@@ -5,6 +5,7 @@ import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'home-page',
+  standalone: true,
   imports: [SvgIconComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
@@ -16,9 +17,7 @@ export class HomePageComponent
   private readonly _linksRouteService = inject(LinksRouteService);
 
   // Reactive/computed states
-  readonly isSectionActive = computed(
-    () => this._activeSectionService.activeSection === 'home',
-  );
+  readonly isSectionActive = computed(() => this._activeSectionService.activeSection === 'home');
   // Configuracion estatica y constantes
   //
 

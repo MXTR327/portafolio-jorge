@@ -68,8 +68,14 @@ export class AboutUsPageComponent
       yearRange: '2023-' + this.currentYear,
       title: 'Construyendo futuro',
       description:
-        'Tiempo de planear y dar forma a proyectos que buscan mejorar la vida de las familias y comunidades, con mirada puesta en el mañana.',
+        'Dando forma a proyectos que buscan mejorar la vida de las familias y comunidades, con mirada puesta en el mañana.',
       imageUrl: `${this._imgPath}/obra-grande.png`,
+    },
+    {
+      yearRange: '',
+      title: '',
+      description: '¡Ven y se parte de nuestra historia!',
+      imageUrl: '',
     },
   ];
 }

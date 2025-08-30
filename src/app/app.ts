@@ -9,6 +9,7 @@ import {
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from '@shared/components/footer/footer.component';
 import { NavbarComponent } from '@shared/components/navbar/navbar.component';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,14 @@ export class App implements AfterViewInit
 {
   protected readonly title = signal('portafolio-jorge');
   @ViewChildren('observeSection') sectionRefs!: QueryList<ElementRef<HTMLElement>>;
+
+  ngOnInit(): void
+  {
+    AOS.init({
+      once: false,
+      mirror: true,
+    });
+  }
 
   sections = [
     { id: 'home', name: 'Home' },

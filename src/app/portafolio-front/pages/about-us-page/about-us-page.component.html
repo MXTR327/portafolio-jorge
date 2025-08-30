@@ -1,12 +1,22 @@
-<section
-  [class.animate-fadeIn]="isSectionActive()"
-  [class.invisible]="!isSectionActive()"
-  class="flex h-full w-full flex-col"
->
+<section class="gradient-text" class="flex h-full w-full flex-col">
   <!-- 1ra fila -->
   <div class="mb-10 text-center">
-    <h2 class="mb-4 text-4xl font-bold uppercase">About us</h2>
-    <h3 class="text-base text-gray-500 italic">
+    <h2
+      data-aos="slide-right"
+      data-aos-delay="0"
+      data-aos-duration="900"
+      data-aos-easing="ease-in-out-back"
+      class="mb-4 font-bold uppercase md:text-3xl lg:text-4xl"
+    >
+      About us
+    </h2>
+    <h3
+      data-aos="slide-left"
+      data-aos-delay="500"
+      data-aos-duration="900"
+      data-aos-easing="ease-in-out-back"
+      class="text-gray-500 italic md:text-sm lg:text-base"
+    >
       Más de 20 años levantando hogares, espacios y sueños, siempre con dedicación y compromiso.
     </h3>
   </div>
@@ -14,42 +24,96 @@
 
   <!-- 2da fila -->
   <div class="relative flex h-full w-full justify-center">
-    <div class="loader h-full w-0.5 bg-gray-200">
+    <div data-aos="fade-up" data-aos-delay="500" class="loader h-full w-0.5 bg-gray-200">
       <!-- Barra de llenado -->
-      <div class="bar bar-30 bg-gray-600"></div>
+      <!-- <div class="bar bar-30 bg-gray-600"></div> -->
       <!-- Fin barra de llenado -->
 
       <!-- Contenedor de checks -->
       <div class="check-bar-container w-full gap-20">
-        @for (timeRange of timeRanges; track timeRange; let e = $even)
+        @for (
+          timeRange of timeRanges;
+          track timeRange;
+          let e = $even, last = $last, index = $index
+        )
         {
-          <div class="check relative flex h-40 w-40 items-center bg-gray-200 p-1.5">
-            <div
-              [class.text-right]="e"
-              [class.right-50]="e"
-              [class.left-50]="!e"
-              class="absolute w-112 font-semibold"
-            >
-              <h4 class="text-2xl">{{ timeRange.yearRange }}</h4>
-              <h4 class="mb-2 text-2xl">{{ timeRange.title }}</h4>
-              <p class="font-normal text-gray-500">{{ timeRange.description }}</p>
-            </div>
+          <div
+            class="check relative flex items-center bg-gray-200 p-1.5 md:h-33 md:w-33 lg:h-40 lg:w-40"
+            [attr.data-aos]="e ? 'fade-up-left' : 'fade-up-right'"
+            [attr.data-aos-delay]="index * 200"
+            data-aos-duration="1200"
+            data-aos-easing="ease-in-out-back"
+          >
+            @if (!last)
+            {
+              <div
+                [class]="
+                  e ? 'text-right md:right-40 lg:right-50' : 'text-left md:left-40 lg:left-50'
+                "
+                class="absolute font-semibold md:w-70 lg:w-85 xl:w-112"
+              >
+                <!-- Año -->
+                <h4
+                  [attr.data-aos]="e ? 'flip-up' : 'flip-down'"
+                  [attr.data-aos-delay]="150 + index * 200"
+                  data-aos-duration="1000"
+                  data-aos-easing="ease-in-out-back"
+                  class="md:text-xl lg:text-2xl"
+                >
+                  {{ timeRange.yearRange }}
+                </h4>
 
-            <img
-              class="h-full w-full overflow-clip rounded-full object-cover object-center"
-              src="{{ timeRange.imageUrl }}"
-            />
+                <!-- Título -->
+                <h4
+                  [attr.data-aos]="e ? 'zoom-in-up' : 'zoom-in-down'"
+                  [attr.data-aos-delay]="300 + index * 200"
+                  data-aos-duration="1400"
+                  data-aos-easing="ease-out-back"
+                  class="mb-2 md:text-xl lg:text-2xl"
+                >
+                  {{ timeRange.title }}
+                </h4>
+
+                <!-- Descripción -->
+                <p
+                  [attr.data-aos]="e ? 'fade-up-left' : 'fade-up-right'"
+                  [attr.data-aos-delay]="450 + index * 200"
+                  data-aos-duration="1600"
+                  data-aos-easing="ease-in-out-back"
+                  class="font-normal text-gray-500 md:text-xs lg:text-base"
+                >
+                  {{ timeRange.description }}
+                </p>
+              </div>
+
+              <!-- Imagen -->
+              <img
+                [attr.data-aos]="e ? 'zoom-in-up' : 'zoom-in-down'"
+                [attr.data-aos-delay]="600 + index * 200"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out-back"
+                class="h-full w-full overflow-clip rounded-full object-cover object-center"
+                src="{{ timeRange.imageUrl }}"
+              />
+            }
+            @else
+            {
+              <div class="check flex h-full w-full items-center bg-gray-200">
+                <div
+                  [attr.data-aos]="e ? 'zoom-in-up' : 'zoom-in-down'"
+                  [attr.data-aos-delay]="600 + index * 200"
+                  data-aos-duration="1000"
+                  data-aos-easing="ease-in-out-back"
+                  class="flex h-full w-full items-center justify-center rounded-full bg-yellow-500 p-10 text-center font-semibold text-white md:text-xs lg:text-base"
+                >
+                  ¡Ven y se parte de nuestra historia!
+                </div>
+              </div>
+            }
           </div>
         }
-
-        <div class="check flex h-40 w-40 items-center bg-gray-200 p-1.5">
-          <div
-            class="flex h-full w-full items-center justify-center rounded-full bg-yellow-500 p-10 text-center font-semibold text-white"
-          >
-            ¡Ven y se parte de nuestra historia!
-          </div>
-        </div>
       </div>
+
       <!-- Fin contenedor de checks -->
     </div>
   </div>

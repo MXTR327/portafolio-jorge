@@ -1,49 +1,94 @@
-<section
-  [class.animate-fadeIn]="isSectionActive()"
-  [class.invisible]="!isSectionActive()"
-  class="flex h-screen md:gap-10 md:px-4 lg:px-7"
->
+<section class="gradient-text" class="flex h-screen md:gap-10 md:px-4 lg:px-7">
   <!-- 1ra columna -->
-  <div class="flex flex-col justify-center md:flex-5">
+  <div class="flex flex-col justify-center overflow-hidden md:flex-5">
     <!-- Frase -->
     <div
-      class="font-extrabold uppercase md:mb-3 md:text-3xl lg:mb-5 lg:text-4xl xl:text-5xl 2xl:mb-8 2xl:text-6xl"
+      class="font-extrabold md:mb-3 md:text-3xl lg:mb-5 lg:text-4xl xl:text-5xl 2xl:mb-8 2xl:text-6xl"
     >
-      <h1
-        class="mb-2 flex flex-col bg-gradient-to-r from-[#b16cea] via-[#ff8a56] to-[#ffa84b] bg-clip-text text-transparent"
-      >
-        <span class="self-start">Construyendo</span>
-        <span class="self-end md:mr-15 lg:mr-36">Confiabilidad</span>
+      <h1 class="mb-2 flex flex-col overflow-hidden">
+        <span
+          data-aos="slide-right"
+          data-aos-delay="200"
+          data-aos-duration="900"
+          data-aos-easing="ease-in-out-back"
+          class="gradient-text"
+        >
+          CONSTRUYENDO
+        </span>
+        <span
+          data-aos="slide-left"
+          data-aos-delay="700"
+          data-aos-duration="900"
+          data-aos-easing="ease-in-out-back"
+          class="gradient-text self-end md:pr-15 lg:pr-36"
+        >
+          CONFIABILIDAD
+        </span>
       </h1>
-      <p>ladrillo a ladrillo.</p>
+
+      <h1 class="flex">
+        <span
+          class="text-[#ff8a56]"
+          data-aos="fade-up-right"
+          data-aos-delay="1000"
+          data-aos-duration="900"
+          data-aos-easing="ease-in-out-back"
+        >
+          LADRILLO
+        </span>
+        <span
+          class="text-gray-400 md:mx-3 xl:mx-4 2xl:mx-8"
+          data-aos="fade-up"
+          data-aos-delay="1500"
+          data-aos-duration="500"
+        >
+          A
+        </span>
+        <span
+          class="text-[#ff8a56]"
+          data-aos="fade-up-left"
+          data-aos-delay="1500"
+          data-aos-duration="700"
+          data-aos-easing="ease-in-out-back"
+        >
+          LADRILLO
+        </span>
+      </h1>
     </div>
     <!-- Fin frase -->
 
     <!-- Descripcion -->
-    <div>
+    <div
+      data-aos="fade-left"
+      data-aos-delay="2000"
+      data-aos-duration="900"
+      data-aos-easing="ease-in-out-back"
+    >
       <p class="text-gray-600 md:mb-3 md:text-base lg:mb-5 lg:text-xl 2xl:mb-8 2xl:text-2xl">
         Soy <span class="font-semibold">Jorge</span>,
         <span class="font-semibold">Maestro Albañil</span> con más de
         <span class="font-semibold">20 años de experiencia</span> trabajando con
         <span class="font-semibold">calidad</span> y <span class="font-semibold">compromiso</span>,
         asegurándonos de que tu <span class="font-semibold">hogar</span> sea un lugar
-        <span class="font-semibold">seguro</span> y <span class="font-semibold">digno</span> para ti
-        y tu familia.
+        <span class="font-semibold">seguro</span> y <span class="font-semibold">digno</span>.
       </p>
 
       <!-- Btn contacto -->
       <button
         class="relative inline-flex overflow-hidden rounded-lg p-[3px] focus:outline-none active:scale-95 md:h-9 md:w-35 lg:h-12 lg:w-40"
         (click)="gotoAnchor('contact')"
+        data-aos="slide-left"
+        data-aos-delay="1800"
+        data-aos-duration="700"
+        data-aos-easing="ease-in-back"
       >
         <span
           class="absolute inset-[-1000%] z-0 animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"
-        >
-        </span>
+        ></span>
         <span
           class="relative z-10 inline-flex h-full w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-slate-950 px-7 font-medium text-white backdrop-blur-3xl md:text-sm lg:text-base"
         >
-          Contactenos
+          Contáctenos
           <svg-icon src="assets/icons/icon-paper-plane.svg" [svgStyle]="{ 'height.px': 14 }" />
         </span>
       </button>
@@ -54,7 +99,13 @@
   <!-- Fin 1ra columna -->
 
   <!-- 2da columna -->
-  <div class="flex items-center justify-center md:flex-4">
+  <div
+    data-aos="slide-right"
+    data-aos-delay="200"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out-back"
+    class="flex items-center justify-center md:flex-4"
+  >
     <div class="coin md:text-[280px] lg:text-[400px] xl:text-[500px] 2xl:text-[600px]">
       <div class="side heads">
         <svg-icon

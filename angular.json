@@ -47,9 +47,10 @@
               "node_modules/nouislider/dist/nouislider.min.js",
               "node_modules/datatables.net/js/dataTables.min.js",
               "node_modules/vanilla-calendar-pro/index.js",
-              "node_modules/preline/dist/index.js"
+              "node_modules/preline/dist/index.js",
+              "node_modules/aos/dist/aos.js"
             ],
-            "styles": ["src/styles.css"],
+            "styles": ["src/styles.css", "node_modules/aos/dist/aos.css"],
             "tsConfig": "tsconfig.app.json"
           }
         },
