@@ -1,26 +1,22 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  QueryList,
-  signal,
-  ViewChildren,
-} from '@angular/core';
+import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from '@shared/components/footer/footer.component';
 import { NavbarComponent } from '@shared/components/navbar/navbar.component';
+import { ActiveSectionService } from '@shared/services/active-section.service';
 import * as AOS from 'aos';
+import { BackToTopComponent } from '@shared/components/back-to-top/back-to-top.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FooterComponent, NavbarComponent],
+  imports: [RouterOutlet, FooterComponent, NavbarComponent, BackToTopComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App implements AfterViewInit
+export class App implements OnInit
 {
   protected readonly title = signal('portafolio-jorge');
-  @ViewChildren('observeSection') sectionRefs!: QueryList<ElementRef<HTMLElement>>;
+
+  showButton = false;
 
   ngOnInit(): void
   {
@@ -30,35 +26,9 @@ export class App implements AfterViewInit
     });
   }
 
-  sections = [
-    { id: 'home', name: 'Home' },
-    { id: 'about', name: 'About' },
-    { id: 'services', name: 'Services' },
-  ];
-
-  activeSection = 'home';
-
-  ngAfterViewInit()
+  @HostListener('window:scroll', [])
+  onWindowScroll()
   {
-    const observer = new IntersectionObserver(
-      (entries) =>
-      {
-        entries.forEach((entry) =>
-        {
-          if (entry.isIntersecting)
-          {
-            this.activeSection = entry.target.id;
-          }
-        });
-      },
-      { threshold: 0.6 },
-    ); // 60% visible
-
-    this.sectionRefs.forEach((ref) => observer.observe(ref.nativeElement));
-  }
-
-  scrollTo(id: string)
-  {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    this.showButton = window.scrollY > 300;
   }
 }

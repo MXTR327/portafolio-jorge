@@ -1,4 +1,4 @@
-<section class="gradient-text" class="flex h-full w-full flex-col">
+<section class="mb-25 flex h-full w-full flex-col overflow-hidden">
   <!-- 1ra fila -->
   <div class="mb-10 text-center">
     <h2
@@ -6,7 +6,8 @@
       data-aos-delay="0"
       data-aos-duration="900"
       data-aos-easing="ease-in-out-back"
-      class="mb-4 font-bold uppercase md:text-3xl lg:text-4xl"
+      data-aos-once="true"
+      class="mb-4 font-bold uppercase md:text-3xl"
     >
       About us
     </h2>
@@ -25,12 +26,8 @@
   <!-- 2da fila -->
   <div class="relative flex h-full w-full justify-center">
     <div data-aos="fade-up" data-aos-delay="500" class="loader h-full w-0.5 bg-gray-200">
-      <!-- Barra de llenado -->
-      <!-- <div class="bar bar-30 bg-gray-600"></div> -->
-      <!-- Fin barra de llenado -->
-
       <!-- Contenedor de checks -->
-      <div class="check-bar-container w-full gap-20">
+      <div class="check-bar-container w-full md:gap-6 2xl:gap-20">
         @for (
           timeRange of timeRanges;
           track timeRange;
@@ -113,7 +110,6 @@
           </div>
         }
       </div>
-
       <!-- Fin contenedor de checks -->
     </div>
   </div>

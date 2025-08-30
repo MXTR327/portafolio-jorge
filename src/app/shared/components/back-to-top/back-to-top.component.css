@@ -1,7 +1,7 @@
 .btn-back-to-top {
   position: fixed;
-  right: 15px;
-  bottom: 15px;
+  right: 20px;
+  bottom: 10px;
   z-index: 50;
   height: 40px;
   width: 140px;
@@ -40,9 +40,7 @@
 .btn-back-to-top .clone > *,
 .btn-back-to-top .text > * {
   opacity: 1;
-  font-size: 1.2rem;
   transition: 0.2s;
-  margin-left: 4px;
 }
 
 .btn-back-to-top .clone > * {

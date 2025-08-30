@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { ActiveSectionService } from '@shared/services/active-section.service';
 import { LinkPage, LinksRouteService } from '@shared/services/links-route.service';
@@ -34,6 +34,7 @@ export class NavbarComponent
   readonly icoWhatsappStyle: Record<string, string> = { height: '1.3rem' };
 
   // Metodos (public for template)
+
   public getByName(name: string): LinkPage | undefined
   {
     return this._linksRouteService.getByName(name);
