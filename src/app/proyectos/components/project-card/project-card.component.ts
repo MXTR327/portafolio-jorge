@@ -3,8 +3,8 @@ import { Component, input } from '@angular/core';
 import { Project } from '@proyectos/interfaces/project.interface';
 
 @Component({
-  selector: 'project-card',
   imports: [SlicePipe],
+  selector: 'app-project-card',
   templateUrl: './project-card.component.html',
 })
 export class ProjectCardComponent

@@ -6,6 +6,9 @@
     "baseUrl": "./",
     "paths": {
       // TODO: agregar rutas
+      "@portafolio-front/*": [
+        "./src/app/portafolio-front/*"
+      ],
       "@shared/*": [
         "./src/app/shared/*"
       ],

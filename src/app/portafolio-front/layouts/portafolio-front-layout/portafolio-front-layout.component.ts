@@ -1,15 +1,14 @@
-import { Component, ElementRef, inject, viewChildren } from '@angular/core';
-import { AboutUsPageComponent } from '../../pages/about-us-page/about-us-page.component';
-import { ContactPageComponent } from '../../pages/contact-page/contact-page.component';
-import { HomePageComponent } from '../../pages/home-page/home-page.component';
-import { ProjectsPageComponent } from '../../pages/projects-page/projects-page.component';
-import { ServicesPageComponent } from '../../pages/services-page/services-page.component';
+import { AfterViewInit, Component, ElementRef, inject, viewChildren } from '@angular/core';
+import { NavbarComponent } from '@portafolio-front/components/front-navbar/navbar.component';
+import { AboutUsPageComponent } from '@portafolio-front/pages/about-us-page/about-us-page.component';
+import { ContactPageComponent } from '@portafolio-front/pages/contact-page/contact-page.component';
+import { HomePageComponent } from '@portafolio-front/pages/home-page/home-page.component';
+import { ProjectsPageComponent } from '@portafolio-front/pages/projects-page/projects-page.component';
+import { ServicesPageComponent } from '@portafolio-front/pages/services-page/services-page.component';
 import { BackToTopComponent } from '@shared/components/back-to-top/back-to-top.component';
 import { ActiveSectionService } from '@shared/services/active-section.service';
-// import { ScrollTrackerDirective } from '@shared/Directives/scroll-tracker.directive';
 
 @Component({
-  selector: 'app-portafolio-front-layout',
   imports: [
     AboutUsPageComponent,
     ServicesPageComponent,
@@ -17,19 +16,20 @@ import { ActiveSectionService } from '@shared/services/active-section.service';
     HomePageComponent,
     ContactPageComponent,
     BackToTopComponent,
-  ],
+    NavbarComponent
+],
+  selector: 'app-portafolio-front-layout',
   templateUrl: './portafolio-front-layout.component.html',
 })
-export class PortafolioFrontLayoutComponent
+export class PortafolioFrontLayoutComponent implements AfterViewInit
 {
-  // Servicios
   private readonly _activeSectionService = inject(ActiveSectionService);
 
-  sectionsRef = viewChildren<ElementRef<HTMLElement>>('observeSection');
+  private readonly _sectionsRef = viewChildren<ElementRef<HTMLElement>>('observeSection');
 
   ngAfterViewInit(): void
   {
-    const sections = this.sectionsRef();
+    const sections = this._sectionsRef();
     if (!sections || sections.length === 0) return;
 
     const observer = new IntersectionObserver(
@@ -40,8 +40,6 @@ export class PortafolioFrontLayoutComponent
           const id = (entry.target as HTMLElement).id;
           if (!id) continue;
 
-          this._activeSectionService.setVisible(id, entry.isIntersecting);
-
           if (entry.isIntersecting && entry.intersectionRatio >= 0.5)
           {
             this._activeSectionService.setActive(id);
@@ -49,7 +47,7 @@ export class PortafolioFrontLayoutComponent
         }
       },
       {
-        root: null,
+        root: undefined,
         threshold: [0.1, 0.5],
       },
     );

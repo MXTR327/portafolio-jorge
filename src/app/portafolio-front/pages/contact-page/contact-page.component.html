@@ -1,88 +1,131 @@
-<section class="flex h-screen flex-col items-center justify-center py-20">
+<section class="mb-10 flex h-full w-full flex-col overflow-hidden">
   <!-- 1ra fila -->
-  <div>
-    <p class="mb-2 text-center text-xl font-semibold text-amber-500">Contáctanos</p>
-    <h2 class="text-2xl font-semibold">Escríbanos y construya</h2>
+  <div class="mb-10 text-center">
+    <h2 class="mb-1 font-bold uppercase md:text-3xl">Contáctenos</h2>
   </div>
   <!-- Fin 1ra fila -->
 
   <!-- 2da fila -->
-  <div class="grid h-full grid-cols-2 py-10">
-    <!-- 1ra columna -->
-    <div class="flex items-center justify-center">
-      <!-- Imagen -->
-      <div class="stack w-2/3">
-        <div class="card">
-          <img
-            class="relative aspect-square w-full overflow-clip border-4 object-cover"
-            src="/assets/images/img-trabajador.png"
-            alt="imagen"
-          />
-        </div>
-      </div>
-      <p class="browser-warning">Tu navegador no soporta 'aspect-ratio' para imagen.</p>
+  <div class="grid grid-cols-2 items-center justify-center">
+    <div>
+      <h1>Necesitas ayuda? Contacta con nosotros.</h1>
+      <p>
+        Nuestro equipo está listo para ayudar con su banca o necesidades de inversión.disparar en
+        cualquier momento para un apoyo rápido, amable y experto.
+      </p>
     </div>
-    <!-- Fin 1ra columna -->
-
-    <!-- 2da columna -->
-    <div class="grid grid-cols-2 gap-7 pr-7">
-      <!-- Ubicacion -->
-      <div
-        class="flex min-h-50 flex-col rounded-xl border border-gray-200 bg-white shadow-2xs dark:border-neutral-700 dark:bg-neutral-900 dark:shadow-neutral-700/70"
-      >
-        <div class="flex flex-auto flex-col items-center justify-center p-4 md:p-5">
-          <svg-icon
-            src="assets/icons/icon-ubication.svg"
-            class="mb-2"
-            [svgStyle]="{ 'height.px': '50' }"
-          />
-          <h3 class="text-lg font-bold text-gray-800 dark:text-white">Ubicacion</h3>
-          <p class="mt-2 text-gray-500 dark:text-neutral-400">{{ lugar }}</p>
-          <p class="mt-2 text-gray-500 dark:text-neutral-400">{{ calle }}</p>
-        </div>
-      </div>
-      <!-- Llamanos -->
-      <div
-        class="flex min-h-60 flex-col rounded-xl border border-gray-200 bg-white shadow-2xs dark:border-neutral-700 dark:bg-neutral-900 dark:shadow-neutral-700/70"
-      >
-        <div class="flex flex-auto flex-col items-center justify-center p-4 md:p-5">
-          <svg-icon
-            src="assets/icons/icon-call.svg"
-            class="mb-2"
-            [svgStyle]="{ 'height.px': '50' }"
-          />
-          <h3 class="text-lg font-bold text-gray-800 dark:text-white">Contacto</h3>
-          <p class="mt-2 text-gray-500 dark:text-neutral-400">+51 {{ phone }}</p>
-        </div>
-      </div>
-      <!-- Escribenos -->
-      <div
-        class="flex min-h-60 flex-col rounded-xl border border-gray-200 bg-white shadow-2xs dark:border-neutral-700 dark:bg-neutral-900 dark:shadow-neutral-700/70"
-      >
-        <div class="flex flex-auto flex-col items-center justify-center p-4 md:p-5">
-          <svg-icon
-            src="assets/icons/icon-inbox.svg"
-            class="mb-2"
-            [svgStyle]="{ 'height.px': '50' }"
-          />
-          <h3 class="text-lg font-bold text-gray-800 dark:text-white">Escribenos</h3>
-          <!-- Social  -->
-          <div>
-            @for (socialLink of socialLinks; track socialLink)
+    <div>
+      <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <!-- Nombre -->
+        <div class="row mb-3">
+          <label for="name" class="col-sm-3 col-form-label">Nombre y apellido</label>
+          <div class="col-sm-9">
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              placeholder="Nombre y apellido"
+              formControlName="name"
+            />
+            @if (formUtils.isValidField(myForm, 'name'))
             {
-              <a
-                class="inline-flex size-10 items-center justify-center rounded-lg border border-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
-                [href]="socialLink.path"
-                target="_blank"
-              >
-                <svg-icon [src]="socialLink.icon" [svgStyle]="socialLink.style" />
-              </a>
+              <span class="form-text text-danger"> El campo debe de tener nombre y apellido </span>
             }
           </div>
         </div>
-      </div>
+
+        <!-- Email -->
+        <div class="row mb-3">
+          <label for="email" class="col-sm-3 col-form-label">Email</label>
+          <div class="col-sm-9">
+            <input
+              id="email"
+              type="email"
+              class="form-control"
+              placeholder="Email del usuario"
+              formControlName="email"
+            />
+            @if (formUtils.isValidField(myForm, 'email'))
+            {
+              <span class="form-text text-danger">
+                {{ formUtils.getFieldError(myForm, 'email') }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <!-- Username -->
+        <div class="row mb-3">
+          <label for="username" class="col-sm-3 col-form-label">Username</label>
+          <div class="col-sm-9">
+            <input
+              id="username"
+              type="text"
+              class="form-control"
+              placeholder="Nombre código del usuario"
+              formControlName="username"
+            />
+            @if (formUtils.isValidField(myForm, 'username'))
+            {
+              <span class="form-text text-danger">
+                {{ formUtils.getFieldError(myForm, 'username') }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="row mb-3">
+          <label for="password" class="col-sm-3 col-form-label">Password</label>
+          <div class="col-sm-9">
+            <input
+              id="password"
+              type="password"
+              class="form-control"
+              placeholder="Password de su cuenta"
+              formControlName="password"
+            />
+            @if (formUtils.isValidField(myForm, 'password'))
+            {
+              <span class="form-text text-danger">
+                {{ formUtils.getFieldError(myForm, 'password') }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <!-- Confirmar Password -->
+        <div class="row mb-3">
+          <label for="password2" class="col-sm-3 col-form-label">Confirmar</label>
+          <div class="col-sm-9">
+            <input
+              id="password2"
+              type="password"
+              class="form-control"
+              placeholder="Confirmar la contraseña"
+              formControlName="password2"
+            />
+            @if (formUtils.isValidField(myForm, 'password2'))
+            {
+              <span class="form-text text-danger">
+                {{ formUtils.getFieldError(myForm, 'password2') }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <!-- Errores globales -->
+        <div class="row">
+          <div class="col">
+            @if (myForm.errors && myForm.touched)
+            {
+              <span class="text-danger">Las contraseñas no son iguales</span>
+            }
+            <button class="btn btn-primary float-end" type="submit">Crear</button>
+          </div>
+        </div>
+      </form>
     </div>
-    <!-- Fin 2da columna -->
   </div>
   <!-- Fin 2da fila -->
 </section>

@@ -4,17 +4,17 @@ declare global
 {
   interface Window
   {
+    $: typeof import('jquery');
     // Optional third-party libraries
     _;
-    $: typeof import('jquery');
-    jQuery: typeof import('jquery');
     DataTable;
     Dropzone;
-    VanillaCalendarPro;
-
     // Preline UI
     HSStaticMethods: IStaticMethods;
+    jQuery: typeof import('jquery');
+
+    VanillaCalendarPro;
   }
 }
 
-export {};
+

@@ -1,10 +1,10 @@
 <header
+  class="fixed inset-x-0 top-2 z-50 flex w-full flex-wrap select-none before:absolute before:inset-0 before:mx-2 before:max-w-5xl before:rounded-[26px] before:bg-neutral-800/40 before:backdrop-blur-md md:flex-nowrap md:justify-start lg:before:mx-auto"
   data-aos="zoom-in-down"
-  data-aos-once="true"
   data-aos-delay="0"
   data-aos-duration="1000"
   data-aos-easing="ease-in-out-back"
-  class="fixed inset-x-0 top-2 z-50 flex w-full flex-wrap select-none before:absolute before:inset-0 before:mx-2 before:max-w-5xl before:rounded-[26px] before:bg-neutral-800/40 before:backdrop-blur-md md:flex-nowrap md:justify-start lg:before:mx-auto"
+  data-aos-once="true"
 >
   <nav
     class="relative mx-2 flex w-full max-w-5xl basis-full flex-wrap items-center justify-between py-2 ps-5 pe-2 md:flex-nowrap md:py-0 lg:mx-auto"
@@ -20,7 +20,11 @@
       <!-- Logo -->
       <a
         class="inline-block flex-none cursor-pointer rounded-md text-xl font-semibold focus:opacity-80 focus:outline-hidden"
+        role="button"
+        tabindex="0"
         (click)="scrollTo(getByName('Home')!.href)"
+        (keydown.enter)="scrollTo(getByName('Home')!.href)"
+        (keydown.space)="scrollTo(getByName('Home')!.href)"
       >
         <span class="text-white"> Ramsua </span>
         <span class="text-[#ff0]">| Services</span>
@@ -40,15 +44,17 @@
         data-aos-once="true"
       >
         <a
-          class="group inline-flex cursor-pointer items-center gap-x-2 rounded-full bg-[#ff0] px-3 py-2 text-sm font-medium text-nowrap text-neutral-800 focus:outline-hidden"
+          class="group inline-flex cursor-pointer items-center gap-x-2 rounded-full bg-[#ff0] px-3 py-2 text-sm font-medium text-nowrap focus:outline-hidden"
+          role="button"
+          tabindex="0"
+          [class.text-orange-600]="activeSecion() === getByName('Contact Us')!.href"
           (click)="scrollTo(getByName('Contact Us')!.href)"
+          (keydown.enter)="scrollTo(getByName('Contact Us')!.href)"
+          (keydown.space)="scrollTo(getByName('Contact Us')!.href)"
         >
           <span> Contact Us </span>
-          <svg-icon
-            src="assets/icons/icon-call.svg"
-            [svgStyle]="{ 'height.px': 15, fill: 'black' }"
-          />
-        </a>
+          <svg-icon [src]="icoCallPath" [svgStyle]="icoCallStyle"> </svg-icon
+        ></a>
       </div>
       <!-- Fin Boton Contacto -->
 
@@ -61,24 +67,26 @@
         data-aos-once="true"
       >
         <button
-          type="button"
           class="hs-collapse-toggle flex size-9 items-center justify-center rounded-full bg-neutral-800 text-sm font-semibold text-white disabled:pointer-events-none disabled:opacity-50"
           id="hs-navbar-floating-dark-collapse"
-          aria-expanded="false"
-          aria-controls="hs-navbar-floating-dark"
-          aria-label="Toggle navigation"
           data-hs-collapse="#hs-navbar-floating-dark"
+          type="button"
+          aria-controls="hs-navbar-floating-dark"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <svg-icon
             class="hs-collapse-open:hidden shrink-0"
-            [src]="icoHamburberSrc"
+            [src]="icoHamburberPath"
             [svgStyle]="icoHamburgerStyle"
-          />
-          <svg-icon
-            class="hs-collapse-open:block hidden shrink-0"
-            [src]="icoCloseSrc"
-            [svgStyle]="icoCloseStyle"
-          />
+          >
+            <svg-icon
+              class="hs-collapse-open:block hidden shrink-0"
+              [src]="icoClosePath"
+              [svgStyle]="icoCloseStyle"
+            >
+            </svg-icon
+          ></svg-icon>
         </button>
       </div>
       <!-- Fin Boton Hamburguesa -->
@@ -87,14 +95,14 @@
 
     <!-- 2da columna -->
     <div
-      id="hs-navbar-floating-dark"
       class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block"
-      aria-labelledby="hs-navbar-floating-dark-collapse"
+      id="hs-navbar-floating-dark"
       data-aos="fade-down-big"
       data-aos-delay="400"
       data-aos-duration="1000"
       data-aos-easing="ease-in-out-back"
       data-aos-once="true"
+      aria-labelledby="hs-navbar-floating-dark-collapse"
     >
       <div
         class="flex flex-col gap-y-3 py-2 font-semibold md:flex-row md:items-center md:justify-end md:py-0 md:ps-7"
@@ -105,12 +113,16 @@
           {
             <a
               class="cursor-pointer ps-px pe-3 text-sm text-[#ff0] sm:px-3 md:py-4"
-              (click)="scrollTo(linP.href)"
-              [class]="activeSecion() !== linP.href ? 'text-white hover:text-neutral-300' : ''"
               data-aos="fade-up-left"
               data-aos-duration="1000"
               data-aos-easing="ease-in-out-back"
               data-aos-once="true"
+              role="button"
+              tabindex="0"
+              (keydown.enter)="scrollTo(linP.href)"
+              (keydown.space)="scrollTo(linP.href)"
+              (click)="scrollTo(linP.href)"
+              [class]="activeSecion() !== linP.href ? 'text-white hover:text-neutral-300' : ''"
               [attr.data-aos-delay]="500 + i * 150"
             >
               {{ linP.name }}

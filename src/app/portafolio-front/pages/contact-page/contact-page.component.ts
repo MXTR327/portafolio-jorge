@@ -1,29 +1,46 @@
-import { Component, computed, inject } from '@angular/core';
-import { SvgIconComponent } from 'angular-svg-icon';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LinksContactService, SocialLink } from '@shared/services/links-contact.service';
-import { ActiveSectionService } from '@shared/services/active-section.service';
+import { FormUtilities } from 'src/app/utils/form-utilities';
 
 @Component({
-  selector: 'contact-page',
-  imports: [SvgIconComponent],
+  imports: [ReactiveFormsModule],
+  selector: 'app-contact-page',
   templateUrl: './contact-page.component.html',
-  styleUrl: './contact-page.component.css',
 })
 export class ContactPageComponent
 {
-  // Servicios (inyectados)
   private readonly _linksContactService = inject(LinksContactService);
-  private readonly _activeSectionService = inject(ActiveSectionService);
-
-  // Data de servicios
-  readonly socialLinks: SocialLink[] = this._linksContactService.socialLinks;
-
-  // Reactive/computed states
-  readonly isSectionActive = computed(
-    () => this._activeSectionService.activeSection === 'contact',
-  );
-  // Configuracion estatica y constantes
-  readonly lugar: string = `${this._linksContactService.country}, ${this._linksContactService.city}`;
   readonly calle: string = `${this._linksContactService.street}, #${this._linksContactService.streetNumber}`;
+  readonly formUtils = FormUtilities;
+  readonly lugar: string = `${this._linksContactService.country}, ${this._linksContactService.city}`;
+
+  private readonly _fb = inject( FormBuilder );
+  myForm: FormGroup = this._fb.group({
+    email: [ '',
+      [ Validators.required, Validators.pattern( FormUtilities.emailPattern ) ],
+      [ FormUtilities.checkingServerResponse ]
+    ],
+    name: [ '',
+      [ Validators.required, Validators.pattern( FormUtilities.namePattern ) ],
+    ],
+    password: [ '', [ Validators.required, Validators.minLength( 6 ) ] ],
+    password2: [ '', Validators.required ],
+    username: [ '',
+      [
+        Validators.required, Validators.minLength( 6 ),
+        Validators.pattern( FormUtilities.notOnlySpacesPattern ),
+        FormUtilities.notStrider,
+      ],
+    ],
+  },
+  );
   readonly phone: string = this._linksContactService.phone;
+  readonly socialLinks: SocialLink[] = this._linksContactService.socialLinks; 
+  
+  onSubmit()
+  {
+    this.myForm.markAllAsTouched();
+    console.log( this.myForm.value );
+  }
 }

@@ -1,33 +1,36 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
 import { ActiveSectionService } from '@shared/services/active-section.service';
 import { LinkPage, LinksRouteService } from '@shared/services/links-route.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
-  selector: 'back-to-top',
   imports: [SvgIconComponent],
-  templateUrl: './back-to-top.component.html',
+  selector: 'app-back-to-top',
   styleUrl: './back-to-top.component.css',
+  templateUrl: './back-to-top.component.html',
 })
 export class BackToTopComponent
 {
-  // Servicios (inyectados)
+  readonly isButtonVisible = signal<boolean>( false );
+
   private readonly _activeSectionService = inject(ActiveSectionService);
+
   private readonly _linksRouteService = inject(LinksRouteService);
-
-  // Data de servicios
-  //
-
-  // Reactive/computed states
-  readonly isSectionActive = computed(() => this._activeSectionService.activeSection === 'home');
-
-  // Metodos (public for template)
   public getByName(name: string): LinkPage | undefined
   {
     return this._linksRouteService.getByName(name);
   }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll()
+  {
+    this.isButtonVisible.set(window.scrollY < 300);
+  }
+
   public scrollTo(href: string): void
   {
     this._linksRouteService.gotoAnchor(href);
   }
+
+  private readonly _computeActiveSection = () => this._activeSectionService.activeSection;
 }

@@ -1,0 +1,74 @@
+<!-- Caja Item -->
+<div
+  class="relative flex items-center rounded-full bg-gray-200 p-1.5 md:h-33 md:w-33 lg:h-40 lg:w-40"
+  data-aos-duration="1200"
+  data-aos-easing="ease-in-out-back"
+  [attr.data-aos]="isRight() ? 'fade-up-left' : 'fade-up-right'"
+  [attr.data-aos-delay]="index() * 200"
+>
+  @if (!isLast())
+  {
+    <div
+      class="absolute font-semibold md:w-70 lg:w-85 xl:w-112"
+      [class]="isRight() ? 'md:right-40 lg:right-50' : 'md:left-40 lg:left-50'"
+      [class.text-right]="isRight()"
+    >
+      <!-- Año -->
+      <h4
+        class="md:text-xl lg:text-2xl"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out-back"
+        [attr.data-aos]="isRight() ? 'flip-up' : 'flip-down'"
+        [attr.data-aos-delay]="150 + index() * 200"
+      >
+        {{ timeRange().yearRange }}
+      </h4>
+
+      <!-- Título -->
+      <h4
+        class="mb-2 md:text-xl lg:text-2xl"
+        data-aos-duration="1400"
+        data-aos-easing="ease-out-back"
+        [attr.data-aos]="isRight() ? 'zoom-in-up' : 'zoom-in-down'"
+        [attr.data-aos-delay]="300 + index() * 200"
+      >
+        {{ timeRange().title }}
+      </h4>
+
+      <!-- Descripción -->
+      <p
+        class="font-normal text-gray-500 md:text-xs lg:text-base"
+        data-aos-duration="1600"
+        data-aos-easing="ease-in-out-back"
+        [attr.data-aos]="isRight() ? 'fade-up-left' : 'fade-up-right'"
+        [attr.data-aos-delay]="450 + index() * 200"
+      >
+        {{ timeRange().description }}
+      </p>
+    </div>
+
+    <!-- Imagen -->
+    <img
+      class="h-full w-full overflow-clip rounded-full object-cover object-center"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out-back"
+      src="{{ timeRange().imagePath }}"
+      [attr.data-aos]="isRight() ? 'zoom-in-up' : 'zoom-in-down'"
+      [attr.data-aos-delay]="600 + index() * 200"
+      alt="Imagen"
+    />
+  }
+  @else
+  {
+    <div
+      class="flex h-full w-full items-center justify-center rounded-full bg-yellow-500 p-10 text-center font-semibold text-white md:text-xs lg:text-base"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out-back"
+      [attr.data-aos]="isRight() ? 'zoom-in-up' : 'zoom-in-down'"
+      [attr.data-aos-delay]="600 + index() * 200"
+    >
+      {{ timeRange().description }}
+    </div>
+  }
+</div>
+<!-- Fin caja item -->

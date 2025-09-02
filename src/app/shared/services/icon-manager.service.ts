@@ -4,7 +4,7 @@ export interface Icon
 {
   name: string;
   path: string;
-  style?: { [klass: string]: any };
+  style?: Record<string, string>;
 }
 
 @Injectable({
@@ -12,74 +12,74 @@ export interface Icon
 })
 export class IconManagerService
 {
+  get icons(): readonly Icon[]
+  {
+    return this._icons;
+  }
   private readonly _icoUrl: string = '/assets/icons';
+
   private readonly _icons: Icon[] = [
     {
       name: 'arrowup',
       path: `${this._icoUrl}/icon-arrowup.svg`,
-      style: { height: '20px', fill: 'white' },
+      style: { fill: 'white', height: '20px' },
     },
     {
       name: 'call',
       path: `${this._icoUrl}/icon-call.svg`,
-      style: { height: '20px', fill: 'white' },
+      style: { fill: 'white', height: '20px' },
     },
     {
       name: 'inbox',
       path: `${this._icoUrl}/icon-inbox.svg`,
-      style: { height: '20px', fill: 'white' },
+      style: { fill: 'white', height: '20px' },
     },
     {
       name: 'logo-facebook',
       path: `${this._icoUrl}/icon-logo-facebook.svg`,
-      style: { height: '20px', fill: 'white' },
+      style: { fill: 'white', height: '20px' },
     },
     {
       name: 'logo-gmail',
       path: `${this._icoUrl}/icon-logo-gmail.svg`,
-      style: { height: '20px', fill: 'white' },
+      style: { fill: 'white', height: '20px' },
     },
     {
       name: 'logo-max',
       path: `${this._icoUrl}/icon-logo-max.svg`,
-      style: { height: '20px', fill: 'white' },
+      style: { fill: 'white', height: '20px' },
     },
     {
       name: 'logo-whatsapp',
       path: `${this._icoUrl}/icon-logo-whatsapp.svg`,
-      style: { height: '20px', fill: 'white' },
+      style: { fill: 'white', height: '20px' },
     },
     {
       name: 'menu-close',
       path: `${this._icoUrl}/icon-menu-close.svg`,
-      style: { height: '20px', fill: 'white' },
+      style: { fill: 'white', height: '20px' },
     },
     {
       name: 'menu-hamburger',
       path: `${this._icoUrl}/icon-menu-hamburger.svg`,
-      style: { height: '20px', fill: 'white' },
+      style: { fill: 'white', height: '20px' },
     },
     {
       name: 'paper-plane',
       path: `${this._icoUrl}/icon-paper-plane.svg`,
-      style: { height: '20px', fill: 'white' },
+      style: { fill: 'white', height: '20px' },
     },
     {
       name: 'ubication',
       path: `${this._icoUrl}/icon-ubication.svg`,
-      style: { height: '20px', fill: 'white' },
+      style: { fill: 'white', height: '20px' },
     },
     {
       name: 'worker',
       path: `${this._icoUrl}/icon-worker.svg`,
-      style: { height: '20px', fill: 'white' },
+      style: { fill: 'white', height: '20px' },
     },
   ];
-
-  get icons(): ReadonlyArray<Icon>
-  {
-    return this._icons;
-  }
 
   public getByName(name: string): Icon | undefined
   {

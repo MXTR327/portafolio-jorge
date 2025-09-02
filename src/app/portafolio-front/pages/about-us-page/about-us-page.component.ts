@@ -1,81 +1,64 @@
-import { Component, computed, inject, Signal } from '@angular/core';
-import { ActiveSectionService } from '@shared/services/active-section.service';
-
-interface timeRangeData
-{
-  yearRange: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-}
+import { Component } from '@angular/core';
+import { TimelineItemComponent } from '@portafolio-front/components/timeline-item/timeline-item.component';
+import { TimeRange } from '@portafolio-front/interfaces/time-range.interface';
 
 @Component({
-  selector: 'about-us-page',
-  imports: [],
+  imports: [TimelineItemComponent],
+  selector: 'app-about-us-page',
   templateUrl: './about-us-page.component.html',
-  styleUrl: './about-us-page.component.css',
 })
 export class AboutUsPageComponent
 {
-  // Servicios (inyectados)
-  private readonly _activeSectionService = inject(ActiveSectionService);
-
-  // Reactive/computed states
-  readonly isSectionActive: Signal<boolean> = computed(
-    () => this._activeSectionService.activeSection === 'about-us',
-  );
-
-  // Configuracion estatica y constantes
-  private readonly _imgPath: string = '/assets/images';
   readonly currentYear: number = new Date().getFullYear();
-  readonly timeRanges: timeRangeData[] = [
+  private readonly _imagesPath: string = '/assets/images/about-us';
+  readonly timeRanges: TimeRange[] = [
     {
-      yearRange: '2005-2006',
-      title: 'Aprendiendo del oficio',
       description:
         'Primeros años como aprendiz en obra, descubriendo las bases de la construcción y ganando experiencia práctica en el día a día.',
-      imageUrl: `${this._imgPath}/aprendiendo.png`,
+      imagePath: `${this._imagesPath}/aprendiendo.png`,
+      title: 'Aprendiendo del oficio',
+      yearRange: '2005-2006',
     },
     {
-      yearRange: '2007-2010',
-      title: 'Primeros proyectos propios',
       description:
         'Encargos pequeños de remodelación y construcción. Cada trabajo fue un paso para consolidar técnica y reputación en el barrio.',
-      imageUrl: `${this._imgPath}/planificando.png`,
+      imagePath: `${this._imagesPath}/planificando.png`,
+      title: 'Primeros proyectos propios',
+      yearRange: '2007-2010',
     },
     {
-      yearRange: '2011-2014',
-      title: 'Especialización en remodelaciones',
       description:
         'Experiencia en mejoras de hogares: cocinas, patios y ampliaciones. Atención a los detalles y a la satisfacción del cliente.',
-      imageUrl: `${this._imgPath}/especializacion.png`,
+      imagePath: `${this._imagesPath}/especializacion.png`,
+      title: 'Especialización en remodelaciones',
+      yearRange: '2011-2014',
     },
     {
-      yearRange: '2015-2018',
-      title: 'Construcción de viviendas',
       description:
         'Desarrollo de hogares familiares completos, desde cimientos hasta acabados, garantizando calidad y seguridad en cada proyecto.',
-      imageUrl: `${this._imgPath}/construyendo-vivienda.png`,
+      imagePath: `${this._imagesPath}/construyendo-vivienda.png`,
+      title: 'Construcción de viviendas',
+      yearRange: '2015-2018',
     },
     {
-      yearRange: '2019-2022',
-      title: 'Obras comunitarias',
       description:
         'Participación en proyectos de impacto social: colegios, centros vecinales y espacios para la comunidad.',
-      imageUrl: `${this._imgPath}/obra-comunitaria.png`,
+      imagePath: `${this._imagesPath}/obra-comunitaria.png`,
+      title: 'Obras comunitarias',
+      yearRange: '2019-2022',
     },
     {
-      yearRange: '2023-' + this.currentYear,
-      title: 'Construyendo futuro',
       description:
         'Dando forma a proyectos que buscan mejorar la vida de las familias y comunidades, con mirada puesta en el mañana.',
-      imageUrl: `${this._imgPath}/obra-grande.png`,
+      imagePath: `${this._imagesPath}/obra-grande.png`,
+      title: 'Construyendo futuro',
+      yearRange: '2023-' + this.currentYear,
     },
     {
-      yearRange: '',
+      description: '¡Contactanos y se parte de nuestra historia!',
+      imagePath: '',
       title: '',
-      description: '¡Ven y se parte de nuestra historia!',
-      imageUrl: '',
+      yearRange: '',
     },
   ];
 }

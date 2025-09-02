@@ -1,7 +1,7 @@
 export interface Project
 {
-  title: string;
+  date: string;
   description: string;
   image: string;
-  date: string;
+  title: string;
 }

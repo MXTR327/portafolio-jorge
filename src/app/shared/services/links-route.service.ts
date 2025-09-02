@@ -3,8 +3,8 @@ import { inject, Injectable } from '@angular/core';
 
 export interface LinkPage
 {
-  name: string;
   href: string;
+  name: string;
 }
 
 @Injectable({
@@ -12,41 +12,35 @@ export interface LinkPage
 })
 export class LinksRouteService
 {
-  private readonly _viewportScroller = inject(ViewportScroller);
-
-  private readonly _linksPages: LinkPage[] = [
-    {
-      name: 'Home',
-      href: 'home',
-    },
-    {
-      name: 'About Us',
-      href: 'about-us',
-    },
-    {
-      name: 'Services',
-      href: 'services',
-    },
-    {
-      name: 'Projects',
-      href: 'projects',
-    },
-    {
-      name: 'Contact Us',
-      href: 'contact',
-    },
-  ];
-
-  get linksPages(): ReadonlyArray<LinkPage>
+  get linksPages(): readonly LinkPage[]
   {
     return this._linksPages;
   }
 
-  public gotoAnchor(anchorName: string): void
-  {
-    this._viewportScroller.setOffset([0, 85]);
-    this._viewportScroller.scrollToAnchor(anchorName);
-  }
+  private readonly _linksPages: LinkPage[] = [
+    {
+      href: 'home',
+      name: 'Home',
+    },
+    {
+      href: 'about-us',
+      name: 'About Us',
+    },
+    {
+      href: 'services',
+      name: 'Services',
+    },
+    {
+      href: 'projects',
+      name: 'Projects',
+    },
+    {
+      href: 'contact',
+      name: 'Contact Us',
+    },
+  ];
+
+  private readonly _viewportScroller = inject(ViewportScroller);
 
   public getByHref(href: string): LinkPage | undefined
   {
@@ -56,5 +50,11 @@ export class LinksRouteService
   public getByName(name: string): LinkPage | undefined
   {
     return this._linksPages.find((link) => link.name === name);
+  }
+
+  public gotoAnchor(anchorName: string): void
+  {
+    this._viewportScroller.setOffset([0, 85]);
+    this._viewportScroller.scrollToAnchor(anchorName);
   }
 }
