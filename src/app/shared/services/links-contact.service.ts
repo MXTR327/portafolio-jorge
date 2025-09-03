@@ -1,10 +1,8 @@
-import { inject, Injectable } from '@angular/core';
-
-import { IconManagerService } from './icon-manager.service';
+import { Injectable } from '@angular/core';
 
 export interface SocialLink
 {
-  icon: string;
+  iconPath: string;
   name: string;
   path: string;
   style?: Record<string, string>;
@@ -20,24 +18,24 @@ export class LinksContactService
   readonly phone: string = '992901012';
   readonly street: string = 'Santa María';
   readonly streetNumber: string = '15135';
-  
+
   get socialLinks(): SocialLink[]
   {
     return [
       {
-        icon: this._getPathIcon('logo-facebook'),
+        iconPath: `${this._iconsPath}/icon-logo-facebook.svg`,
         name: 'facebook',
         path: `https://www.facebook.com/${this._facebook}`,
         style: { height: '20px' },
       },
       {
-        icon: this._getPathIcon('logo-gmail'),
+        iconPath: `${this._iconsPath}/icon-logo-gmail.svg`,
         name: 'gmail',
         path: `https://mail.google.com/mail/?view=cm&to=${this._email}&su=Consulta&body=${this.message}`,
         style: { height: '19px' },
       },
       {
-        icon: this._getPathIcon('logo-whatsapp'),
+        iconPath: `${this._iconsPath}/icon-logo-whatsapp.svg`,
         name: 'whatsapp',
         path: `https://api.whatsapp.com/send/?phone=${this.phone}&text=${this.message}`,
         style: { height: '19px' },
@@ -45,10 +43,9 @@ export class LinksContactService
     ];
   }
 
-  private readonly _email: string = 'ramsua.jorlui@gmail.com';
+  private readonly _email: string = 'ramsua.jorlui@gmail.com'; 
   private readonly _facebook: string = 'jorje.ramirez.71619';
-
-  private readonly _iconManagerService = inject(IconManagerService);
+  private readonly _iconsPath: string = 'assets/icons/shared';
 
   private get message(): string
   {
@@ -57,10 +54,5 @@ export class LinksContactService
         'Vivo en (lugar),\n' +
         'Me gustaría que conversemos para hablar sobre un trabajo de ...',
     );
-  }
-
-  private _getPathIcon(name: string): string
-  {
-    return this._iconManagerService.getByName(name)?.path ?? '';
   }
 }

@@ -10,17 +10,18 @@ import { SvgIconComponent } from 'angular-svg-icon';
 })
 export class FooterComponent
 {
-  private readonly _linksContactService = inject(LinksContactService);
-  readonly calle: string = `${this._linksContactService.street}, #${this._linksContactService.streetNumber}`;
+  readonly iconMaxPath: string = "assets/icons/shared/icon-logo-max.svg";
+  readonly iconMaxStyle: Record<string, string> = { height: '40px' };
 
-  readonly icoMaxStyle: Record<string, string> = { height: '40px' };
   private readonly _linksService = inject(LinksRouteService);
-
-
   readonly linksPages: readonly LinkPage[] = this._linksService.linksPages;
-  readonly lugar: string = `${this._linksContactService.country}, ${this._linksContactService.city}`;
+
+  private readonly _linksContactService = inject( LinksContactService );
+
   readonly phone: string = this._linksContactService.phone;
+  readonly place: string = `${this._linksContactService.country}, ${this._linksContactService.city}`;
   readonly socialLinks: SocialLink[] = this._linksContactService.socialLinks;
+  readonly street: string = `${this._linksContactService.street}, #${this._linksContactService.streetNumber}`;
 
   readonly year: number = new Date().getFullYear();
 

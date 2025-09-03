@@ -11,6 +11,9 @@ import { SvgIconComponent } from 'angular-svg-icon';
 })
 export class HomePageComponent
 {
+  private readonly _iconsHomePath: string = 'assets/icons/home';
+  readonly iconWorkerPath: string = `${this._iconsHomePath}/icon-worker.svg`;
+
   private readonly _linksRouteService = inject(LinksRouteService);
 
   gotoAnchor(section: string): void

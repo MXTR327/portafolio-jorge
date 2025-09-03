@@ -1,131 +1,215 @@
-<section class="mb-10 flex h-full w-full flex-col overflow-hidden">
+<section class="flex h-screen w-full flex-col justify-center gap-20 overflow-hidden px-12">
   <!-- 1ra fila -->
-  <div class="mb-10 text-center">
-    <h2 class="mb-1 font-bold uppercase md:text-3xl">Contáctenos</h2>
+  <div class="space-y-4 text-center">
+    <h1 class="font-bold uppercase md:text-5xl">Contáctenos</h1>
+    <h2 class="text-gray-500 italic md:text-sm lg:text-base">
+      Estamos aquí para responder sus preguntas y brindarle la mejor atención posible.
+    </h2>
   </div>
   <!-- Fin 1ra fila -->
 
   <!-- 2da fila -->
-  <div class="grid grid-cols-2 items-center justify-center">
-    <div>
-      <h1>Necesitas ayuda? Contacta con nosotros.</h1>
-      <p>
-        Nuestro equipo está listo para ayudar con su banca o necesidades de inversión.disparar en
-        cualquier momento para un apoyo rápido, amable y experto.
-      </p>
-    </div>
-    <div>
-      <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit()">
-        <!-- Nombre -->
-        <div class="row mb-3">
-          <label for="name" class="col-sm-3 col-form-label">Nombre y apellido</label>
-          <div class="col-sm-9">
-            <input
-              id="name"
-              type="text"
-              class="form-control"
-              placeholder="Nombre y apellido"
-              formControlName="name"
-            />
-            @if (formUtils.isValidField(myForm, 'name'))
-            {
-              <span class="form-text text-danger"> El campo debe de tener nombre y apellido </span>
-            }
-          </div>
+  <div class="grid grid-cols-2 gap-15">
+    <!-- 1ra columna -->
+    <div class="space-y-20 p-10">
+      <!-- 1ra fila -->
+      <div class="space-y-6">
+        <h1 class="font-semibold md:text-4xl">Necesitas ayuda? Contacta ya</h1>
+        <p class="text-gray-600">
+          Nuestro equipo está listo para ayudar con su banca o necesidades de inversión. Disparar en
+          cualquier momento para un apoyo rápido, amable y experto.
+        </p>
+        <!-- Redes -->
+        <div class="flex gap-10">
+          <svg-icon [src]="iconErrorPath" [svgStyle]="{ 'height.px': 20 }" />
+          <svg-icon [src]="iconErrorPath" [svgStyle]="{ 'height.px': 20 }" />
+          <svg-icon [src]="iconErrorPath" [svgStyle]="{ 'height.px': 20 }" />
         </div>
+        <!-- Fin redes -->
+      </div>
 
-        <!-- Email -->
-        <div class="row mb-3">
-          <label for="email" class="col-sm-3 col-form-label">Email</label>
-          <div class="col-sm-9">
-            <input
-              id="email"
-              type="email"
-              class="form-control"
-              placeholder="Email del usuario"
-              formControlName="email"
-            />
+      <!-- Fin 1ra fila -->
+
+      <!-- 2da fila -->
+      <div class="space-y-7.5">
+        <div class="space-y-2">
+          <div class="flex items-center gap-3.5">
+            <svg-icon [src]="iconErrorPath" [svgStyle]="{ 'height.px': 20 }" />
+            <h1 class="text-gray-600">Phone</h1>
+          </div>
+          <span class="text-gray-700">(800) 452-9876</span>
+        </div>
+        <div class="space-y-2">
+          <div class="flex items-center gap-3.5">
+            <svg-icon [src]="iconErrorPath" [svgStyle]="{ 'height.px': 20 }" />
+            <h1 class="text-gray-600">Phone</h1>
+          </div>
+          <span class="text-gray-700">(800) 452-9876</span>
+        </div>
+      </div>
+      <!-- Fin 2da fila -->
+    </div>
+    <!-- Fin 1ra columna -->
+
+    <!-- 2da columna -->
+    <div class="p-10">
+      <form
+        class="flex flex-col gap-10"
+        autocomplete="off"
+        [formGroup]="myForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="flex flex-col gap-5">
+          <div class="flex gap-5">
+            <!-- Nombre -->
+            <div class="w-full">
+              <div class="relative w-full">
+                <input
+                  class="block w-full rounded-xl border border-gray-300 p-5 ps-11 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none"
+                  id="name"
+                  type="text"
+                  [class]="
+                    formUtils.isValidField(myForm, 'name')
+                      ? 'border-red-500 focus:border-red-500'
+                      : ''
+                  "
+                  placeholder="Nombre"
+                  formControlName="name"
+                />
+                <svg-icon
+                  class="pointer-events- absolute inset-y-0 start-0 z-20 flex items-center ps-4 text-gray-400"
+                  [src]="iconNamePath"
+                  [svgStyle]="iconStyle"
+                />
+              </div>
+              @if (formUtils.isValidField(myForm, 'name'))
+              {
+                <p
+                  class="mt-2 flex items-center gap-1 text-sm text-red-600"
+                  id="hs-validation-name-error-helper"
+                >
+                  <svg-icon [src]="iconErrorPath" [svgStyle]="iconErrorStyle" />
+                  {{ formUtils.getFieldError(myForm, 'name') }}
+                </p>
+              }
+            </div>
+            <!-- Fin Nombre -->
+
+            <!-- Telefono -->
+            <div class="w-full">
+              <div class="relative w-full">
+                <input
+                  class="block w-full rounded-xl border border-gray-300 p-5 ps-11 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none"
+                  id="phone"
+                  type="text"
+                  [class]="
+                    formUtils.isValidField(myForm, 'phone')
+                      ? 'border-red-500 focus:border-red-500'
+                      : ''
+                  "
+                  placeholder="123231312"
+                  formControlName="phone"
+                />
+                <svg-icon
+                  class="pointer-events- absolute inset-y-0 start-0 z-20 flex items-center ps-4 text-gray-400"
+                  [src]="iconPhonePath"
+                  [svgStyle]="iconStyle"
+                />
+              </div>
+              @if (formUtils.isValidField(myForm, 'phone'))
+              {
+                <p
+                  class="mt-2 flex items-center gap-1 text-sm text-red-600"
+                  id="hs-validation-name-error-helper"
+                >
+                  <svg-icon [src]="iconErrorPath" [svgStyle]="iconErrorStyle" />
+                  {{ formUtils.getFieldError(myForm, 'phone') }}
+                </p>
+              }
+            </div>
+            <!-- Fin Telefono -->
+          </div>
+
+          <!-- Email -->
+          <div>
+            <div class="relative">
+              <input
+                class="block w-full rounded-xl border border-gray-300 p-5 ps-11 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none"
+                id="email"
+                type="email"
+                [class]="
+                  formUtils.isValidField(myForm, 'email')
+                    ? 'border-red-500 focus:border-red-500'
+                    : ''
+                "
+                placeholder="email@site.com"
+                formControlName="email"
+              />
+              <svg-icon
+                class="pointer-events-none absolute inset-y-0 start-0 z-20 flex items-center ps-4 text-gray-400"
+                [src]="iconMailPath"
+                [svgStyle]="iconStyle"
+              />
+            </div>
             @if (formUtils.isValidField(myForm, 'email'))
             {
-              <span class="form-text text-danger">
+              <p
+                class="mt-2 flex items-center gap-1 text-sm text-red-600"
+                id="hs-validation-name-error-helper"
+              >
+                <svg-icon [src]="iconErrorPath" [svgStyle]="iconErrorStyle" />
                 {{ formUtils.getFieldError(myForm, 'email') }}
-              </span>
+              </p>
             }
           </div>
-        </div>
+          <!-- Fin Email -->
 
-        <!-- Username -->
-        <div class="row mb-3">
-          <label for="username" class="col-sm-3 col-form-label">Username</label>
-          <div class="col-sm-9">
-            <input
-              id="username"
-              type="text"
-              class="form-control"
-              placeholder="Nombre código del usuario"
-              formControlName="username"
-            />
-            @if (formUtils.isValidField(myForm, 'username'))
+          <!-- Textarea -->
+          <div>
+            <div class="relative">
+              <textarea
+                class="block w-full rounded-xl border border-gray-300 p-5 ps-11 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none"
+                id="message"
+                [class]="
+                  formUtils.isValidField(myForm, 'message')
+                    ? 'border-red-500 focus:border-red-500'
+                    : ''
+                "
+                rows="5"
+                placeholder="Mensaje"
+                formControlName="message"
+              ></textarea>
+              <svg-icon
+                class="pointer-events-none absolute start-0 top-6 z-20 flex items-center ps-4 text-gray-400"
+                [src]="iconDescriptionPath"
+                [svgStyle]="iconStyle"
+              />
+            </div>
+            @if (formUtils.isValidField(myForm, 'message'))
             {
-              <span class="form-text text-danger">
-                {{ formUtils.getFieldError(myForm, 'username') }}
-              </span>
+              <p
+                class="mt-2 flex items-center gap-1 text-sm text-red-600"
+                id="hs-validation-name-error-helper"
+              >
+                <svg-icon [src]="iconErrorPath" [svgStyle]="iconErrorStyle" />
+                {{ formUtils.getFieldError(myForm, 'message') }}
+              </p>
             }
           </div>
+          <!-- Fin Textarea -->
         </div>
-
-        <!-- Password -->
-        <div class="row mb-3">
-          <label for="password" class="col-sm-3 col-form-label">Password</label>
-          <div class="col-sm-9">
-            <input
-              id="password"
-              type="password"
-              class="form-control"
-              placeholder="Password de su cuenta"
-              formControlName="password"
-            />
-            @if (formUtils.isValidField(myForm, 'password'))
-            {
-              <span class="form-text text-danger">
-                {{ formUtils.getFieldError(myForm, 'password') }}
-              </span>
-            }
-          </div>
-        </div>
-
-        <!-- Confirmar Password -->
-        <div class="row mb-3">
-          <label for="password2" class="col-sm-3 col-form-label">Confirmar</label>
-          <div class="col-sm-9">
-            <input
-              id="password2"
-              type="password"
-              class="form-control"
-              placeholder="Confirmar la contraseña"
-              formControlName="password2"
-            />
-            @if (formUtils.isValidField(myForm, 'password2'))
-            {
-              <span class="form-text text-danger">
-                {{ formUtils.getFieldError(myForm, 'password2') }}
-              </span>
-            }
-          </div>
-        </div>
-
-        <!-- Errores globales -->
-        <div class="row">
-          <div class="col">
-            @if (myForm.errors && myForm.touched)
-            {
-              <span class="text-danger">Las contraseñas no son iguales</span>
-            }
-            <button class="btn btn-primary float-end" type="submit">Crear</button>
-          </div>
-        </div>
+        <!-- Boton enviar -->
+        <button
+          class="flex w-fit items-center gap-2 rounded-full border border-transparent bg-cyan-600 p-5 text-base font-medium text-white hover:bg-blue-700"
+          type="submit"
+        >
+          Enviar
+          <svg-icon [src]="iconPlanePath" [svgStyle]="iconPlaneStyle" />
+        </button>
+        <!-- Fin Boton enviar -->
       </form>
     </div>
+    <!-- Fin 2da columna -->
   </div>
   <!-- Fin 2da fila -->
 </section>

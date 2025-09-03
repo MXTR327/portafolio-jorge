@@ -52,9 +52,8 @@ export class LinksRouteService
     return this._linksPages.find((link) => link.name === name);
   }
 
-  public gotoAnchor(anchorName: string): void
+  public gotoAnchor(id: string): void
   {
-    this._viewportScroller.setOffset([0, 85]);
-    this._viewportScroller.scrollToAnchor(anchorName);
+    this._viewportScroller.scrollToAnchor(id);
   }
 }

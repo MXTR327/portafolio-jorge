@@ -1,50 +1,49 @@
 // @ts-check
-const eslint = require("@eslint/js");
-const tseslint = require("typescript-eslint");
-const angular = require("angular-eslint");
-const perfectionist = require("eslint-plugin-perfectionist");
-const unicorn = require("eslint-plugin-unicorn");
-const sonarjs = require("eslint-plugin-sonarjs");
+const perfectionistPlugin = require("eslint-plugin-perfectionist");
+const unicornPlugin = require("eslint-plugin-unicorn");
+const sonarjsPlugin = require("eslint-plugin-sonarjs");
 
-module.exports = tseslint.config(
+const typescriptParser = require('@typescript-eslint/parser');
+const eslint = require("@eslint/js");
+const angularEslint = require("angular-eslint");
+const tsEslint = require("typescript-eslint");
+module.exports = tsEslint.config(
   {
     files: ["**/*.ts"],
+
+    languageOptions: {
+      parser: typescriptParser,
+      parserOptions: {
+        project: ['./tsconfig.json', './tsconfig.app.json', './tsconfig.spec.json'],
+      }
+    },
     plugins: {},
     extends: [
       eslint.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...tseslint.configs.stylistic,
-      ...angular.configs.tsRecommended,
-      perfectionist.configs["recommended-natural"],
-      unicorn.default.configs.recommended,
-      sonarjs.configs.recommended
+      ...tsEslint.configs.recommendedTypeChecked,
+      ...tsEslint.configs.stylisticTypeChecked,
+      ...angularEslint.configs.tsRecommended,
+      perfectionistPlugin.configs["recommended-natural"],
+      unicornPlugin.default.configs.recommended,
+      sonarjsPlugin.configs.recommended,
     ],
-    processor: angular.processInlineTemplates,
+    processor: angularEslint.processInlineTemplates,
     rules: {
       "brace-style": ["error", "allman", { "allowSingleLine": true }],
-      "@angular-eslint/directive-selector": [
+      "@typescript-eslint/naming-convention": "error",
+      "@typescript-eslint/unbound-method": [
         "error",
-        {
-          type: "attribute",
-          prefix: "app",
-          style: "camelCase",
-        },
+        { "ignoreStatic": true } // Ignora métodos estáticos como Validators
       ],
-      "@angular-eslint/component-selector": [
-        "error",
-        {
-          type: "element",
-          prefix: "app",
-          style: "kebab-case",
-        },
-      ],
+      "@angular-eslint/directive-selector": "error",
+      "@angular-eslint/component-selector": "error",
     },
   },
   {
     files: ["**/*.html"],
     extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
+      ...angularEslint.configs.templateRecommended,
+      ...angularEslint.configs.templateAccessibility,
     ],
     rules: {},
   }

@@ -51,6 +51,7 @@
     "@tailwindcss/forms": "^0.5.10",
     "@types/aos": "^3.0.7",
     "@types/jasmine": "~5.1.0",
+    "@typescript-eslint/parser": "^8.42.0",
     "angular-eslint": "20.2.0",
     "eslint": "^9.33.0",
     "eslint-plugin-perfectionist": "^4.15.0",

@@ -54,7 +54,7 @@ export class PortafolioFrontLayoutComponent implements AfterViewInit
 
     for (const section of sections)
     {
-      const nativeElement = section.nativeElement as HTMLElement;
+      const nativeElement = section.nativeElement;
       observer.observe(nativeElement);
     }
   }
