@@ -22,9 +22,9 @@
         class="inline-block flex-none cursor-pointer rounded-md text-xl font-semibold focus:opacity-80 focus:outline-hidden"
         role="button"
         tabindex="0"
-        (click)="scrollTo(getByName('Home')!.href)"
-        (keydown.enter)="scrollTo(getByName('Home')!.href)"
-        (keydown.space)="scrollTo(getByName('Home')!.href)"
+        (click)="goToAnchorById('home')"
+        (keydown.enter)="goToAnchorById('home')"
+        (keydown.space)="goToAnchorById('home')"
       >
         <span class="text-white"> Ramsua </span>
         <span class="text-[#ff0]">| Services</span>
@@ -44,13 +44,12 @@
         data-aos-once="true"
       >
         <a
-          class="group inline-flex cursor-pointer items-center gap-x-2 rounded-full bg-[#ff0] px-3 py-2 text-sm font-medium text-nowrap focus:outline-hidden"
+          class="group inline-flex cursor-pointer items-center gap-x-2 rounded-full bg-[#ff0] px-3 py-2 text-sm font-medium text-nowrap text-black focus:outline-hidden"
           role="button"
           tabindex="0"
-          [class.text-orange-600]="activeSecion() === getByName('Contact Us')!.href"
-          (click)="scrollTo(getByName('Contact Us')!.href)"
-          (keydown.enter)="scrollTo(getByName('Contact Us')!.href)"
-          (keydown.space)="scrollTo(getByName('Contact Us')!.href)"
+          (click)="goToAnchorById('contact')"
+          (keydown.enter)="goToAnchorById('contact')"
+          (keydown.space)="goToAnchorById('contact')"
         >
           <span> Contact Us </span>
           <svg-icon [src]="icoCallPath" [svgStyle]="icoCallStyle" />
@@ -79,14 +78,12 @@
             class="hs-collapse-open:hidden shrink-0"
             [src]="icoHamburberPath"
             [svgStyle]="icoHamburgerStyle"
-          >
-            <svg-icon
-              class="hs-collapse-open:block hidden shrink-0"
-              [src]="icoClosePath"
-              [svgStyle]="icoCloseStyle"
-            >
-            </svg-icon
-          ></svg-icon>
+          />
+          <svg-icon
+            class="hs-collapse-open:block hidden shrink-0"
+            [src]="icoClosePath"
+            [svgStyle]="icoCloseStyle"
+          />
         </button>
       </div>
       <!-- Fin Boton Hamburguesa -->
@@ -112,17 +109,17 @@
           @if (!last)
           {
             <a
-              class="cursor-pointer ps-px pe-3 text-sm text-[#ff0] sm:px-3 md:py-4"
+              class="cursor-pointer ps-px pe-3 text-sm text-[#ff0] hover:text-[#ff0] sm:px-3 md:py-4"
               data-aos="fade-up-left"
               data-aos-duration="1000"
               data-aos-easing="ease-in-out-back"
               data-aos-once="true"
               role="button"
               tabindex="0"
-              (keydown.enter)="scrollTo(linP.href)"
-              (keydown.space)="scrollTo(linP.href)"
-              (click)="scrollTo(linP.href)"
-              [class]="activeSecion() !== linP.href ? 'text-white hover:text-neutral-300' : ''"
+              (keydown.enter)="goToAnchorById(linP.id)"
+              (keydown.space)="goToAnchorById(linP.id)"
+              (click)="goToAnchorById(linP.id)"
+              [class]="activeSecion() !== linP.anchorId ? 'text-white hover:text-neutral-200' : ''"
               [attr.data-aos-delay]="500 + i * 150"
             >
               {{ linP.name }}

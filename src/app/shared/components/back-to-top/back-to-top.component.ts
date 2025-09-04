@@ -1,6 +1,5 @@
-import { Component, HostListener, inject, signal } from '@angular/core';
-import { ActiveSectionService } from '@shared/services/active-section.service';
-import { LinkPage, LinksRouteService } from '@shared/services/links-route.service';
+import { Component, HostListener, inject } from '@angular/core';
+import { LinksRouteService } from '@shared/services/links-route.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
@@ -11,26 +10,11 @@ import { SvgIconComponent } from 'angular-svg-icon';
 })
 export class BackToTopComponent
 {
-  readonly isButtonVisible = signal<boolean>( false );
-
-  private readonly _activeSectionService = inject(ActiveSectionService);
-
   private readonly _linksRouteService = inject(LinksRouteService);
-  public getByName(name: string): LinkPage | undefined
-  {
-    return this._linksRouteService.getByName(name);
-  }
+
+  public readonly goToAnchorById = (anchorId: string) =>
+    this._linksRouteService.goToAnchorById(anchorId);
 
   @HostListener('window:scroll', [])
-  onWindowScroll()
-  {
-    this.isButtonVisible.set(window.scrollY < 300);
-  }
-
-  public scrollTo(href: string): void
-  {
-    this._linksRouteService.gotoAnchor(href);
-  }
-
-  private readonly _computeActiveSection = () => this._activeSectionService.activeSection;
+  public readonly isNearTop = (): boolean => window.scrollY < 300;
 }

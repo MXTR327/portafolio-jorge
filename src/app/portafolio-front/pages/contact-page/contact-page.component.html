@@ -1,71 +1,92 @@
-<section class="flex h-screen w-full flex-col justify-center gap-20 overflow-hidden px-12">
-  <!-- 1ra fila -->
+<section
+  class="flex h-screen w-full flex-col overflow-hidden md:gap-5 md:px-4 md:pt-18 lg:gap-15 lg:px-7 2xl:justify-center 2xl:gap-18 2xl:pt-0"
+>
+  <!-- Titulos 1ra fila -->
   <div class="space-y-4 text-center">
-    <h1 class="font-bold uppercase md:text-5xl">Contáctenos</h1>
+    <h1 class="font-bold uppercase md:text-3xl 2xl:text-5xl">Contáctenos</h1>
     <h2 class="text-gray-500 italic md:text-sm lg:text-base">
       Estamos aquí para responder sus preguntas y brindarle la mejor atención posible.
     </h2>
   </div>
-  <!-- Fin 1ra fila -->
+  <!-- Fin titulos 1ra fila -->
 
-  <!-- 2da fila -->
-  <div class="grid grid-cols-2 gap-15">
-    <!-- 1ra columna -->
-    <div class="space-y-20 p-10">
+  <!-- Contenidos 2da fila -->
+  <div class="flex md:gap-7 lg:gap-10 xl:gap-20">
+    <!-- Info 1ra col -->
+    <div class="w-full md:space-y-9 lg:space-y-15 2xl:space-y-20">
       <!-- 1ra fila -->
-      <div class="space-y-6">
-        <h1 class="font-semibold md:text-4xl">Necesitas ayuda? Contacta ya</h1>
-        <p class="text-gray-600">
+      <div class="md:space-y-3 lg:space-y-4 2xl:space-y-7">
+        <h1 class="font-semibold md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl">
+          Necesitas ayuda? Contacta yá
+        </h1>
+        <p class="text-gray-600 md:text-sm lg:text-base">
           Nuestro equipo está listo para ayudar con su banca o necesidades de inversión. Disparar en
           cualquier momento para un apoyo rápido, amable y experto.
         </p>
         <!-- Redes -->
         <div class="flex gap-10">
-          <svg-icon [src]="iconErrorPath" [svgStyle]="{ 'height.px': 20 }" />
-          <svg-icon [src]="iconErrorPath" [svgStyle]="{ 'height.px': 20 }" />
-          <svg-icon [src]="iconErrorPath" [svgStyle]="{ 'height.px': 20 }" />
+          @for (socialLink of socialLinks; track socialLink)
+          {
+            <a [href]="socialLink.href" target="_blank">
+              <svg-icon [src]="socialLink.iconPath" [svgStyle]="{ 'height.px': 22 }" />
+            </a>
+          }
         </div>
         <!-- Fin redes -->
       </div>
-
       <!-- Fin 1ra fila -->
 
       <!-- 2da fila -->
-      <div class="space-y-7.5">
+      <div class="md:space-y-4 md:text-sm lg:space-y-7.5 lg:text-base">
         <div class="space-y-2">
           <div class="flex items-center gap-3.5">
-            <svg-icon [src]="iconErrorPath" [svgStyle]="{ 'height.px': 20 }" />
-            <h1 class="text-gray-600">Phone</h1>
+            <svg-icon
+              [src]="iconChargingPhonePath"
+              [svgStyle]="{ 'height.px': 20, fill: 'black' }"
+            />
+            <h1 class="text-gray-600">Telefono</h1>
           </div>
-          <span class="text-gray-700">(800) 452-9876</span>
+          <span class="text-gray-700">(+51) {{ infoPerson.phone }}</span>
         </div>
         <div class="space-y-2">
           <div class="flex items-center gap-3.5">
-            <svg-icon [src]="iconErrorPath" [svgStyle]="{ 'height.px': 20 }" />
-            <h1 class="text-gray-600">Phone</h1>
+            <svg-icon [src]="iconMailClosedPath" [svgStyle]="{ 'height.px': 20 }" />
+            <h1 class="text-gray-600">Email</h1>
           </div>
-          <span class="text-gray-700">(800) 452-9876</span>
+          <span class="text-gray-700">{{ infoPerson.email }}</span>
+        </div>
+        <div class="space-y-2">
+          <div class="flex items-center gap-3.5">
+            <svg-icon [src]="iconSpotPath" [svgStyle]="{ 'height.px': 20 }" />
+            <h1 class="text-gray-600">Ubicanos En</h1>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-gray-700">{{ infoPerson.country }}, {{ infoPerson.city }}</span>
+            <span class="text-gray-700">
+              {{ infoPerson.street }}, {{ infoPerson.streetNumber }}
+            </span>
+          </div>
         </div>
       </div>
       <!-- Fin 2da fila -->
     </div>
-    <!-- Fin 1ra columna -->
+    <!-- Fin info 1ra col -->
 
-    <!-- 2da columna -->
-    <div class="p-10">
+    <!-- Formulario 2da col -->
+    <div class="w-full md:pt-2 lg:pt-4 2xl:pt-8">
       <form
-        class="flex flex-col gap-10"
+        class="flex flex-col md:gap-9 lg:gap-13"
         autocomplete="off"
         [formGroup]="myForm"
         (ngSubmit)="onSubmit()"
       >
-        <div class="flex flex-col gap-5">
-          <div class="flex gap-5">
+        <div class="flex flex-col md:gap-6 lg:gap-9">
+          <div class="flex md:flex-col md:gap-6 lg:flex-row lg:gap-5">
             <!-- Nombre -->
-            <div class="w-full">
+            <div class="relative w-full">
               <div class="relative w-full">
                 <input
-                  class="block w-full rounded-xl border border-gray-300 p-5 ps-11 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none"
+                  class="block w-full rounded-xl border border-gray-300 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none md:p-3 md:ps-9 md:text-sm lg:p-5 lg:ps-11 lg:text-base"
                   id="name"
                   type="text"
                   [class]="
@@ -73,11 +94,11 @@
                       ? 'border-red-500 focus:border-red-500'
                       : ''
                   "
-                  placeholder="Nombre"
+                  placeholder="Nombre*"
                   formControlName="name"
                 />
                 <svg-icon
-                  class="pointer-events- absolute inset-y-0 start-0 z-20 flex items-center ps-4 text-gray-400"
+                  class="pointer-events-none absolute inset-y-0 start-0 z-20 flex items-center text-gray-400 md:ps-3 lg:ps-4"
                   [src]="iconNamePath"
                   [svgStyle]="iconStyle"
                 />
@@ -85,21 +106,23 @@
               @if (formUtils.isValidField(myForm, 'name'))
               {
                 <p
-                  class="mt-2 flex items-center gap-1 text-sm text-red-600"
+                  class="absolute mt-1 flex w-full items-start gap-1 text-red-600 md:text-xs 2xl:text-sm"
                   id="hs-validation-name-error-helper"
                 >
                   <svg-icon [src]="iconErrorPath" [svgStyle]="iconErrorStyle" />
-                  {{ formUtils.getFieldError(myForm, 'name') }}
+                  <span class="block whitespace-normal">
+                    {{ formUtils.getFieldError(myForm, 'name') }}
+                  </span>
                 </p>
               }
             </div>
             <!-- Fin Nombre -->
 
             <!-- Telefono -->
-            <div class="w-full">
+            <div class="relative w-full">
               <div class="relative w-full">
                 <input
-                  class="block w-full rounded-xl border border-gray-300 p-5 ps-11 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none"
+                  class="block w-full rounded-xl border border-gray-300 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none md:p-3 md:ps-9 md:text-sm lg:p-5 lg:ps-11 lg:text-base"
                   id="phone"
                   type="text"
                   [class]="
@@ -107,11 +130,11 @@
                       ? 'border-red-500 focus:border-red-500'
                       : ''
                   "
-                  placeholder="123231312"
+                  placeholder="123231312*"
                   formControlName="phone"
                 />
                 <svg-icon
-                  class="pointer-events- absolute inset-y-0 start-0 z-20 flex items-center ps-4 text-gray-400"
+                  class="pointer-events-none absolute inset-y-0 start-0 z-20 flex items-center text-gray-400 md:ps-3 lg:ps-4"
                   [src]="iconPhonePath"
                   [svgStyle]="iconStyle"
                 />
@@ -119,7 +142,7 @@
               @if (formUtils.isValidField(myForm, 'phone'))
               {
                 <p
-                  class="mt-2 flex items-center gap-1 text-sm text-red-600"
+                  class="absolute mt-1 flex w-full items-start gap-1 text-red-600 md:text-xs 2xl:text-sm"
                   id="hs-validation-name-error-helper"
                 >
                   <svg-icon [src]="iconErrorPath" [svgStyle]="iconErrorStyle" />
@@ -131,10 +154,10 @@
           </div>
 
           <!-- Email -->
-          <div>
-            <div class="relative">
+          <div class="relative w-full">
+            <div class="relative w-full">
               <input
-                class="block w-full rounded-xl border border-gray-300 p-5 ps-11 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none"
+                class="block w-full rounded-xl border border-gray-300 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none md:p-3 md:ps-9 md:text-sm lg:p-5 lg:ps-11 lg:text-base"
                 id="email"
                 type="email"
                 [class]="
@@ -142,19 +165,19 @@
                     ? 'border-red-500 focus:border-red-500'
                     : ''
                 "
-                placeholder="email@site.com"
+                placeholder="email@site.com*"
                 formControlName="email"
               />
               <svg-icon
-                class="pointer-events-none absolute inset-y-0 start-0 z-20 flex items-center ps-4 text-gray-400"
-                [src]="iconMailPath"
+                class="pointer-events-none absolute inset-y-0 start-0 z-20 flex items-center text-gray-400 md:ps-3 lg:ps-4"
+                [src]="iconMailAlertPath"
                 [svgStyle]="iconStyle"
               />
             </div>
             @if (formUtils.isValidField(myForm, 'email'))
             {
               <p
-                class="mt-2 flex items-center gap-1 text-sm text-red-600"
+                class="absolute mt-1 flex w-full items-start gap-1 text-red-600 md:text-xs 2xl:text-sm"
                 id="hs-validation-name-error-helper"
               >
                 <svg-icon [src]="iconErrorPath" [svgStyle]="iconErrorStyle" />
@@ -165,10 +188,10 @@
           <!-- Fin Email -->
 
           <!-- Textarea -->
-          <div>
-            <div class="relative">
+          <div class="relative w-full">
+            <div class="relative w-full">
               <textarea
-                class="block w-full rounded-xl border border-gray-300 p-5 ps-11 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none"
+                class="block w-full rounded-xl border border-gray-300 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none md:p-3 md:ps-9 md:text-sm lg:p-5 lg:ps-11 lg:text-base"
                 id="message"
                 [class]="
                   formUtils.isValidField(myForm, 'message')
@@ -176,11 +199,11 @@
                     : ''
                 "
                 rows="5"
-                placeholder="Mensaje"
+                placeholder="Mensaje*"
                 formControlName="message"
               ></textarea>
               <svg-icon
-                class="pointer-events-none absolute start-0 top-6 z-20 flex items-center ps-4 text-gray-400"
+                class="pointer-events-none absolute start-0 z-20 flex items-center text-gray-400 md:top-3.5 md:ps-3 lg:top-5.5 lg:ps-4"
                 [src]="iconDescriptionPath"
                 [svgStyle]="iconStyle"
               />
@@ -188,7 +211,7 @@
             @if (formUtils.isValidField(myForm, 'message'))
             {
               <p
-                class="mt-2 flex items-center gap-1 text-sm text-red-600"
+                class="absolute mt-1 flex w-full items-start gap-1 text-red-600 md:text-xs 2xl:text-sm"
                 id="hs-validation-name-error-helper"
               >
                 <svg-icon [src]="iconErrorPath" [svgStyle]="iconErrorStyle" />
@@ -200,16 +223,16 @@
         </div>
         <!-- Boton enviar -->
         <button
-          class="flex w-fit items-center gap-2 rounded-full border border-transparent bg-cyan-600 p-5 text-base font-medium text-white hover:bg-blue-700"
+          class="flex w-fit items-center gap-2 rounded-full border border-transparent bg-cyan-600 font-medium text-white hover:bg-cyan-700 md:p-3 md:text-sm lg:p-5 lg:text-base"
           type="submit"
         >
           Enviar
-          <svg-icon [src]="iconPlanePath" [svgStyle]="iconPlaneStyle" />
+          <svg-icon [src]="iconPlanePath" [svgStyle]="{ 'height.px': 12 }" />
         </button>
         <!-- Fin Boton enviar -->
       </form>
     </div>
-    <!-- Fin 2da columna -->
+    <!-- Fin formulario 2da col -->
   </div>
-  <!-- Fin 2da fila -->
+  <!-- Fin contenido 2da fila -->
 </section>

@@ -6,11 +6,11 @@
   data-aos-easing="ease-in-out-back"
   data-aos-once="true"
   role="button"
-  (click)="scrollTo(getByName('Home')!.href)"
+  (click)="goToAnchorById('home')"
   tabindex="0"
-  (keydown.enter)="scrollTo(getByName('Home')!.href)"
-  (keydown.space)="scrollTo(getByName('Home')!.href)"
-  [class.invisible]="isButtonVisible()"
+  (keydown.enter)="goToAnchorById('home')"
+  (keydown.space)="goToAnchorById('home')"
+  [class.invisible]="isNearTop()"
 >
   <div class="text gap-1 md:ml-8 md:text-sm 2xl:ml-8">
     <span>Back</span>

@@ -10,6 +10,8 @@ import { SvgIconComponent } from 'angular-svg-icon';
 })
 export class NavbarComponent
 {
+  private readonly _getActiveSection = (): string => this._activeSectionService.section;
+
   readonly activeSecion = computed(this._getActiveSection.bind(this));
 
   private readonly _iconsPath: string = 'assets/icons/navbar';
@@ -23,22 +25,11 @@ export class NavbarComponent
 
   readonly icoHamburgerStyle: Record<string, string> = { height: '20px' };
   private readonly _linksRouteService = inject(LinksRouteService);
+
   readonly linksPages: readonly LinkPage[] = this._linksRouteService.linksPages;
-  private readonly _activeSectionService = inject( ActiveSectionService );
 
-  public getByName(name: string): LinkPage | undefined
-  {
-    return this._linksRouteService.getByName(name);
-  }
+  private readonly _activeSectionService = inject(ActiveSectionService);
 
-  public scrollTo(href: string): void
-  {
-    this._linksRouteService.gotoAnchor(href);
-  }
-  private _getActiveSection(): string
-  {
-    return this._activeSectionService.activeSection;
-  }
-
-
+  public readonly goToAnchorById = (anchorId: string) =>
+    this._linksRouteService.goToAnchorById(anchorId);
 }

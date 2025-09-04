@@ -16,8 +16,8 @@ import { ActiveSectionService } from '@shared/services/active-section.service';
     HomePageComponent,
     ContactPageComponent,
     BackToTopComponent,
-    NavbarComponent
-],
+    NavbarComponent,
+  ],
   selector: 'app-portafolio-front-layout',
   templateUrl: './portafolio-front-layout.component.html',
 })
@@ -26,7 +26,6 @@ export class PortafolioFrontLayoutComponent implements AfterViewInit
   private readonly _activeSectionService = inject(ActiveSectionService);
 
   private readonly _sectionsRef = viewChildren<ElementRef<HTMLElement>>('observeSection');
-
   ngAfterViewInit(): void
   {
     const sections = this._sectionsRef();
@@ -42,7 +41,7 @@ export class PortafolioFrontLayoutComponent implements AfterViewInit
 
           if (entry.isIntersecting && entry.intersectionRatio >= 0.5)
           {
-            this._activeSectionService.setActive(id);
+            this._activeSectionService.section = id;
           }
         }
       },

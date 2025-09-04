@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { ActiveSectionService } from '@shared/services/active-section.service';
+import { Component } from '@angular/core';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 interface ServiceItem
@@ -15,8 +14,8 @@ interface ServiceItem
   templateUrl: './services-page.component.html',
 })
 export class ServicesPageComponent
-{ 
-  readonly icoStyle: Record<string, string> = {
+{
+  readonly iconStyle: Record<string, string> = {
     fill: 'rgb(40, 74, 226)',
     height: '40px',
   };
@@ -72,6 +71,4 @@ export class ServicesPageComponent
       title: 'Acabados Finos',
     },
   ];
-
-  private readonly _activeSectionService = inject(ActiveSectionService);
 }

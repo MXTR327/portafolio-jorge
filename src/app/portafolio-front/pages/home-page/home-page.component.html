@@ -76,7 +76,7 @@
       <!-- Btn contacto -->
       <button
         class="relative inline-flex overflow-hidden rounded-lg p-[3px] focus:outline-none active:scale-95 md:h-9 md:w-35 lg:h-12 lg:w-40"
-        (click)="gotoAnchor('contact')"
+        (click)="goToAnchorById('contact')"
         data-aos="slide-left"
         data-aos-delay="1800"
         data-aos-duration="700"
@@ -86,12 +86,12 @@
           class="absolute inset-[-1000%] z-0 animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"
         ></span>
         <span
-          class="relative z-10 inline-flex h-full w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-slate-950 px-7 font-medium text-white backdrop-blur-3xl md:text-sm lg:text-base"
+          class="relative z-10 inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-7 font-medium text-white backdrop-blur-3xl md:text-sm lg:text-base"
         >
           Contáctenos
           <svg-icon
             src="assets/icons/shared/icon-paper-plane.svg"
-            [svgStyle]="{ 'height.px': 14 }"
+            [svgStyle]="{ 'height.px': 12 }"
           />
         </span>
       </button>

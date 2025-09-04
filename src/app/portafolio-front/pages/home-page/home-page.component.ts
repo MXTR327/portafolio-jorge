@@ -15,9 +15,6 @@ export class HomePageComponent
   readonly iconWorkerPath: string = `${this._iconsHomePath}/icon-worker.svg`;
 
   private readonly _linksRouteService = inject(LinksRouteService);
-
-  gotoAnchor(section: string): void
-  {
-    this._linksRouteService.gotoAnchor(section);
-  }
+  public readonly goToAnchorById = (anchorId: string) =>
+    this._linksRouteService.goToAnchorById(anchorId);
 }

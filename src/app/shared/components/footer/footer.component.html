@@ -47,10 +47,10 @@
               data-aos="zoom-out-up"
               data-aos-duration="700"
               role="button"
-              (click)="scrollTo(linP.href)"
+              (click)="goToAnchorById(linP.anchorId)"
               tabindex="0"
-              (keydown.enter)="scrollTo(linP.href)"
-              (keydown.space)="scrollTo(linP.href)"
+              (keydown.enter)="goToAnchorById(linP.anchorId)"
+              (keydown.space)="goToAnchorById(linP.anchorId)"
             >
               {{ linP.name }}
             </a>
@@ -67,7 +67,7 @@
             <a
               class="inline-flex size-10 items-center justify-center rounded-lg border border-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
               data-aos-duration="1000"
-              [href]="socialLink.path"
+              [href]="socialLink.href"
               target="_blank"
               [attr.data-aos]="
                 i === 0
@@ -80,7 +80,7 @@
               "
               [attr.data-aos-delay]="500 * i"
             >
-              <svg-icon [src]="socialLink.iconPath" [svgStyle]="socialLink.style" />
+              <svg-icon [src]="socialLink.iconPath" [svgStyle]="{ 'height.px': 19 }" />
             </a>
           }
         </div>

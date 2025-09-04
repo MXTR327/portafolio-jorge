@@ -5,14 +5,14 @@ import { Injectable, signal } from '@angular/core';
 })
 export class ActiveSectionService
 {
-  get activeSection(): string
-  {
-    return this._activeSection();
-  }
-  private _activeSection = signal<string>('home');
-
-  setActive(id: string)
+  public set section(id: string)
   {
     this._activeSection.set(id);
   }
+  public get section(): string
+  {
+    return this._activeSection();
+  }
+
+  private _activeSection = signal<string>('home');
 }
