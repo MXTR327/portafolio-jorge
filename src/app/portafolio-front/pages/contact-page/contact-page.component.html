@@ -24,203 +24,74 @@
           cualquier momento para un apoyo rápido, amable y experto.
         </p>
         <!-- Redes -->
-        <div class="flex gap-10">
-          @for (socialLink of socialLinks; track socialLink)
-          {
-            <a [href]="socialLink.href" target="_blank">
-              <svg-icon [src]="socialLink.iconPath" [svgStyle]="{ 'height.px': 22 }" />
-            </a>
-          }
-        </div>
+        @for (socialLink of socialLinks; track socialLink)
+        {
+          <a class="mr-8 inline-flex" [href]="socialLink.href" target="_blank">
+            <svg-icon [src]="socialLink.iconPath" [svgStyle]="{ 'height.px': 22 }" />
+          </a>
+        }
         <!-- Fin redes -->
       </div>
       <!-- Fin 1ra fila -->
 
       <!-- 2da fila -->
       <div class="md:space-y-4 md:text-sm lg:space-y-7.5 lg:text-base">
-        <div class="space-y-2">
-          <div class="flex items-center gap-3.5">
-            <svg-icon
-              [src]="iconChargingPhonePath"
-              [svgStyle]="{ 'height.px': 20, fill: 'black' }"
-            />
-            <h1 class="text-gray-600">Telefono</h1>
+        @for (infoPerson of infosPerson; track infoPerson)
+        {
+          <div class="space-y-2">
+            <div class="flex items-center gap-3.5">
+              <svg-icon [src]="infoPerson.iconPath" [svgStyle]="{ 'height.px': 20 }" />
+              <h1 class="text-gray-600">{{ infoPerson.label }}</h1>
+            </div>
+            <span class="whitespace-pre-line text-gray-700">{{ infoPerson.text }}</span>
           </div>
-          <span class="text-gray-700">(+51) {{ infoPerson.phone }}</span>
-        </div>
-        <div class="space-y-2">
-          <div class="flex items-center gap-3.5">
-            <svg-icon [src]="iconMailClosedPath" [svgStyle]="{ 'height.px': 20 }" />
-            <h1 class="text-gray-600">Email</h1>
-          </div>
-          <span class="text-gray-700">{{ infoPerson.email }}</span>
-        </div>
-        <div class="space-y-2">
-          <div class="flex items-center gap-3.5">
-            <svg-icon [src]="iconSpotPath" [svgStyle]="{ 'height.px': 20 }" />
-            <h1 class="text-gray-600">Ubicanos En</h1>
-          </div>
-          <div class="flex flex-col">
-            <span class="text-gray-700">{{ infoPerson.country }}, {{ infoPerson.city }}</span>
-            <span class="text-gray-700">
-              {{ infoPerson.street }}, {{ infoPerson.streetNumber }}
-            </span>
-          </div>
-        </div>
+        }
       </div>
       <!-- Fin 2da fila -->
     </div>
     <!-- Fin info 1ra col -->
 
     <!-- Formulario 2da col -->
-    <div class="w-full md:pt-2 lg:pt-4 2xl:pt-8">
+    <div class="w-full md:pt-2 lg:pt-4 2xl:pt-9">
       <form
         class="flex flex-col md:gap-9 lg:gap-13"
         autocomplete="off"
         [formGroup]="myForm"
         (ngSubmit)="onSubmit()"
       >
+        <!-- Inputs -->
         <div class="flex flex-col md:gap-6 lg:gap-9">
-          <div class="flex md:flex-col md:gap-6 lg:flex-row lg:gap-5">
-            <!-- Nombre -->
-            <div class="relative w-full">
-              <div class="relative w-full">
-                <input
-                  class="block w-full rounded-xl border border-gray-300 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none md:p-3 md:ps-9 md:text-sm lg:p-5 lg:ps-11 lg:text-base"
-                  id="name"
-                  type="text"
-                  [class]="
-                    formUtils.isValidField(myForm, 'name')
-                      ? 'border-red-500 focus:border-red-500'
-                      : ''
-                  "
-                  placeholder="Nombre*"
-                  formControlName="name"
-                />
-                <svg-icon
-                  class="pointer-events-none absolute inset-y-0 start-0 z-20 flex items-center text-gray-400 md:ps-3 lg:ps-4"
-                  [src]="iconNamePath"
-                  [svgStyle]="iconStyle"
-                />
-              </div>
-              @if (formUtils.isValidField(myForm, 'name'))
-              {
-                <p
-                  class="absolute mt-1 flex w-full items-start gap-1 text-red-600 md:text-xs 2xl:text-sm"
-                  id="hs-validation-name-error-helper"
-                >
-                  <svg-icon [src]="iconErrorPath" [svgStyle]="iconErrorStyle" />
-                  <span class="block whitespace-normal">
-                    {{ formUtils.getFieldError(myForm, 'name') }}
-                  </span>
-                </p>
-              }
-            </div>
-            <!-- Fin Nombre -->
-
-            <!-- Telefono -->
-            <div class="relative w-full">
-              <div class="relative w-full">
-                <input
-                  class="block w-full rounded-xl border border-gray-300 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none md:p-3 md:ps-9 md:text-sm lg:p-5 lg:ps-11 lg:text-base"
-                  id="phone"
-                  type="text"
-                  [class]="
-                    formUtils.isValidField(myForm, 'phone')
-                      ? 'border-red-500 focus:border-red-500'
-                      : ''
-                  "
-                  placeholder="123231312*"
-                  formControlName="phone"
-                />
-                <svg-icon
-                  class="pointer-events-none absolute inset-y-0 start-0 z-20 flex items-center text-gray-400 md:ps-3 lg:ps-4"
-                  [src]="iconPhonePath"
-                  [svgStyle]="iconStyle"
-                />
-              </div>
-              @if (formUtils.isValidField(myForm, 'phone'))
-              {
-                <p
-                  class="absolute mt-1 flex w-full items-start gap-1 text-red-600 md:text-xs 2xl:text-sm"
-                  id="hs-validation-name-error-helper"
-                >
-                  <svg-icon [src]="iconErrorPath" [svgStyle]="iconErrorStyle" />
-                  {{ formUtils.getFieldError(myForm, 'phone') }}
-                </p>
-              }
-            </div>
-            <!-- Fin Telefono -->
-          </div>
-
-          <!-- Email -->
-          <div class="relative w-full">
-            <div class="relative w-full">
-              <input
-                class="block w-full rounded-xl border border-gray-300 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none md:p-3 md:ps-9 md:text-sm lg:p-5 lg:ps-11 lg:text-base"
-                id="email"
-                type="email"
-                [class]="
-                  formUtils.isValidField(myForm, 'email')
-                    ? 'border-red-500 focus:border-red-500'
-                    : ''
-                "
-                placeholder="email@site.com*"
-                formControlName="email"
-              />
-              <svg-icon
-                class="pointer-events-none absolute inset-y-0 start-0 z-20 flex items-center text-gray-400 md:ps-3 lg:ps-4"
-                [src]="iconMailAlertPath"
-                [svgStyle]="iconStyle"
-              />
-            </div>
-            @if (formUtils.isValidField(myForm, 'email'))
+          <div class="flex flex-col gap-6 lg:flex-row lg:gap-5">
+            @for (inputFieldData of inputFieldsData.slice(0, 2); track inputFieldData)
             {
-              <p
-                class="absolute mt-1 flex w-full items-start gap-1 text-red-600 md:text-xs 2xl:text-sm"
-                id="hs-validation-name-error-helper"
-              >
-                <svg-icon [src]="iconErrorPath" [svgStyle]="iconErrorStyle" />
-                {{ formUtils.getFieldError(myForm, 'email') }}
-              </p>
+              <app-form-input
+                class="w-full"
+                [id]="inputFieldData.id"
+                [type]="inputFieldData.type"
+                [placeholder]="inputFieldData.placeholder"
+                [iconPath]="inputFieldData.iconPath"
+                [formControlName]="inputFieldData.id"
+                [isValidField]="formUtils.isValidField(myForm, inputFieldData.id)"
+                [fieldError]="formUtils.getFieldError(myForm, inputFieldData.id)"
+              />
             }
           </div>
-          <!-- Fin Email -->
 
-          <!-- Textarea -->
-          <div class="relative w-full">
-            <div class="relative w-full">
-              <textarea
-                class="block w-full rounded-xl border border-gray-300 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none md:p-3 md:ps-9 md:text-sm lg:p-5 lg:ps-11 lg:text-base"
-                id="message"
-                [class]="
-                  formUtils.isValidField(myForm, 'message')
-                    ? 'border-red-500 focus:border-red-500'
-                    : ''
-                "
-                rows="5"
-                placeholder="Mensaje*"
-                formControlName="message"
-              ></textarea>
-              <svg-icon
-                class="pointer-events-none absolute start-0 z-20 flex items-center text-gray-400 md:top-3.5 md:ps-3 lg:top-5.5 lg:ps-4"
-                [src]="iconDescriptionPath"
-                [svgStyle]="iconStyle"
-              />
-            </div>
-            @if (formUtils.isValidField(myForm, 'message'))
-            {
-              <p
-                class="absolute mt-1 flex w-full items-start gap-1 text-red-600 md:text-xs 2xl:text-sm"
-                id="hs-validation-name-error-helper"
-              >
-                <svg-icon [src]="iconErrorPath" [svgStyle]="iconErrorStyle" />
-                {{ formUtils.getFieldError(myForm, 'message') }}
-              </p>
-            }
-          </div>
-          <!-- Fin Textarea -->
+          @for (inputFieldData of inputFieldsData.slice(2); track inputFieldData)
+          {
+            <app-form-input
+              [id]="inputFieldData.id"
+              [type]="inputFieldData.type"
+              [placeholder]="inputFieldData.placeholder"
+              [iconPath]="inputFieldData.iconPath"
+              [formControlName]="inputFieldData.id"
+              [isValidField]="formUtils.isValidField(myForm, inputFieldData.id)"
+              [fieldError]="formUtils.getFieldError(myForm, inputFieldData.id)"
+            />
+          }
         </div>
+        <!-- Fin inputs -->
+
         <!-- Boton enviar -->
         <button
           class="flex w-fit items-center gap-2 rounded-full border border-transparent bg-cyan-600 font-medium text-white hover:bg-cyan-700 md:p-3 md:text-sm lg:p-5 lg:text-base"

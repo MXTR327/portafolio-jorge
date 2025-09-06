@@ -1,15 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  InfoPerson,
-  LinksContactService,
-  SocialLink,
-} from '@shared/services/links-contact.service';
+import { FormInputComponent } from '@portafolio-front/components/form-input/form-input.component';
+import { LinksContactService, SocialLink } from '@shared/services/links-contact.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { formUtilities } from 'src/app/utils/form-utilities';
 
 @Component({
-  imports: [ReactiveFormsModule, SvgIconComponent],
+  imports: [ReactiveFormsModule, SvgIconComponent, FormInputComponent],
   selector: 'app-contact-page',
   templateUrl: './contact-page.component.html',
 })
@@ -18,21 +15,53 @@ export class ContactPageComponent
   readonly formUtils = formUtilities;
 
   private readonly _iconsPath: string = 'assets/icons';
-
   readonly iconChargingPhonePath: string = `${this._iconsPath}/contactenos/icon-charging-phone.svg`;
   readonly iconDescriptionPath: string = `${this._iconsPath}/forms/icon-description.svg`;
-  readonly iconErrorPath: string = `${this._iconsPath}/forms/icon-error.svg`;
-  readonly iconErrorStyle: Record<string, string> = { height: '16px' };
   readonly iconMailAlertPath: string = `${this._iconsPath}/forms/icon-mail-alert.svg`;
   readonly iconMailClosedPath: string = `${this._iconsPath}/contactenos/icon-mail-closed.svg`;
   readonly iconNamePath: string = `${this._iconsPath}/forms/icon-name.svg`;
   readonly iconPhonePath: string = `${this._iconsPath}/forms/icon-phone.svg`;
   readonly iconPlanePath: string = `${this._iconsPath}/shared/icon-paper-plane.svg`;
   readonly iconSpotPath: string = `${this._iconsPath}/contactenos/icon-spot.svg`;
-  readonly iconStyle: Record<string, string> = { height: '18px' };
 
   private readonly _linksContactService = inject(LinksContactService);
-  readonly infoPerson: InfoPerson = this._linksContactService.infoPerson;
+  private readonly _infoPerson = (label: string, text: string, iconPath: string) => ({
+    iconPath,
+    label,
+    text,
+  });
+  readonly infosPerson = [
+    this._infoPerson(
+      'Teléfono',
+      `(+51) ${this._linksContactService.infoPerson.phone}`,
+      this.iconChargingPhonePath,
+    ),
+    this._infoPerson('Email', this._linksContactService.infoPerson.email, this.iconMailClosedPath),
+    this._infoPerson(
+      'Ubícanos En',
+      `${this._linksContactService.infoPerson.country}, ${this._linksContactService.infoPerson.city}
+      ${this._linksContactService.infoPerson.street}, ${this._linksContactService.infoPerson.streetNumber}`,
+      this.iconSpotPath,
+    ),
+  ];
+
+  private readonly _inputField = (
+    id: string,
+    placeholder: string,
+    iconPath: string,
+    type: 'input' | 'textarea' = 'input',
+  ) => ({
+    iconPath,
+    id,
+    placeholder,
+    type,
+  });
+  readonly inputFieldsData = [
+    this._inputField('name', 'Nombre*', this.iconNamePath),
+    this._inputField('phone', 'Teléfono*', this.iconPhonePath),
+    this._inputField('email', 'Email@email.com*', this.iconMailAlertPath),
+    this._inputField('message', 'Mensaje*', this.iconDescriptionPath, 'textarea'),
+  ];
 
   private readonly _fb = inject(FormBuilder);
   myForm: FormGroup = this._fb.group({
@@ -48,7 +77,7 @@ export class ContactPageComponent
 
   readonly socialLinks: readonly SocialLink[] = this._linksContactService.socialLinks;
 
-  public readonly onSubmit = (): void =>
+  onSubmit = (): void =>
   {
     this.myForm.markAllAsTouched();
     console.log(this.myForm.value);
