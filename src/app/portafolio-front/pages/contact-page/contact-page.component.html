@@ -2,20 +2,52 @@
   class="flex h-screen w-full flex-col overflow-hidden md:gap-5 md:px-4 md:pt-18 lg:gap-15 lg:px-7 2xl:justify-center 2xl:gap-18 2xl:pt-0"
 >
   <!-- Titulos 1ra fila -->
-  <div class="space-y-4 text-center">
-    <h1 class="font-bold uppercase md:text-3xl 2xl:text-5xl">Contáctenos</h1>
-    <h2 class="text-gray-500 italic md:text-sm lg:text-base">
+  <div
+    class="space-y-4 text-center"
+    data-aos="fade-down-right"
+    data-aos-duration="1500"
+    data-aos-easing="ease-in-out-back"
+  >
+    <h1
+      class="font-bold uppercase md:text-3xl 2xl:text-5xl"
+      data-aos="fade-down-left"
+      data-aos-duration="1500"
+      data-aos-easing="ease-in-out-back"
+    >
+      Contáctenos
+    </h1>
+    <h2
+      class="text-gray-500 italic md:text-sm lg:text-base"
+      data-aos="fade-up-right"
+      data-aos-duration="1500"
+      data-aos-easing="ease-in-out-back"
+    >
       Estamos aquí para responder sus preguntas y brindarle la mejor atención posible.
     </h2>
   </div>
   <!-- Fin titulos 1ra fila -->
 
   <!-- Contenidos 2da fila -->
-  <div class="flex md:gap-7 lg:gap-10 xl:gap-20">
+  <div
+    class="flex md:gap-7 lg:gap-10 xl:gap-20"
+    data-aos="fade-up-left"
+    data-aos-duration="1500"
+    data-aos-easing="ease-in-out-back"
+  >
     <!-- Info 1ra col -->
-    <div class="w-full md:space-y-9 lg:space-y-15 2xl:space-y-20">
+    <div
+      class="w-full md:space-y-9 lg:space-y-15 2xl:space-y-20"
+      data-aos="fade-right"
+      data-aos-duration="1500"
+      data-aos-easing="ease-in-out-back"
+    >
       <!-- 1ra fila -->
-      <div class="md:space-y-3 lg:space-y-4 2xl:space-y-7">
+      <div
+        class="md:space-y-3 lg:space-y-4 2xl:space-y-7"
+        data-aos="fade-down-right"
+        data-aos-duration="1500"
+        data-aos-easing="ease-in-out-back"
+      >
         <h1 class="font-semibold md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl">
           Necesitas ayuda? Contacta yá
         </h1>
@@ -24,9 +56,17 @@
           cualquier momento para un apoyo rápido, amable y experto.
         </p>
         <!-- Redes -->
-        @for (socialLink of socialLinks; track socialLink)
+        @for (socialLink of socialLinks; track socialLink; let i = $index)
         {
-          <a class="mr-8 inline-flex" [href]="socialLink.href" target="_blank">
+          <a
+            class="mr-8 inline-flex"
+            [href]="socialLink.href"
+            target="_blank"
+            data-aos="fade-up-left"
+            data-aos-duration="1500"
+            [attr.data-aos-delay]="i * 150"
+            data-aos-easing="ease-in-out-back"
+          >
             <svg-icon [src]="socialLink.iconPath" [svgStyle]="{ 'height.px': 22 }" />
           </a>
         }
@@ -35,10 +75,21 @@
       <!-- Fin 1ra fila -->
 
       <!-- 2da fila -->
-      <div class="md:space-y-4 md:text-sm lg:space-y-7.5 lg:text-base">
-        @for (infoPerson of infosPerson; track infoPerson)
+      <div
+        class="md:space-y-4 md:text-sm lg:space-y-7.5 lg:text-base"
+        data-aos="fade-up-right"
+        data-aos-duration="1500"
+        data-aos-easing="ease-in-out-back"
+      >
+        @for (infoPerson of infosPerson; track infoPerson; let i = $index)
         {
-          <div class="space-y-2">
+          <div
+            class="space-y-2"
+            data-aos="fade-left"
+            data-aos-duration="1500"
+            [attr.data-aos-delay]="i * 150"
+            data-aos-easing="ease-in-out-back"
+          >
             <div class="flex items-center gap-3.5">
               <svg-icon [src]="infoPerson.iconPath" [svgStyle]="{ 'height.px': 20 }" />
               <h1 class="text-gray-600">{{ infoPerson.label }}</h1>
@@ -52,7 +103,12 @@
     <!-- Fin info 1ra col -->
 
     <!-- Formulario 2da col -->
-    <div class="w-full md:pt-2 lg:pt-4 2xl:pt-9">
+    <div
+      class="w-full md:pt-2 lg:pt-4 2xl:pt-9"
+      data-aos="fade-up-left"
+      data-aos-duration="1500"
+      data-aos-easing="ease-in-out-back"
+    >
       <form
         class="flex flex-col md:gap-9 lg:gap-13"
         autocomplete="off"
@@ -62,7 +118,11 @@
         <!-- Inputs -->
         <div class="flex flex-col md:gap-6 lg:gap-9">
           <div class="flex flex-col gap-6 lg:flex-row lg:gap-5">
-            @for (inputFieldData of inputFieldsData.slice(0, 2); track inputFieldData)
+            @for (
+              inputFieldData of inputFieldsData.slice(0, 2);
+              track inputFieldData;
+              let i = $index
+            )
             {
               <app-form-input
                 class="w-full"
@@ -73,11 +133,15 @@
                 [formControlName]="inputFieldData.id"
                 [isValidField]="formUtils.isValidField(myForm, inputFieldData.id)"
                 [fieldError]="formUtils.getFieldError(myForm, inputFieldData.id)"
+                data-aos="fade-down-left"
+                data-aos-duration="1500"
+                [attr.data-aos-delay]="i * 200"
+                data-aos-easing="ease-in-out-back"
               />
             }
           </div>
 
-          @for (inputFieldData of inputFieldsData.slice(2); track inputFieldData)
+          @for (inputFieldData of inputFieldsData.slice(2); track inputFieldData; let j = $index)
           {
             <app-form-input
               [id]="inputFieldData.id"
@@ -87,6 +151,10 @@
               [formControlName]="inputFieldData.id"
               [isValidField]="formUtils.isValidField(myForm, inputFieldData.id)"
               [fieldError]="formUtils.getFieldError(myForm, inputFieldData.id)"
+              data-aos="fade-up-right"
+              data-aos-duration="1500"
+              [attr.data-aos-delay]="j * 200"
+              data-aos-easing="ease-in-out-back"
             />
           }
         </div>
@@ -96,6 +164,10 @@
         <button
           class="flex w-fit items-center gap-2 rounded-full border border-transparent bg-cyan-600 font-medium text-white hover:bg-cyan-700 md:p-3 md:text-sm lg:p-5 lg:text-base"
           type="submit"
+          data-aos="fade-up-left"
+          data-aos-duration="1500"
+          data-aos-delay="600"
+          data-aos-easing="ease-in-out-back"
         >
           Enviar
           <svg-icon [src]="iconPlanePath" [svgStyle]="{ 'height.px': 12 }" />

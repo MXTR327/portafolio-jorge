@@ -5,7 +5,6 @@ import { SvgIconComponent } from 'angular-svg-icon';
 @Component({
   imports: [SvgIconComponent],
   selector: 'app-home-page',
-  standalone: true,
   styleUrl: './home-page.component.css',
   templateUrl: './home-page.component.html',
 })

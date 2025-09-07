@@ -15,19 +15,19 @@ import { SvgIconComponent } from 'angular-svg-icon';
 export class FooterComponent
 {
   readonly iconMaxPath: string = 'assets/icons/shared/icon-logo-max.svg';
+
   readonly iconMaxStyle: Record<string, string> = { height: '40px' };
-
   private readonly _linksContactService = inject(LinksContactService);
+
   readonly infoPerson: InfoPerson = this._linksContactService.infoPerson;
-
   private readonly _linksRouteService = inject(LinksRouteService);
-  readonly linksPages: readonly LinkPage[] = this._linksRouteService.linksPages;
 
+  readonly linksPages: readonly LinkPage[] = this._linksRouteService.linksPages;
   readonly phone: string = this.infoPerson.phone;
+
   readonly place: string = `${this.infoPerson.country}, ${this.infoPerson.city}`;
   readonly socialLinks: readonly SocialLink[] = this._linksContactService.socialLinks;
   readonly street: string = `${this.infoPerson.street}, #${this.infoPerson.streetNumber}`;
-
   readonly year: number = new Date().getFullYear();
 
   public readonly goToAnchorById = (anchorId: string) =>

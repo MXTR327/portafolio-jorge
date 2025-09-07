@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ElementRef, inject, viewChildren } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  inject,
+  viewChild,
+  viewChildren,
+} from '@angular/core';
 import { NavbarComponent } from '@portafolio-front/components/front-navbar/navbar.component';
 import { AboutUsPageComponent } from '@portafolio-front/pages/about-us-page/about-us-page.component';
 import { ContactPageComponent } from '@portafolio-front/pages/contact-page/contact-page.component';
@@ -23,6 +30,8 @@ import { ActiveSectionService } from '@shared/services/active-section.service';
 })
 export class PortafolioFrontLayoutComponent implements AfterViewInit
 {
+  homeElementRef = viewChild<HomePageComponent>(HomePageComponent);
+
   private readonly _activeSectionService = inject(ActiveSectionService);
 
   private readonly _sectionsRef = viewChildren<ElementRef<HTMLElement>>('observeSection');
