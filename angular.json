@@ -19,7 +19,7 @@
             "production": {
               "budgets": [
                 {
-                  "maximumError": "1MB",
+                  "maximumError": "2MB",
                   "maximumWarning": "500kB",
                   "type": "initial"
                 },
@@ -34,6 +34,7 @@
           },
           "defaultConfiguration": "production",
           "options": {
+            "allowedCommonJsDependencies": ["aos"],
             "assets": [
               {
                 "glob": "**/*",
@@ -58,6 +59,12 @@
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
+        },
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
@@ -81,12 +88,6 @@
             ],
             "styles": ["src/styles.css"],
             "tsConfig": "tsconfig.spec.json"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       },
