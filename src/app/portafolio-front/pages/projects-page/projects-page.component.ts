@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProjectCardComponent } from '@proyectos/components/project-card/project-card.component';
+import { Project } from '@proyectos/interfaces/project.interface';
 
 @Component({
   imports: [ProjectCardComponent],
@@ -10,27 +11,30 @@ export class ProjectsPageComponent
 {
   private readonly _imgPath: string = 'assets/images';
 
-  readonly projects = [
+  readonly projects: Project[] = [
     {
       date: 'Julio 16, 2025',
       description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sapiente omnis dignissimos excepturi veritatis accusamus harum officia illo deserunt mollitia quibusdam autem asperiores incidunt nam quam tempora, voluptatum modi repudiandae!',
+        'Proyecto de remodelación en el que se instaló una escalera con mayólica artesanal. El trabajo incluyó diseño personalizado, nivelación de superficies y acabado brillante para mayor durabilidad.',
       image: `${this._imgPath}/escalera.png`,
-      title: 'Escalera con mayolica asdasd asdas dsad asd',
+      subtitle: 'Detalles que transforman espacios',
+      title: 'Escalera con mayólica decorativa',
     },
     {
       date: 'Agosto 5, 2025',
       description:
-        'Lorem ipsum dolor siasdadasdasdasdasdsa sadad sadsasda sad asd asd asd asd asd sad a dasdt amet consectetur adipisicing elit. Dolorem sapiente omnis dignissimos excepturi veritatis accusamus harum officia illo deserunt mollitia quibusdam autem asperiores incidunt nam quam tempora, voluptatum modi repudiandae!',
+        'Construcción de un lavadero enchapado con cerámica clara. El proceso contempló instalación de drenaje, acabado estético y sellado de juntas para resistencia al agua.',
       image: `${this._imgPath}/lavadero.png`,
-      title: 'Lavadero enchapado',
+      subtitle: 'Practicidad con estilo propio',
+      title: 'Lavadero enchapado en cerámica',
     },
     {
       date: 'Septiembre 1, 2025',
       description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sapiente omnis dignissimos excepturi veritatis accusamus harum officia illo deserunt mollitia quibusdam autem asperiores incidunt nam quam tempora, voluptatum modi repudiandae!',
+        'Diseño moderno de lavadero con enchape negro mate. Se aplicó un estilo minimalista, priorizando la limpieza visual y la resistencia de los materiales.',
       image: `${this._imgPath}/lavadero2.png`,
-      title: 'Lavadero enchapado negro',
+      subtitle: 'Minimalismo con carácter',
+      title: 'Lavadero enchapado negro mate',
     },
   ];
 }
