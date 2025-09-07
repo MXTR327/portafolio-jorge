@@ -1,9 +1,8 @@
-import { SlicePipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { Project } from '@proyectos/interfaces/project.interface';
 
 @Component({
-  imports: [SlicePipe],
+  imports: [],
   selector: 'app-project-card',
   templateUrl: './project-card.component.html',
 })
