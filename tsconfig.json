@@ -5,7 +5,6 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      // TODO: agregar rutas
       "@portafolio-front/*": [
         "./src/app/portafolio-front/*"
       ],
@@ -14,9 +13,6 @@
       ],
       "@proyectos/*": [
         "./src/app/proyectos/*"
-      ],
-      "@servicios/*": [
-        "./src/app/servicios/*"
       ],
     },
     "strict": true,

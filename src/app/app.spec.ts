@@ -9,6 +9,7 @@ describe('App', () =>
   {
     await TestBed.configureTestingModule({
       imports: [App],
+      // eslint-disable-next-line @angular-eslint/no-developer-preview
       providers: [provideZonelessChangeDetection()],
     }).compileComponents();
   });

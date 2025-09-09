@@ -1,17 +1,20 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormInputComponent } from '@portafolio-front/components/form-input/form-input.component';
-import { LinksContactService, SocialLink } from '@shared/services/links-contact.service';
+import { ISocialLink, LinksContactService } from '@shared/services/links-contact.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { formUtilities } from 'src/app/utils/form-utilities';
 
 @Component({
-  imports: [ReactiveFormsModule, SvgIconComponent, FormInputComponent],
   selector: 'app-contact-page',
+  imports: [ReactiveFormsModule, SvgIconComponent, FormInputComponent],
   templateUrl: './contact-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactPageComponent
 {
+  elementRef = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
+
   readonly formUtils = formUtilities;
 
   private readonly _iconsPath: string = 'assets/icons';
@@ -75,7 +78,7 @@ export class ContactPageComponent
     phone: ['', [Validators.required, Validators.minLength(9)]],
   });
 
-  readonly socialLinks: readonly SocialLink[] = this._linksContactService.socialLinks;
+  readonly socialLinks: readonly ISocialLink[] = this._linksContactService.socialLinks;
 
   onSubmit = (): void =>
   {

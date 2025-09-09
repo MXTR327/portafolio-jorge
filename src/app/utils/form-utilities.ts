@@ -18,9 +18,9 @@ export const formUtilities = {
 
     await sleep();
 
-    const formValue = control.value as string;
+    const FORM_VALUE = control.value as string;
 
-    if (formValue === 'hola@mundo.com')
+    if (FORM_VALUE === 'hola@mundo.com')
     {
       return {
         emailTaken: true,
@@ -29,13 +29,11 @@ export const formUtilities = {
 
     return undefined;
   },
-  
 
   emailPattern: String.raw`^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$`,
 
   getFieldError(form: FormGroup, fieldName: string): string | undefined
   {
-    if (!form.controls[fieldName]) return undefined;
     const errors = form.controls[fieldName].errors ?? {};
 
     return formUtilities.getTextError(errors);
@@ -52,9 +50,9 @@ export const formUtilities = {
 
   getTextError(errors: ValidationErrors): string | undefined
   {
-    for (const key of Object.keys(errors))
+    for (const KEY of Object.keys(errors))
     {
-      switch (key)
+      switch (KEY)
       {
         case 'email':
         {
@@ -69,13 +67,13 @@ export const formUtilities = {
         case 'min':
         {
           const error = errors['min'] as { actual: number; min: number };
-          return `Valor mínimo de ${error.min}.`;
+          return `Valor mínimo de ${error.min.toString()}.`;
         }
 
         case 'minlength':
         {
           const error = errors['minlength'] as { actualLength: number; requiredLength: number };
-          return `Mínimo de ${error.requiredLength} caracteres.`;
+          return `Mínimo de ${error.requiredLength.toString()} caracteres.`;
         }
 
         case 'notStrider':
@@ -98,7 +96,7 @@ export const formUtilities = {
 
         default:
         {
-          return `Error de validación no controlado ${key}`;
+          return `Error de validación no controlado ${KEY}`;
         }
       }
     }
@@ -109,10 +107,10 @@ export const formUtilities = {
   {
     return (formGroup: AbstractControl) =>
     {
-      const field1Value = formGroup.get(field1)?.value as string;
-      const field2Value = formGroup.get(field2)?.value as string;
+      const FIELD_1_VALUE = formGroup.get(field1)?.value as string;
+      const FIELD_2_VALUE = formGroup.get(field2)?.value as string;
 
-      return field1Value === field2Value ? undefined : { fieldsNotEqual: true };
+      return FIELD_1_VALUE === FIELD_2_VALUE ? undefined : { fieldsNotEqual: true };
     };
   },
 
@@ -130,8 +128,8 @@ export const formUtilities = {
 
   notStrider(control: AbstractControl): undefined | ValidationErrors
   {
-    const value = control.value as string;
+    const VALUE = control.value as string;
 
-    return value.toLowerCase() === 'strider' ? { notStrider: true } : undefined;
+    return VALUE.toLowerCase() === 'strider' ? { notStrider: true } : undefined;
   },
 };

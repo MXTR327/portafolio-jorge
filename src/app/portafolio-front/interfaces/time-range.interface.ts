@@ -1,4 +1,4 @@
-export interface TimeRange
+export interface ITimeRange
 {
   description: string;
   imagePath: string;

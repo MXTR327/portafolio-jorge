@@ -1,8 +1,6 @@
 .gradient-text {
   background: linear-gradient(to right, #b16cea, #ff8a56, #ffa84b);
   background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   color: transparent;
   display: inline-block;
 }
@@ -28,8 +26,6 @@
   text-align: center;
   line-height: 1;
   transform: rotateY(-90deg);
-  -moz-backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
