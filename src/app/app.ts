@@ -1,14 +1,16 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from '@shared/components/footer/footer.component';
 import * as AOS from 'aos';
 
 @Component({
-  imports: [RouterOutlet, FooterComponent],
   selector: 'app-root',
-  styleUrl: './app.css',
+  imports: [RouterOutlet, FooterComponent],
   templateUrl: './app.html',
+  styleUrl: './app.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class App implements OnInit
 {
   protected readonly title = signal('portafolio-jorge');

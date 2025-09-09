@@ -110,6 +110,7 @@
           {
             <a
               class="cursor-pointer ps-px pe-3 text-sm text-[#ff0] hover:text-[#ff0] sm:px-3 md:py-4"
+              [class]="activeSecion() !== linP.id ? 'text-white hover:text-neutral-200' : ''"
               data-aos="fade-up-left"
               data-aos-duration="1000"
               data-aos-easing="ease-in-out-back"
@@ -119,7 +120,6 @@
               (keydown.enter)="goToAnchorById(linP.id)"
               (keydown.space)="goToAnchorById(linP.id)"
               (click)="goToAnchorById(linP.id)"
-              [class]="activeSecion() !== linP.anchorId ? 'text-white hover:text-neutral-200' : ''"
               [attr.data-aos-delay]="500 + i * 150"
             >
               {{ linP.name }}

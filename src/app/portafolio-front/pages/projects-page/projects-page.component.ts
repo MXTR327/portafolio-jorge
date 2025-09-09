@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject } from '@angular/core';
 import { ProjectCardComponent } from '@proyectos/components/project-card/project-card.component';
-import { Project } from '@proyectos/interfaces/project.interface';
+import { IProject } from '@proyectos/interfaces/project.interface';
 
 @Component({
-  imports: [ProjectCardComponent],
   selector: 'app-projects-page',
+  imports: [ProjectCardComponent],
   templateUrl: './projects-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsPageComponent
 {
+  elementRef = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
+
   private readonly _imgPath: string = 'assets/images';
 
-  readonly projects: Project[] = [
+  readonly projectsList: IProject[] = [
     {
       date: 'Julio 16, 2025',
       description:

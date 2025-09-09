@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject } from '@angular/core';
 import { TimelineItemComponent } from '@portafolio-front/components/timeline-item/timeline-item.component';
-import { TimeRange } from '@portafolio-front/interfaces/time-range.interface';
+import { ITimeRange } from '@portafolio-front/interfaces/time-range.interface';
 
 @Component({
-  imports: [TimelineItemComponent],
   selector: 'app-about-us-page',
+  imports: [TimelineItemComponent],
   templateUrl: './about-us-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutUsPageComponent
 {
   readonly currentYear: number = new Date().getFullYear();
+
+  elementRef = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
+
   private readonly _imagesPath: string = '/assets/images/about-us';
-  readonly timeRanges: TimeRange[] = [
+
+  readonly timeRanges: ITimeRange[] = [
     {
       description: `Primeros años como aprendiz en obra, descubriendo las bases de la
         construcción y ganando experiencia práctica en el día a día tanto
@@ -53,7 +58,7 @@ export class AboutUsPageComponent
         familias y comunidades, con mirada puesta en el mañana.`,
       imagePath: `${this._imagesPath}/obra-grande.png`,
       title: 'Construyendo futuro',
-      yearRange: '2023-' + this.currentYear,
+      yearRange: `2023-${this.currentYear.toString()}`,
     },
     {
       description: '¡Contactanos y se parte de nuestra historia!',

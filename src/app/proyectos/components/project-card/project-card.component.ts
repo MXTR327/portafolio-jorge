@@ -1,12 +1,13 @@
-import { Component, input } from '@angular/core';
-import { Project } from '@proyectos/interfaces/project.interface';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { IProject } from '@proyectos/interfaces/project.interface';
 
 @Component({
-  imports: [],
   selector: 'app-project-card',
+  imports: [],
   templateUrl: './project-card.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectCardComponent
 {
-  project = input.required<Project>();
+  readonly project = input.required<IProject>();
 }

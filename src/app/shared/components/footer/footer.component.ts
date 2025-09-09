@@ -1,35 +1,40 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject } from '@angular/core';
 import {
-  InfoPerson,
+  IInfoPerson,
+  ISocialLink,
   LinksContactService,
-  SocialLink,
 } from '@shared/services/links-contact.service';
-import { LinkPage, LinksRouteService } from '@shared/services/links-route.service';
+import { ILinkPage, LinksRouteService } from '@shared/services/links-route.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
-  imports: [SvgIconComponent],
   selector: 'app-front-footer',
+  imports: [SvgIconComponent],
   templateUrl: './footer.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent
 {
+  elementRef = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
+
   readonly iconMaxPath: string = 'assets/icons/shared/icon-logo-max.svg';
 
   readonly iconMaxStyle: Record<string, string> = { height: '40px' };
-  private readonly _linksContactService = inject(LinksContactService);
-
-  readonly infoPerson: InfoPerson = this._linksContactService.infoPerson;
   private readonly _linksRouteService = inject(LinksRouteService);
 
-  readonly linksPages: readonly LinkPage[] = this._linksRouteService.linksPages;
-  readonly phone: string = this.infoPerson.phone;
+  readonly linksPages: readonly ILinkPage[] = this._linksRouteService.linksPages;
 
-  readonly place: string = `${this.infoPerson.country}, ${this.infoPerson.city}`;
-  readonly socialLinks: readonly SocialLink[] = this._linksContactService.socialLinks;
-  readonly street: string = `${this.infoPerson.street}, #${this.infoPerson.streetNumber}`;
+  private readonly _linksContactService = inject(LinksContactService);
+  private readonly _infoPerson: IInfoPerson = this._linksContactService.infoPerson;
+
+  readonly phone: string = this._infoPerson.phone;
+  readonly place: string = `${this._infoPerson.country}, ${this._infoPerson.city}`;
+  readonly socialLinks: readonly ISocialLink[] = this._linksContactService.socialLinks;
+  readonly street: string = `${this._infoPerson.street}, #${this._infoPerson.streetNumber}`;
   readonly year: number = new Date().getFullYear();
 
-  public readonly goToAnchorById = (anchorId: string) =>
+  readonly goToAnchorById = (anchorId: string) =>
+  {
     this._linksRouteService.goToAnchorById(anchorId);
+  };
 }

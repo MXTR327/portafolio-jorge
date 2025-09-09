@@ -1,17 +1,19 @@
-import type { IStaticMethods } from "preline/dist";
+/* eslint-disable @typescript-eslint/naming-convention */
+import type { IStaticMethods } from 'preline/dist';
 
-declare global {
-  interface Window {
-    $: typeof import("jquery");
+declare global
+{
+  interface Window
+  {
+    $: typeof import('jquery');
     // Optional third-party libraries
     _;
-    dataTable;
-    dropzone;
+    DataTable;
+    Dropzone;
     // Preline UI
-    hSStaticMethods: IStaticMethods;
-    jQuery: typeof import("jquery");
+    HSStaticMethods: IStaticMethods;
+    JQuery: typeof import('jquery');
 
-    vanillaCalendarPro;
+    VanillaCalendarPro;
   }
 }
-

@@ -20,9 +20,9 @@ module.exports = tsEslint.config(
     plugins: {},
     extends: [
       eslint.configs.recommended,
-      ...tsEslint.configs.recommendedTypeChecked,
+      ...tsEslint.configs.strictTypeChecked,
       ...tsEslint.configs.stylisticTypeChecked,
-      ...angularEslint.configs.tsRecommended,
+      ...angularEslint.configs.tsAll,
       perfectionistPlugin.configs['recommended-natural'],
       unicornPlugin.default.configs.recommended,
       sonarjsPlugin.configs.recommended,
@@ -30,10 +30,93 @@ module.exports = tsEslint.config(
     processor: angularEslint.processInlineTemplates,
     rules: {
       'brace-style': ['error', 'allman', { allowSingleLine: true }],
-      '@typescript-eslint/naming-convention': 'error',
+      '@typescript-eslint/naming-convention': [
+        'error',
+        // Clases, interfaces, tipos, enums → PascalCase
+        {
+          selector: 'typeLike',
+          format: ['PascalCase'],
+        },
+        // Interfaces → prefijo I
+        {
+          selector: 'interface',
+          format: ['PascalCase'],
+          custom: {
+            regex: '^I[A-Z]',
+            match: true,
+          },
+        },
+        // Type parameters → T-prefixed
+        {
+          selector: 'typeParameter',
+          format: ['PascalCase'],
+          custom: {
+            regex: '^T[A-Z][A-Za-z0-9]*$',
+            match: true,
+          },
+        },
+        // Enum members → UPPER_CASE
+        {
+          selector: 'enumMember',
+          format: ['UPPER_CASE'],
+        },
+        // Variables, funciones, parámetros públicos → camelCase
+        {
+          selector: 'variableLike',
+          format: ['camelCase'],
+        },
+        // Constantes primitivas → UPPER_CASE
+        {
+          selector: 'variable',
+          modifiers: ['const'],
+          types: ['string', 'number', 'boolean'],
+          format: ['UPPER_CASE'],
+        },
+        // Propiedades privadas → _camelCase
+        {
+          selector: 'property',
+          modifiers: ['private'],
+          format: ['camelCase'],
+          leadingUnderscore: 'require',
+        },
+        // Propiedades públicas → camelCase
+        {
+          selector: 'property',
+          modifiers: ['public'],
+          format: ['camelCase'],
+          leadingUnderscore: 'forbid',
+        },
+        // Métodos privados → _camelCase
+        {
+          selector: 'method',
+          modifiers: ['private'],
+          format: ['camelCase'],
+          leadingUnderscore: 'require',
+        },
+        // Métodos públicos → camelCase
+        {
+          selector: 'method',
+          modifiers: ['public'],
+          format: ['camelCase'],
+          leadingUnderscore: 'forbid',
+        },
+      ],
+      'perfectionist/sort-objects': [
+        'error',
+        {
+          type: 'unsorted',
+          useConfigurationIf: {
+            callingFunctionNamePattern: [
+              '^Component$',
+              '^Directive$',
+              '^Injectable$',
+              '^Pipe$',
+              '^NgModule$',
+            ],
+          },
+        },
+      ],
       '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
-      '@angular-eslint/directive-selector': 'error',
-      '@angular-eslint/component-selector': 'error',
     },
   },
   {

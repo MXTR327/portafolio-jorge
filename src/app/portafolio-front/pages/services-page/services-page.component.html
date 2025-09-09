@@ -41,7 +41,7 @@
 
   <!-- 2da fila -->
   <div class="grid h-full w-full grid-cols-2 xl:px-20 2xl:px-50">
-    @for (service of services; track service; let i = $index, e = $even, c = $count)
+    @for (service of servicesList; track service; let i = $index, e = $even, c = $count)
     {
       <div
         class="relative flex h-full w-full gap-6 border-dashed border-gray-300 md:px-8 md:py-15 lg:px-13"

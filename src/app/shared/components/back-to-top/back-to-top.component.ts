@@ -1,28 +1,46 @@
-import { Component, HostListener, inject, input } from '@angular/core';
-import { HomePageComponent } from '@portafolio-front/pages/home-page/home-page.component';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, signal } from '@angular/core';
 import { LinksRouteService } from '@shared/services/links-route.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
-  imports: [SvgIconComponent],
   selector: 'app-back-to-top',
-  styleUrl: './back-to-top.component.css',
+  imports: [SvgIconComponent],
   templateUrl: './back-to-top.component.html',
+  styleUrl: './back-to-top.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    '(window:scroll)': 'onScroll()',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    '[class.visible]': 'isScrolled()',
+  },
 })
 export class BackToTopComponent
 {
-  homeComponentRef = input.required<HomePageComponent>();
+  elementRef = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
+
+  readonly isOnFooter = signal<boolean>(false);
+
+  readonly isScrolled = signal<boolean>(false);
 
   private readonly _footerEl = document.querySelector('app-front-footer');
 
   private readonly _linksRouteService = inject(LinksRouteService);
 
-  public readonly goToAnchorById = (anchorId: string) =>
+  goToAnchorById(anchorId: string): void
+  {
     this._linksRouteService.goToAnchorById(anchorId);
+  }
 
-  @HostListener('window:scroll', [])
-  public readonly isOnFooter = (): boolean =>
-    window.innerHeight > this._footerEl!.getBoundingClientRect().top;
+  onScroll(): void
+  {
+    const footerRect = this._footerEl?.getBoundingClientRect();
+    const elementReference = this.elementRef.nativeElement;
+    const FOOTER_VISIBILITY_THRESHOLD = footerRect
+      ? footerRect.top + elementReference.offsetHeight
+      : undefined;
 
-  public readonly isScrolled = (): boolean => window.scrollY < 100;
+    this.isOnFooter.set(window.innerHeight > (FOOTER_VISIBILITY_THRESHOLD ?? Infinity));
+    this.isScrolled.set(window.scrollY > 100);
+  }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export interface InfoPerson
+export interface IInfoPerson
 {
   city: string;
   country: string;
@@ -11,7 +11,7 @@ export interface InfoPerson
   streetNumber: string;
 }
 
-export interface SocialLink
+export interface ISocialLink
 {
   href: string;
   iconPath: string;
@@ -23,18 +23,18 @@ export interface SocialLink
 })
 export class LinksContactService
 {
-  get infoPerson(): InfoPerson
+  get infoPerson(): IInfoPerson
   {
     return this._infoPerson;
   }
-  get socialLinks(): readonly SocialLink[]
+  get socialLinks(): readonly ISocialLink[]
   {
     return this._socialLinks;
   }
 
   private readonly _iconsPath: string = 'assets/icons';
 
-  private readonly _infoPerson: InfoPerson = {
+  private readonly _infoPerson: IInfoPerson = {
     city: 'Lima',
     country: 'Perú',
     email: 'ramsua.jorlui@gmail.com',
@@ -51,13 +51,13 @@ export class LinksContactService
         'Me gustaría que conversemos para hablar sobre un trabajo de ...',
     );
 
-  private readonly _socialLink = (name: string, href: string, iconPath: string): SocialLink => ({
+  private readonly _socialLink = (name: string, href: string, iconPath: string): ISocialLink => ({
     href,
     iconPath,
     name,
   });
 
-  private readonly _socialLinks: SocialLink[] = [
+  private readonly _socialLinks: ISocialLink[] = [
     this._socialLink(
       'facebook',
       `https://www.facebook.com/${this._infoPerson.facebook}`,

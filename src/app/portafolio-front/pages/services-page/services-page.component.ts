@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject } from '@angular/core';
 import { SvgIconComponent } from 'angular-svg-icon';
 
-interface ServiceItem
+interface IServiceItem
 {
   description: string;
   iconPath: string;
@@ -9,12 +9,15 @@ interface ServiceItem
 }
 
 @Component({
-  imports: [SvgIconComponent],
   selector: 'app-services-page',
+  imports: [SvgIconComponent],
   templateUrl: './services-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServicesPageComponent
 {
+  elementRef = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
+
   readonly iconStyle: Record<string, string> = {
     fill: 'rgb(40, 74, 226)',
     height: '40px',
@@ -22,7 +25,7 @@ export class ServicesPageComponent
 
   private readonly _iconsServicesPath: string = 'assets/icons/servicios';
 
-  readonly services: ServiceItem[] = [
+  readonly servicesList: IServiceItem[] = [
     {
       description:
         'Levantamos viviendas completas desde los cimientos hasta los acabados, con calidad y seguridad.',

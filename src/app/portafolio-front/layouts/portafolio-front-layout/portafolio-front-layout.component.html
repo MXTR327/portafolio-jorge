@@ -1,25 +1,11 @@
 <app-front-navbar />
 
 <section class="container mx-auto">
-  <div id="inicio" #observeSection>
-    <app-home-page />
-  </div>
-
-  <div id="sobre-nosotros" #observeSection>
-    <app-about-us-page />
-  </div>
-
-  <div id="servicios" #observeSection>
-    <app-services-page />
-  </div>
-
-  <div id="proyectos" #observeSection>
-    <app-projects-page />
-  </div>
-
-  <div id="contacto" #observeSection>
-    <app-contact-page />
-  </div>
+  <app-home-page id="home" />
+  <app-about-us-page id="about-us" />
+  <app-services-page id="services" />
+  <app-projects-page id="projects" />
+  <app-contact-page id="contact" />
 </section>
 
-<app-back-to-top [homeComponentRef]="homeElementRef()!" />
+<app-back-to-top />

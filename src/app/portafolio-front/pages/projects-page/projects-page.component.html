@@ -11,7 +11,7 @@
 
   <div class="grid gap-8 sm:flex dark:divide-neutral-600">
     <!-- Carta 1 -->
-    @for (project of projects; track $index)
+    @for (project of projectsList; track $index)
     {
       <app-project-card [project]="project" />
     }

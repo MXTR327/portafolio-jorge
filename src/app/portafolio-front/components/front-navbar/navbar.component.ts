@@ -1,12 +1,13 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { ActiveSectionService } from '@shared/services/active-section.service';
-import { LinkPage, LinksRouteService } from '@shared/services/links-route.service';
+import { ILinkPage, LinksRouteService } from '@shared/services/links-route.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
-  imports: [SvgIconComponent],
   selector: 'app-front-navbar',
+  imports: [SvgIconComponent],
   templateUrl: './navbar.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent
 {
@@ -26,10 +27,12 @@ export class NavbarComponent
   readonly icoHamburgerStyle: Record<string, string> = { height: '20px' };
   private readonly _linksRouteService = inject(LinksRouteService);
 
-  readonly linksPages: readonly LinkPage[] = this._linksRouteService.linksPages;
+  readonly linksPages: readonly ILinkPage[] = this._linksRouteService.linksPages;
 
   private readonly _activeSectionService = inject(ActiveSectionService);
 
-  public readonly goToAnchorById = (anchorId: string) =>
-    this._linksRouteService.goToAnchorById(anchorId);
+  readonly goToAnchorById = (id: string) =>
+  {
+    this._linksRouteService.goToAnchorById(id);
+  };
 }
