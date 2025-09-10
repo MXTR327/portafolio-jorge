@@ -44,7 +44,8 @@
         data-aos-once="true"
       >
         <a
-          class="group inline-flex cursor-pointer items-center gap-x-2 rounded-full bg-[#ff0] px-3 py-2 text-sm font-medium text-nowrap text-black focus:outline-hidden"
+          class="flex cursor-pointer items-center gap-x-2 rounded-full bg-green-300 px-3 py-2 text-sm font-medium text-nowrap text-black focus:outline-hidden"
+          [class.bg-green-400]="activeSecion() === 'contact'"
           role="button"
           tabindex="0"
           (click)="goToAnchorById('contact')"

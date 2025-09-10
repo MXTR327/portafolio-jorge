@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  inject,
+  viewChildren,
+} from '@angular/core';
 import { NavbarComponent } from '@portafolio-front/components/front-navbar/navbar.component';
 import { AboutUsPageComponent } from '@portafolio-front/pages/about-us-page/about-us-page.component';
 import { ContactPageComponent } from '@portafolio-front/pages/contact-page/contact-page.component';
@@ -6,7 +12,6 @@ import { HomePageComponent } from '@portafolio-front/pages/home-page/home-page.c
 import { ProjectsPageComponent } from '@portafolio-front/pages/projects-page/projects-page.component';
 import { ServicesPageComponent } from '@portafolio-front/pages/services-page/services-page.component';
 import { BackToTopComponent } from '@shared/components/back-to-top/back-to-top.component';
-import { FooterComponent } from '@shared/components/footer/footer.component';
 import { ActiveSectionService } from '@shared/services/active-section.service';
 
 @Component({
@@ -29,34 +34,21 @@ import { ActiveSectionService } from '@shared/services/active-section.service';
 })
 export class PortafolioFrontLayoutComponent
 {
-  private readonly _aboutUsElRef = viewChild<AboutUsPageComponent>(AboutUsPageComponent);
   private readonly _activeSectionService = inject(ActiveSectionService);
-  private readonly _contactElRef = viewChild<ContactPageComponent>(ContactPageComponent);
-  private readonly _footerElRef = viewChild<FooterComponent>(FooterComponent);
-  private readonly _homeElRef = viewChild<HomePageComponent>(HomePageComponent);
-  private readonly _projectsElRef = viewChild<ProjectsPageComponent>(ProjectsPageComponent);
-  private readonly _servicesElRef = viewChild<ServicesPageComponent>(ServicesPageComponent);
+
+  private readonly _childrensElRefs = viewChildren<{
+    elementRef: ElementRef<HTMLElement>;
+  }>('section');
 
   onScroll()
   {
-    const sections: { el: HTMLElement | undefined }[] = [
-      { el: this._homeElRef()?.elementRef.nativeElement },
-      { el: this._aboutUsElRef()?.elementRef.nativeElement },
-      { el: this._servicesElRef()?.elementRef.nativeElement },
-      { el: this._projectsElRef()?.elementRef.nativeElement },
-      { el: this._contactElRef()?.elementRef.nativeElement },
-      { el: this._footerElRef()?.elementRef.nativeElement },
-    ];
-
-    const activeSection = sections.find((section) =>
+    const VIEWPORT_CENTER = window.innerHeight * 0.6;
+    const activeSection = this._childrensElRefs().find((section) =>
     {
-      if (!section.el) return false;
-
-      const rect = section.el.getBoundingClientRect();
-
-      return window.innerHeight > rect.top && rect.top >= (section.el.offsetHeight / 2) * -1;
+      const rect = section.elementRef.nativeElement.getBoundingClientRect();
+      return rect.top <= VIEWPORT_CENTER && rect.bottom >= VIEWPORT_CENTER;
     });
 
-    this._activeSectionService.section = activeSection?.el?.id ?? '';
+    this._activeSectionService.section = activeSection?.elementRef.nativeElement.id ?? '';
   }
 }

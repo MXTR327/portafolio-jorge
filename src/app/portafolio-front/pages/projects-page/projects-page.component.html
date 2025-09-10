@@ -1,19 +1,78 @@
-<section class="flex h-full w-full flex-col overflow-hidden pt-18">
-  <div>
-    <h3 class="text-neutral mb-2 text-center text-base font-semibold uppercase">
-      NUESTROS PROYECTOS
-    </h3>
-    <h2 class="text-accent mb-6 text-center text-3xl font-bold">
-      Últimos proyectos <br />
-      completados
-    </h2>
-  </div>
+<section class="flex h-full w-full flex-col gap-24 overflow-hidden px-20 pt-18">
+  <!-- 1ra fila -->
+  <div class="flex w-full gap-18 pt-10">
+    <!-- 1ra columna -->
+    <div class="flex w-full flex-col items-center text-3xl">
+      <div class="flex flex-col">
+        <h1 class="mb-1 font-bold md:text-3xl">PROYECTOS</h1>
+        <h1 class="mb-4 font-bold text-gray-500 md:text-3xl">ULTIMOS PROYECTOS</h1>
+        <p class="text-gray-500 italic md:text-sm lg:text-base">
+          Para Ti, Con Esfuerzo y Dedicación
+        </p>
+      </div>
+    </div>
+    <!-- Fin 1ra columna -->
 
-  <div class="grid gap-8 sm:flex dark:divide-neutral-600">
-    <!-- Carta 1 -->
-    @for (project of projectsList; track $index)
+    <!-- 2da columna -->
+    <div class="flex w-full flex-col">
+      <div class="max-w-130 space-y-10.5">
+        <p>
+          Soluciones que nacen de la dedicación y el compromiso con cada detalle — Buscando
+          transformar necesidades en logros tangibles, creando valor que perdura en el tiempo y
+          resultados que hablan por sí mismos.
+        </p>
+        <!-- Boton enviar -->
+        <a
+          class="flex items-center gap-3 rounded-full border border-transparent text-xl font-semibold text-gray-500 select-none hover:text-black"
+          type="submit"
+        >
+          <svg-icon [src]="iconPlanePath" [svgStyle]="{ 'height.px': 12 }" />
+          Mostrarme Todo
+        </a>
+        <!-- Fin Boton enviar -->
+      </div>
+    </div>
+    <!-- 2da columna -->
+  </div>
+  <!-- Fin 1ra fila -->
+
+  <!-- 2da fila -->
+  <div class="grid w-full grid-cols-3 gap-10.5 px-23">
+    @for (project of projectsList; track project)
     {
-      <app-project-card [project]="project" />
+      <div class="cursor-pointer space-y-5 rounded-2xl border-1 border-gray-200 px-2.5 pt-2.5 pb-6">
+        <img
+          class="h-63 w-full overflow-clip rounded-xl object-cover object-center"
+          [src]="project.imagePath"
+          alt="Imagen"
+        />
+        <div class="space-y-5 px-2 text-gray-500">
+          <div class="h-fit w-fit rounded-full bg-gray-100 px-3 py-1.5 text-xs text-gray-500">
+            Etiqueta
+          </div>
+          <div class="h-fit w-fit font-medium text-black">
+            Credit Secrets Banks Don’t Want You to Know: How to Play the Game and Win
+          </div>
+          <p class="h-fit w-fit text-sm">
+            {{ project.description | slice: 0 : 125 }}
+            {{ project.description.length > 125 ? '...' : '' }}
+            <br /><br />
+          </p>
+
+          <hr class="border-gray-200" />
+          <div class="flex justify-between">
+            <div>
+              <h5 class="text-xs">By</h5>
+              <h4 class="text-sm font-medium">Ramsua Services</h4>
+            </div>
+            <div>
+              <h5 class="text-xs">Publicado el</h5>
+              <h4 class="text-sm font-medium">{{ project.date }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
     }
   </div>
+  <!-- Fin 2da fila -->
 </section>

@@ -20,7 +20,6 @@ export class BackToTopComponent
   elementRef = inject<ElementRef<HTMLElement>>(ElementRef<HTMLElement>);
 
   readonly isOnFooter = signal<boolean>(false);
-
   readonly isScrolled = signal<boolean>(false);
 
   private readonly _footerEl = document.querySelector('app-front-footer');
@@ -34,13 +33,11 @@ export class BackToTopComponent
 
   onScroll(): void
   {
-    const footerRect = this._footerEl?.getBoundingClientRect();
-    const elementReference = this.elementRef.nativeElement;
-    const FOOTER_VISIBILITY_THRESHOLD = footerRect
-      ? footerRect.top + elementReference.offsetHeight
-      : undefined;
-
-    this.isOnFooter.set(window.innerHeight > (FOOTER_VISIBILITY_THRESHOLD ?? Infinity));
     this.isScrolled.set(window.scrollY > 100);
+
+    const FOOTER_TOP = this._footerEl?.getBoundingClientRect().top ?? 0;
+    const THIS_HEIGHT = this.elementRef.nativeElement.firstElementChild?.clientHeight ?? 0;
+
+    this.isOnFooter.set(window.innerHeight > FOOTER_TOP + THIS_HEIGHT);
   }
 }
