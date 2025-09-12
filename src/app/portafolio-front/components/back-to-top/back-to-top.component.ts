@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject, signal } from '@angular/core';
-import { LinksRouteService } from '@shared/services/links-route.service';
+import { RouterLink } from '@angular/router';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-back-to-top',
-  imports: [SvgIconComponent],
+  imports: [SvgIconComponent, RouterLink],
   templateUrl: './back-to-top.component.html',
   styleUrl: './back-to-top.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,13 +23,6 @@ export class BackToTopComponent
   readonly isScrolled = signal<boolean>(false);
 
   private readonly _footerEl = document.querySelector('app-front-footer');
-
-  private readonly _linksRouteService = inject(LinksRouteService);
-
-  goToAnchorById(anchorId: string): void
-  {
-    this._linksRouteService.goToAnchorById(anchorId);
-  }
 
   onScroll(): void
   {

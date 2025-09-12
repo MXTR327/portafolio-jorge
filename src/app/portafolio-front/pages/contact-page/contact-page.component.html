@@ -1,5 +1,5 @@
 <section
-  class="flex h-screen w-full flex-col overflow-hidden md:gap-5 md:px-4 md:pt-18 lg:gap-15 lg:px-7 2xl:justify-center 2xl:gap-18 2xl:pt-0"
+  class="flex h-screen flex-col overflow-hidden md:gap-5 md:px-4 md:pt-18 lg:gap-15 lg:px-7 2xl:justify-center 2xl:gap-18 2xl:pt-0"
 >
   <!-- Titulos 1ra fila -->
   <div
@@ -56,20 +56,7 @@
           cualquier momento para un apoyo rápido, amable y experto.
         </p>
         <!-- Redes -->
-        @for (socialLink of socialLinks; track socialLink; let i = $index)
-        {
-          <a
-            class="mr-8 inline-flex"
-            [href]="socialLink.href"
-            target="_blank"
-            data-aos="fade-up-left"
-            data-aos-duration="1500"
-            [attr.data-aos-delay]="i * 150"
-            data-aos-easing="ease-in-out-back"
-          >
-            <svg-icon [src]="socialLink.iconPath" [svgStyle]="{ 'height.px': 22 }" />
-          </a>
-        }
+        <app-redes-contacto />
         <!-- Fin redes -->
       </div>
       <!-- Fin 1ra fila -->
@@ -103,78 +90,12 @@
     <!-- Fin info 1ra col -->
 
     <!-- Formulario 2da col -->
-    <div
+    <app-contact-form
       class="w-full md:pt-2 lg:pt-4 2xl:pt-9"
       data-aos="fade-up-left"
       data-aos-duration="1500"
       data-aos-easing="ease-in-out-back"
-    >
-      <form
-        class="flex flex-col md:gap-9 lg:gap-13"
-        autocomplete="off"
-        [formGroup]="myForm"
-        (ngSubmit)="onSubmit()"
-      >
-        <!-- Inputs -->
-        <div class="flex flex-col md:gap-6 lg:gap-9">
-          <div class="flex flex-col gap-6 lg:flex-row lg:gap-5">
-            @for (
-              inputFieldData of inputFieldsData.slice(0, 2);
-              track inputFieldData;
-              let i = $index
-            )
-            {
-              <app-form-input
-                class="w-full"
-                [id]="inputFieldData.id"
-                [type]="inputFieldData.type"
-                [placeholder]="inputFieldData.placeholder"
-                [iconPath]="inputFieldData.iconPath"
-                [formControlName]="inputFieldData.id"
-                [isValidField]="formUtils.isValidField(myForm, inputFieldData.id)"
-                [fieldError]="formUtils.getFieldError(myForm, inputFieldData.id)"
-                data-aos="fade-down-left"
-                data-aos-duration="1500"
-                [attr.data-aos-delay]="i * 200"
-                data-aos-easing="ease-in-out-back"
-              />
-            }
-          </div>
-
-          @for (inputFieldData of inputFieldsData.slice(2); track inputFieldData; let j = $index)
-          {
-            <app-form-input
-              [id]="inputFieldData.id"
-              [type]="inputFieldData.type"
-              [placeholder]="inputFieldData.placeholder"
-              [iconPath]="inputFieldData.iconPath"
-              [formControlName]="inputFieldData.id"
-              [isValidField]="formUtils.isValidField(myForm, inputFieldData.id)"
-              [fieldError]="formUtils.getFieldError(myForm, inputFieldData.id)"
-              data-aos="fade-up-right"
-              data-aos-duration="1500"
-              [attr.data-aos-delay]="j * 200"
-              data-aos-easing="ease-in-out-back"
-            />
-          }
-        </div>
-        <!-- Fin inputs -->
-
-        <!-- Boton enviar -->
-        <button
-          class="flex w-fit items-center gap-2 rounded-full border border-transparent bg-cyan-600 font-medium text-white select-none hover:bg-cyan-700 md:p-3 md:text-sm lg:p-5 lg:text-base"
-          type="submit"
-          data-aos="fade-up-left"
-          data-aos-duration="1500"
-          data-aos-delay="600"
-          data-aos-easing="ease-in-out-back"
-        >
-          Enviar
-          <svg-icon [src]="iconPlanePath" [svgStyle]="{ 'height.px': 12 }" />
-        </button>
-        <!-- Fin Boton enviar -->
-      </form>
-    </div>
+    />
     <!-- Fin formulario 2da col -->
   </div>
   <!-- Fin contenido 2da fila -->

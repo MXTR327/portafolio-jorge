@@ -11,8 +11,14 @@
       "@shared/*": [
         "./src/app/shared/*"
       ],
+      "@sobre-nosotros/*": [
+        "./src/app/sobre-nosotros/*"
+      ],
       "@proyectos/*": [
         "./src/app/proyectos/*"
+      ],
+      "@contactenos/*": [
+        "./src/app/contactenos/*"
       ],
     },
     "strict": true,

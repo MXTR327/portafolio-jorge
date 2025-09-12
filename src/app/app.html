@@ -1,6 +1,6 @@
-<main>
+<main class="flex min-h-screen flex-col">
   <router-outlet />
-  <!-- -->
+
   <div class="flex-1 flex-grow"></div>
-  <app-front-footer />
+  <app-front-footer [class.invisible]="isLoading()" />
 </main>

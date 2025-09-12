@@ -7,30 +7,27 @@
   data-aos-once="true"
 >
   <nav
-    class="relative mx-2 flex w-full max-w-5xl basis-full flex-wrap items-center justify-between py-2 ps-5 pe-2 md:flex-nowrap md:py-0 lg:mx-auto"
+    class="relative mx-2 flex w-full max-w-5xl basis-full flex-wrap items-center justify-between py-2 ps-5 pe-2 text-white md:flex-nowrap md:py-0 lg:mx-auto"
   >
     <!-- 1ra columna -->
-    <div
+    <a
       class="flex items-center"
       data-aos="flip-left"
       data-aos-delay="800"
       data-aos-duration="800"
       data-aos-once="true"
+      [routerLink]="['/']"
+      fragment="home"
     >
       <!-- Logo -->
-      <a
-        class="inline-block flex-none cursor-pointer rounded-md text-xl font-semibold focus:opacity-80 focus:outline-hidden"
-        role="button"
-        tabindex="0"
-        (click)="goToAnchorById('home')"
-        (keydown.enter)="goToAnchorById('home')"
-        (keydown.space)="goToAnchorById('home')"
+      <div
+        class="inline-block flex-none rounded-md text-xl font-semibold focus:opacity-80 focus:outline-hidden"
       >
-        <span class="text-white"> Ramsua </span>
+        <span> Ramsua </span>
         <span class="text-[#ff0]">| Services</span>
-      </a>
+      </div>
       <!-- End Logo -->
-    </div>
+    </a>
     <!-- Fin 1ra columna -->
 
     <!-- 3ra columna -->
@@ -45,15 +42,12 @@
       >
         <a
           class="flex cursor-pointer items-center gap-x-2 rounded-full bg-green-300 px-3 py-2 text-sm font-medium text-nowrap text-black focus:outline-hidden"
-          [class.bg-green-400]="activeSecion() === 'contact'"
-          role="button"
-          tabindex="0"
-          (click)="goToAnchorById('contact')"
-          (keydown.enter)="goToAnchorById('contact')"
-          (keydown.space)="goToAnchorById('contact')"
+          [class.bg-green-400]="activeSection() === 'contact'"
+          [routerLink]="['/']"
+          fragment="contact"
         >
           <span> Contact Us </span>
-          <svg-icon [src]="icoCallPath" [svgStyle]="icoCallStyle" />
+          <svg-icon [src]="icoCallPath" [svgStyle]="icoCallStyle"> </svg-icon>
         </a>
       </div>
       <!-- Fin Boton Contacto -->
@@ -67,8 +61,8 @@
         data-aos-once="true"
       >
         <button
-          class="hs-collapse-toggle flex size-9 items-center justify-center rounded-full bg-neutral-800 text-sm font-semibold text-white disabled:pointer-events-none disabled:opacity-50"
           id="hs-navbar-floating-dark-collapse"
+          class="hs-collapse-toggle flex size-9 items-center justify-center rounded-full bg-neutral-800 text-sm font-semibold text-white disabled:pointer-events-none disabled:opacity-50"
           data-hs-collapse="#hs-navbar-floating-dark"
           type="button"
           aria-controls="hs-navbar-floating-dark"
@@ -79,12 +73,14 @@
             class="hs-collapse-open:hidden shrink-0"
             [src]="icoHamburberPath"
             [svgStyle]="icoHamburgerStyle"
-          />
+          >
+          </svg-icon>
           <svg-icon
             class="hs-collapse-open:block hidden shrink-0"
             [src]="icoClosePath"
             [svgStyle]="icoCloseStyle"
-          />
+          >
+          </svg-icon>
         </button>
       </div>
       <!-- Fin Boton Hamburguesa -->
@@ -93,8 +89,8 @@
 
     <!-- 2da columna -->
     <div
-      class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block"
       id="hs-navbar-floating-dark"
+      class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block"
       data-aos="fade-down-big"
       data-aos-delay="400"
       data-aos-duration="1000"
@@ -105,27 +101,22 @@
       <div
         class="flex flex-col gap-y-3 py-2 font-semibold md:flex-row md:items-center md:justify-end md:py-0 md:ps-7"
       >
-        @for (linP of linksPages; track linP.name; let last = $last; let i = $index)
+        @for (page of pagesList.slice(0, pagesList.length - 1); track page; let i = $index)
         {
-          @if (!last)
-          {
-            <a
-              class="cursor-pointer ps-px pe-3 text-sm text-[#ff0] hover:text-[#ff0] sm:px-3 md:py-4"
-              [class]="activeSecion() !== linP.id ? 'text-white hover:text-neutral-200' : ''"
-              data-aos="fade-up-left"
-              data-aos-duration="1000"
-              data-aos-easing="ease-in-out-back"
-              data-aos-once="true"
-              role="button"
-              tabindex="0"
-              (keydown.enter)="goToAnchorById(linP.id)"
-              (keydown.space)="goToAnchorById(linP.id)"
-              (click)="goToAnchorById(linP.id)"
-              [attr.data-aos-delay]="500 + i * 150"
-            >
-              {{ linP.name }}
-            </a>
-          }
+          <a
+            class="cursor-pointer ps-px pe-3 text-sm hover:text-neutral-200 sm:px-3 md:py-4"
+            data-aos="fade-up-left"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out-back"
+            data-aos-once="true"
+            [attr.data-aos-delay]="500 + i * 150"
+            [class]="activeSection() === page.id ? 'text-[#ff0] hover:text-[#ff0]' : ''"
+            [fragment]="page.id"
+            [routerLink]="['/']"
+            (click)="activeSectionService.activeSection.set('home')"
+          >
+            {{ page.name }}
+          </a>
         }
       </div>
     </div>

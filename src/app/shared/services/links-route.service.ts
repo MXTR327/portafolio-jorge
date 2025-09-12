@@ -1,42 +1,24 @@
-import { ViewportScroller } from '@angular/common';
-import { inject, Injectable } from '@angular/core';
-
-export interface ILinkPage
-{
-  id: string;
-  name: string;
-}
+import { Injectable } from '@angular/core';
+import { ILinkPage } from '@shared/interfaces/link-page.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LinksRouteService
 {
-  get linksPages(): readonly ILinkPage[]
+  get pages(): ILinkPage[]
   {
-    return this._linksPages;
+    return this._pages;
   }
-
-  private readonly _linkPage = (id: string, name: string): ILinkPage => ({
+  private readonly _page = (id: string, name: string): ILinkPage => ({
     id,
     name,
   });
-
-  private readonly _linksPages: ILinkPage[] = [
-    this._linkPage('home', 'Inicio'),
-    this._linkPage('about-us', 'Sobre Nosotros'),
-    this._linkPage('services', 'Servicios'),
-    this._linkPage('projects', 'Proyectos'),
-    this._linkPage('contact', 'Contacténos'),
+  private readonly _pages: ILinkPage[] = [
+    this._page('home', 'Inicio'),
+    this._page('about-us', 'Sobre Nosotros'),
+    this._page('services', 'Servicios'),
+    this._page('projects', 'Proyectos'),
+    this._page('contact', 'Contacténos'),
   ];
-
-  private readonly _viewportScroller = inject(ViewportScroller);
-
-  readonly getLink = (id: string): ILinkPage | undefined =>
-    this._linksPages.find((link) => link.id === id);
-
-  readonly goToAnchorById = (id: string) =>
-  {
-    this._viewportScroller.scrollToAnchor(id);
-  };
 }

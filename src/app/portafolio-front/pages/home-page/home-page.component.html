@@ -80,11 +80,12 @@
       <!-- Btn contacto -->
       <button
         class="relative inline-flex overflow-hidden rounded-lg p-[3px] select-none focus:outline-none active:scale-95 md:h-9 md:w-35 lg:h-12 lg:w-40"
-        (click)="goToAnchorById('contact')"
         data-aos="slide-left"
         data-aos-delay="1800"
         data-aos-duration="700"
         data-aos-easing="ease-in-back"
+        fragment="contact"
+        [routerLink]="['/']"
       >
         <span
           class="absolute inset-[-1000%] z-0 animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"

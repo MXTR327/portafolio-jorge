@@ -1,8 +1,8 @@
-<section class="flex h-full w-full flex-col overflow-hidden pt-18">
+<section class="space-y-15 overflow-hidden pt-18">
   <!-- 1ra fila -->
-  <div class="mb-10 text-center">
+  <div class="space-y-4 text-center">
     <h2
-      class="mb-4 font-bold md:text-3xl"
+      class="font-bold md:text-3xl"
       data-aos="slide-right"
       data-aos-delay="0"
       data-aos-duration="900"
@@ -24,23 +24,6 @@
   <!-- Fin 1ra fila -->
 
   <!-- 2da fila -->
-  <div
-    class="relative flex h-full w-full justify-center"
-    data-aos="zoom-in-down"
-    data-aos-delay="800"
-  >
-    <!-- Columna timeline -->
-    <div
-      class="flex h-full w-0.5 flex-col items-center justify-between bg-gray-200 md:gap-6 2xl:gap-20"
-    >
-      @for (timeRange of timeRanges; track timeRange; let e = $even, last = $last, i = $index)
-      {
-        <!-- Caja Item -->
-        <app-timeline-item [timeRange]="timeRange" [isRight]="e" [isLast]="last" [index]="i" />
-        <!-- Fin caja item -->
-      }
-    </div>
-    <!-- Fin columna timeline -->
-  </div>
+  <app-about-us-timeline class="flex justify-center" data-aos="zoom-in-down" data-aos-delay="800" />
   <!-- Fin 2da fila -->
 </section>
