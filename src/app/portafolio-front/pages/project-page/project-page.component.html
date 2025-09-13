@@ -1,3 +1,82 @@
-<div class="pt-18">
-  <p>XD: {{ projectId }}</p>
+<div class="flex flex-col gap-10 overflow-hidden py-20 md:px-0 lg:px-5">
+  <!-- [SECTION] Project Header -->
+  <div class="mx-auto max-w-4xl space-y-6 px-4 text-gray-600">
+    <!-- Etiqueta -->
+    <span
+      class="inline-block rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-500"
+      data-aos="fade-down"
+      data-aos-delay="0"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out-back"
+    >
+      {{ projectResource.value()?.etiqueta }}
+    </span>
+
+    <!-- Título -->
+    <h2
+      class="text-2xl font-bold text-gray-900 md:text-3xl"
+      data-aos="fade-left"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out-back"
+    >
+      {{ projectResource.value()?.title }}
+    </h2>
+
+    <!-- Descripción -->
+    <p
+      class="mt-2 text-sm text-gray-600 italic md:text-base"
+      data-aos="fade-up"
+      data-aos-delay="100"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out-back"
+    >
+      {{ projectResource.value()?.description }}
+    </p>
+
+    <hr
+      class="border-gray-200"
+      data-aos="zoom-in"
+      data-aos-delay="150"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out-back"
+    />
+
+    <!-- Autor y Fecha -->
+    <div class="flex justify-between text-sm text-gray-700">
+      <div
+        class="flex flex-col md:flex-row md:items-center md:gap-2"
+        data-aos="fade-right"
+        data-aos-delay="200"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out-back"
+      >
+        <span class="text-xs text-gray-500">By</span>
+        <span class="font-medium">Ramsua Services</span>
+      </div>
+      <div
+        class="flex flex-col items-end md:flex-row md:items-center md:gap-2"
+        data-aos="fade-left"
+        data-aos-delay="200"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out-back"
+      >
+        <span class="text-xs text-gray-500">Publicado el</span>
+        <span class="font-medium">
+          {{ projectResource.value()?.date }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <!-- [END] Project Header -->
+
+  <!-- [COMPONENT] Project Slider -->
+  <app-project-slider
+    [imgList]="projectResource.value()?.imgList ?? []"
+    data-aos="fade-up-left"
+    data-aos-delay="250"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out-back"
+  />
+  <!-- [END] Project Slider -->
 </div>

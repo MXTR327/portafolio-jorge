@@ -14,7 +14,10 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     // eslint-disable-next-line @angular-eslint/no-developer-preview
     provideZonelessChangeDetection(),
-    provideRouter(routes, withInMemoryScrolling({ anchorScrolling: 'enabled' })),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'top' }),
+    ),
     provideHttpClient(withInterceptorsFromDi()),
     provideAngularSvgIcon(),
   ],

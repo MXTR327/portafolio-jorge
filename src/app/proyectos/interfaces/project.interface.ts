@@ -4,6 +4,6 @@ export interface IProject
   description: string;
   etiqueta: string;
   id: number;
-  imgPath: string;
+  imgList: string[];
   title: string;
 }

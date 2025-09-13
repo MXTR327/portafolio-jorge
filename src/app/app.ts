@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Router, RouterOutlet } from '@angular/router';
+import { Event, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { FooterComponent } from '@shared/components/footer/footer.component';
 import * as AOS from 'aos';
 import { map } from 'rxjs';
@@ -15,7 +15,8 @@ import { map } from 'rxjs';
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class App implements OnInit
 {
-  private readonly _router = inject( Router );
+  private readonly _router = inject(Router);
+
   readonly isLoading = toSignal(
     this._router.events.pipe(map(() => !!this._router.getCurrentNavigation())),
     { initialValue: false },
@@ -25,6 +26,13 @@ export class App implements OnInit
 
   ngOnInit(): void
   {
+    this._router.events.subscribe((event: Event) =>
+    {
+      if (event instanceof NavigationEnd)
+        // eslint-disable-next-line unicorn/prefer-global-this
+        setTimeout(() => window.HSStaticMethods.autoInit(), 50);
+    });
+
     AOS.init({
       mirror: true,
       once: true,

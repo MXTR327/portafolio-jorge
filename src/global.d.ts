@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/require-module-specifiers */
 /* eslint-disable @typescript-eslint/naming-convention */
 import type { IStaticMethods } from 'preline/dist';
 
@@ -12,8 +13,10 @@ declare global
     Dropzone;
     // Preline UI
     HSStaticMethods: IStaticMethods;
-    JQuery: typeof import('jquery');
+    jQuery: typeof import('jquery');
 
     VanillaCalendarPro;
   }
 }
+
+export {};

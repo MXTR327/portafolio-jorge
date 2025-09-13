@@ -1,0 +1,87 @@
+<!-- =========================
+[COMPONENT] Project Carousel
+Props: imgList(), iconBackPath, iconNextPath
+Features: autoplay, infinite loop, thumbnails
+========================== -->
+<div
+  data-hs-carousel='{
+  "isAutoPlay": true,
+  "isInfiniteLoop": true,
+  "loadingClasses": "opacity-0"
+  }'
+  class="relative"
+>
+  <!-- ====== [LAYOUT] Main Carousel Wrapper ====== -->
+  <div class="hs-carousel flex w-full flex-col gap-2 md:flex-row">
+    <!-- =========================
+    [SECTION] Carousel Display
+    - Muestra la imagen principal
+    - Controles: prev / next
+    ========================== -->
+    <div class="relative h-screen min-h-100 grow overflow-hidden rounded-lg bg-white md:order-2">
+      <!-- [BODY] Slides container -->
+      <div
+        class="hs-carousel-body absolute start-0 top-0 bottom-0 flex flex-nowrap opacity-0 transition-transform duration-700"
+      >
+        @for (image of imgList(); track image)
+        {
+          <div class="hs-carousel-slide">
+            <img
+              class="h-full w-full overflow-clip object-cover object-center"
+              [src]="image"
+              alt="Imagen"
+            />
+          </div>
+        }
+      </div>
+      <!-- [END BODY] Slides container -->
+
+      @if (imgList().length > 1)
+      {
+        <!-- [CONTROL] Prev Button -->
+        <button
+          type="button"
+          class="hs-carousel-prev hs-carousel-disabled:opacity-50 hs-carousel-disabled:pointer-events-none absolute inset-y-0 start-0 inline-flex h-full w-11.5 items-center justify-center rounded-s-lg text-gray-800 hover:bg-gray-800/10 focus:bg-gray-800/10 focus:outline-hidden"
+        >
+          <svg-icon [src]="iconBackPath" [svgStyle]="iconStyle" />
+        </button>
+
+        <!-- [CONTROL] Next Button -->
+        <button
+          type="button"
+          class="hs-carousel-next hs-carousel-disabled:opacity-50 hs-carousel-disabled:pointer-events-none absolute inset-y-0 end-0 inline-flex h-full w-11.5 items-center justify-center rounded-e-lg text-gray-800 hover:bg-gray-800/10 focus:bg-gray-800/10 focus:outline-hidden"
+        >
+          <svg-icon [src]="iconNextPath" [svgStyle]="iconStyle" />
+        </button>
+      }
+    </div>
+    <!-- ====== [END SECTION] Carousel Display ====== -->
+
+    <!-- =========================
+    [SECTION] Carousel Pagination
+    - Miniaturas clicables
+    - Scrollable horizontal/vertical
+    ========================== -->
+    <div class="flex-none md:order-1">
+      <div
+        class="hs-carousel-pagination flex max-h-100 flex-row gap-2 overflow-x-auto md:flex-col md:overflow-x-hidden md:overflow-y-auto"
+      >
+        @for (image of imgList(); track image)
+        {
+          <div
+            class="hs-carousel-pagination-item hs-carousel-active:border-blue-400 size-20 shrink-0 cursor-pointer overflow-hidden rounded-md border border-gray-200 md:size-32"
+          >
+            <img
+              class="h-full w-full overflow-clip object-fill object-center"
+              [src]="image"
+              alt="Imagen"
+            />
+          </div>
+        }
+      </div>
+    </div>
+    <!-- ====== [END SECTION] Carousel Pagination ====== -->
+  </div>
+  <!-- ====== [END LAYOUT] Main Carousel Wrapper ====== -->
+</div>
+<!-- ====== [END COMPONENT] Project Carousel ====== -->
