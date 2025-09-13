@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ISocialLink } from '@shared/interfaces/social-link.interface';
 
 export interface IInfoPerson
 {
@@ -9,13 +10,6 @@ export interface IInfoPerson
   phone: string;
   street: string;
   streetNumber: string;
-}
-
-export interface ISocialLink
-{
-  href: string;
-  iconPath: string;
-  name: string;
 }
 
 @Injectable({
@@ -56,7 +50,6 @@ export class LinksContactService
     iconPath,
     name,
   });
-
   private readonly _socialLinks: ISocialLink[] = [
     this._socialLink(
       'facebook',

@@ -24,7 +24,7 @@ module.exports = tsEslint.config(
       ...tsEslint.configs.stylisticTypeChecked,
       ...angularEslint.configs.tsAll,
       perfectionistPlugin.configs['recommended-natural'],
-      unicornPlugin.default.configs.recommended,
+      unicornPlugin.default.configs.all,
       sonarjsPlugin.configs.recommended,
     ],
     processor: angularEslint.processInlineTemplates,
@@ -117,6 +117,8 @@ module.exports = tsEslint.config(
         },
       ],
       '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
+      '@angular-eslint/no-experimental': ['off'],
+      '@typescript-eslint/no-confusing-void-expression': 'off',
     },
   },
   {

@@ -1,0 +1,10 @@
+<div
+  class="flex h-full w-0.5 flex-col items-center justify-between bg-gray-200 md:gap-20 lg:gap-30"
+>
+  @for (timeRange of timeRanges; track timeRange; let e = $even, last = $last, i = $index)
+  {
+    <!-- Caja Item -->
+    <app-timeline-item [timeRange]="timeRange" [isRight]="e" [isLast]="last" [index]="i" />
+    <!-- Fin caja item -->
+  }
+</div>

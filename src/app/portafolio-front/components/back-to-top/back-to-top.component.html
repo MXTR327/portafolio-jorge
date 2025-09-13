@@ -1,13 +1,10 @@
 <a
   class="btn-back-to-top font-montserrat-alternates select-none"
-  role="button"
   [class.text-white]="isOnFooter()"
-  tabindex="0"
-  (click)="goToAnchorById('home')"
   (scroll)="onScroll()"
-  (keydown.enter)="goToAnchorById('home')"
-  (keydown.space)="goToAnchorById('home')"
   data-aos="zoom-in-down"
+  fragment="home"
+  [routerLink]="['/']"
   data-aos-duration="700"
   data-aos-delay="0"
   data-aos-once="false"
@@ -18,14 +15,14 @@
     <span>to</span>
     <span>top</span>
   </div>
-  <div class="clone gap-1 uppercase md:ml-3 md:text-sm 2xl:ml-0 2xl:text-base">
-    <span>Back</span>
-    <span>to</span>
-    <span>top</span>
+  <div class="clone gap-1 md:ml-3 md:text-sm 2xl:ml-0 2xl:text-base">
+    <span>BACK</span>
+    <span>TO</span>
+    <span>TOP</span>
   </div>
   <svg-icon
     class="absolute right-0 md:top-3"
     src="assets/icons/shared/icon-arrowup.svg"
-    [svgStyle]="{ 'height.px': 20, 'stroke-width': 2.5 }"
+    [svgStyle]="{ 'height.px': 22 }"
   />
 </a>

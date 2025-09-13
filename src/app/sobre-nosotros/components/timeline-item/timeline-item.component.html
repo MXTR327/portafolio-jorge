@@ -52,7 +52,7 @@
       class="h-full w-full overflow-clip rounded-full object-cover object-center"
       data-aos-duration="1000"
       data-aos-easing="ease-in-out-back"
-      src="{{ timeRange().imagePath }}"
+      [src]="timeRange().imagePath"
       [attr.data-aos]="isRight() ? 'zoom-in-up' : 'zoom-in-down'"
       [attr.data-aos-delay]="600 + index() * 200"
       alt="Imagen"

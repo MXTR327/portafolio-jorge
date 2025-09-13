@@ -2,7 +2,8 @@ export interface IProject
 {
   date: string;
   description: string;
-  image: string;
-  subtitle: string;
+  etiqueta: string;
+  id: number;
+  imgList: string[];
   title: string;
 }

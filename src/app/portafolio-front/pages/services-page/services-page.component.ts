@@ -23,7 +23,8 @@ export class ServicesPageComponent
     height: '40px',
   };
 
-  private readonly _iconsServicesPath: string = 'assets/icons/servicios';
+  private readonly _iconsPath: string = 'assets/icons';
+  private readonly _iconsServicesPath: string = `${this._iconsPath}/servicios`;
 
   readonly servicesList: IServiceItem[] = [
     {

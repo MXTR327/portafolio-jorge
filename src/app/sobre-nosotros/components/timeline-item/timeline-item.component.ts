@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ITimeRange } from '@portafolio-front/interfaces/time-range.interface';
+import { ITimeRange } from '@sobre-nosotros/interfaces/time-range.interface';
 
 @Component({
   selector: 'app-timeline-item',
   imports: [],
   templateUrl: './timeline-item.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimelineItemComponent
 {

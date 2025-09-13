@@ -1,0 +1,19 @@
+<div class="space-x-3">
+  @for (socialLink of socialLinks; track socialLink; let i = $index)
+  {
+    <a
+      class="inline-flex size-10 items-center justify-center rounded-lg border border-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+      [href]="socialLink.href"
+      target="_blank"
+      [attr.data-aos]="
+        i === 0 ? 'fade-up-right' : i === 1 ? 'fade-up' : i === 2 ? 'fade-up-left' : 'zoom-in'
+      "
+      data-aos-duration="1500"
+      [attr.data-aos-delay]="i * 150"
+      data-aos-easing="ease-in-out-back"
+      data-aos-once="false"
+    >
+      <svg-icon [src]="socialLink.iconPath" [svgStyle]="{ 'height.px': 22 }" />
+    </a>
+  }
+</div>
