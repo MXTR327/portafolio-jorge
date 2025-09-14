@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+/* eslint-disable unicorn/no-null */
+import { ChangeDetectionStrategy, Component, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IEmailjsTemplateInterface } from '@contactenos/interfaces/emailjs-template.interface';
 import { IFormContactInterface } from '@contactenos/interfaces/form-contact.interface';
 import { SvgIconComponent } from 'angular-svg-icon';
-import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaComponent, RecaptchaModule } from 'ng-recaptcha';
 import { formUtilities } from 'src/app/utils/form-utilities';
 import { environment } from 'src/environments/environment';
 
@@ -18,13 +19,12 @@ import { FormInputComponent } from '../form-input/form-input.component';
 })
 export class ContactFormComponent
 {
-  readonly captchaToken = signal<null | string>('');
+  readonly captchaToken = signal<null | string>(null);
 
   readonly formUtils = formUtilities;
   private readonly _iconsPath: string = 'assets/icons';
 
   readonly iconDescriptionPath: string = `${this._iconsPath}/forms/icon-description.svg`;
-
   readonly iconMailAlertPath: string = `${this._iconsPath}/forms/icon-mail-alert.svg`;
   readonly iconNamePath: string = `${this._iconsPath}/forms/icon-name.svg`;
   readonly iconPhonePath: string = `${this._iconsPath}/forms/icon-phone.svg`;
@@ -46,7 +46,6 @@ export class ContactFormComponent
     this._inputField('email', 'email@email.com*', this.iconMailAlertPath),
     this._inputField('message', 'Mensaje*', this.iconDescriptionPath, 'textarea'),
   ];
-
   readonly isPosting = signal(false);
 
   private readonly _formBuilder = inject(FormBuilder);
@@ -61,6 +60,7 @@ export class ContactFormComponent
   readonly siteKey = environment.recaptchaSiteKey;
 
   private readonly _emailService = inject(EmailService);
+  private readonly _recaptchaComponentElRef = viewChild<RecaptchaComponent>(RecaptchaComponent);
 
   onSubmit = (): void =>
   {
@@ -90,14 +90,17 @@ export class ContactFormComponent
       .catch((error: unknown) =>
       {
         let errorMessage = 'Error desconocido al enviar el correo.';
-
         if (error instanceof Error) errorMessage = error.message;
         else if (typeof error === 'string') errorMessage = error;
         else if (typeof error === 'object' && error !== null && 'text' in error)
           errorMessage = (error as { text: string }).text;
-
         alert(`Error: ${errorMessage}`);
       })
-      .finally(() => this.isPosting.set(false));
+      .finally(() =>
+      {
+        this.captchaToken.set(null);
+        this._recaptchaComponentElRef()?.reset();
+        this.isPosting.set(false);
+      });
   };
 }
