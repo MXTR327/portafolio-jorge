@@ -119,6 +119,7 @@ module.exports = tsEslint.config(
       '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
       '@angular-eslint/no-experimental': ['off'],
       '@typescript-eslint/no-confusing-void-expression': 'off',
+      'unicorn/switch-case-braces': ['error', 'avoid'],
     },
   },
   {

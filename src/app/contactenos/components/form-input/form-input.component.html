@@ -8,7 +8,8 @@
         [id]="id()"
         [placeholder]="placeholder()"
         [value]="value"
-        (input)="onChange($any($event.target).value)"
+        [disabled]="disabled"
+        (input)="handleInput($any($event.target).value)"
         (blur)="onTouched()"
         type="text"
       />
@@ -20,9 +21,10 @@
         [class]="isValidField() ? 'border-red-500 focus:border-red-500' : ''"
         [id]="id()"
         [placeholder]="placeholder()"
-        rows="5"
         [value]="value"
-        (input)="onChange($any($event.target).value)"
+        [disabled]="disabled"
+        rows="5"
+        (input)="handleInput($any($event.target).value)"
         (blur)="onTouched()"
       ></textarea>
     }

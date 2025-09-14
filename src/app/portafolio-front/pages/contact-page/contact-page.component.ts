@@ -31,7 +31,12 @@ export class ContactPageComponent
       `(+51) ${this._linksContactService.infoPerson.phone}`,
       this.iconChargingPhonePath,
     ),
-    this._infoPerson('Email', this._linksContactService.infoPerson.email, this.iconMailClosedPath),
+    this._infoPerson(
+      'Email',
+      `${this._linksContactService.infoPerson.email}
+      ramsua.services@outlook.com`,
+      this.iconMailClosedPath,
+    ),
     this._infoPerson(
       'Ubícanos En',
       `${this._linksContactService.infoPerson.country}, ${this._linksContactService.infoPerson.city}

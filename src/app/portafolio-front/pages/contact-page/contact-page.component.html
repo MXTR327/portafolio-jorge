@@ -1,5 +1,5 @@
 <section
-  class="flex h-screen flex-col overflow-hidden md:gap-5 md:px-4 md:pt-18 lg:gap-15 lg:px-7 2xl:justify-center 2xl:gap-18 2xl:pt-0"
+  class="flex flex-col overflow-hidden md:h-full md:gap-5 md:px-4 md:py-18 lg:gap-15 lg:px-7 2xl:h-screen 2xl:justify-center 2xl:gap-18 2xl:pt-0"
 >
   <!-- Titulos 1ra fila -->
   <div
@@ -56,7 +56,7 @@
           cualquier momento para un apoyo rápido, amable y experto.
         </p>
         <!-- Redes -->
-        <app-redes-contacto />
+        <app-redes-contacto> </app-redes-contacto>
         <!-- Fin redes -->
       </div>
       <!-- Fin 1ra fila -->
@@ -74,11 +74,11 @@
             class="space-y-2"
             data-aos="fade-left"
             data-aos-duration="1500"
-            [attr.data-aos-delay]="i * 150"
             data-aos-easing="ease-in-out-back"
+            [attr.data-aos-delay]="i * 150"
           >
             <div class="flex items-center gap-3.5">
-              <svg-icon [src]="infoPerson.iconPath" [svgStyle]="{ 'height.px': 20 }" />
+              <svg-icon [src]="infoPerson.iconPath" [svgStyle]="{ 'height.px': 20 }"> </svg-icon>
               <h1 class="text-gray-600">{{ infoPerson.label }}</h1>
             </div>
             <span class="whitespace-pre-line text-gray-700">{{ infoPerson.text }}</span>
@@ -95,7 +95,8 @@
       data-aos="fade-up-left"
       data-aos-duration="1500"
       data-aos-easing="ease-in-out-back"
-    />
+    >
+    </app-contact-form>
     <!-- Fin formulario 2da col -->
   </div>
   <!-- Fin contenido 2da fila -->
