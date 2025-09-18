@@ -8,10 +8,10 @@
       [attr.data-aos]="
         i === 0 ? 'fade-up-right' : i === 1 ? 'fade-up' : i === 2 ? 'fade-up-left' : 'zoom-in'
       "
-      data-aos-duration="1500"
-      [attr.data-aos-delay]="i * 150"
+      data-aos-duration="1000"
+      [attr.data-aos-delay]="animationDelay() + i * 150"
       data-aos-easing="ease-in-out-back"
-      data-aos-once="false"
+      [attr.data-aos-once]="animationOnce()"
     >
       <svg-icon [src]="socialLink.iconPath" [svgStyle]="{ 'height.px': 22 }" />
     </a>
