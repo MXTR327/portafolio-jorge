@@ -53,11 +53,7 @@
     <!-- Fin Botón enviar -->
 
     <!-- reCAPTCHA -->
-    <re-captcha
-      class="flex"
-      [siteKey]="siteKey"
-      (resolved)="this.captchaToken.set($event)"
-    ></re-captcha>
+    <re-captcha class="flex" (resolved)="this.captchaToken.set($event)"></re-captcha>
     <!-- Fin reCAPTCHA -->
   </div>
 </form>

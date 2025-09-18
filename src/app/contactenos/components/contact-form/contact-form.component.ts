@@ -6,7 +6,6 @@ import { IFormContactInterface } from '@contactenos/interfaces/form-contact.inte
 import { SvgIconComponent } from 'angular-svg-icon';
 import { RecaptchaComponent, RecaptchaModule } from 'ng-recaptcha';
 import { formUtilities } from 'src/app/utils/form-utilities';
-import { environment } from 'src/environments/environment';
 
 import { EmailService } from '../../services/email.service';
 import { FormInputComponent } from '../form-input/form-input.component';
@@ -56,8 +55,6 @@ export class ContactFormComponent
     name: ['', [Validators.required, Validators.pattern(formUtilities.regexFullName)]],
     phone: ['', [Validators.required, Validators.pattern(formUtilities.regexPhone)]],
   });
-
-  readonly siteKey = environment.recaptchaSiteKey;
 
   private readonly _emailService = inject(EmailService);
   private readonly _recaptchaComponentElRef = viewChild<RecaptchaComponent>(RecaptchaComponent);

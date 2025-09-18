@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ILinkPage } from '@shared/interfaces/link-page.interface';
 import { ActiveSectionService } from '@shared/services/active-section.service';
@@ -22,10 +22,11 @@ export class NavbarComponent
   readonly icoCallStyle: Record<string, string> = { height: '20px' };
 
   readonly icoClosePath: string = `${this._iconsNavbarPath}/icon-menu-close.svg`;
-  readonly icoCloseStyle: Record<string, string> = { height: '20px' };
-
   readonly icoHamburberPath: string = `${this._iconsNavbarPath}/icon-menu-hamburger.svg`;
-  readonly icoHamburgerStyle: Record<string, string> = { height: '20px' };
+
+  readonly iconStyle: Record<string, string> = { height: '20px' };
+
+  readonly isHiddenLinks = signal<boolean>(true);
 
   private readonly _linksRouteService = inject(LinksRouteService);
   readonly pagesList: readonly ILinkPage[] = this._linksRouteService.pages;

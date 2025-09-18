@@ -1,3 +1,5 @@
+/* eslint-disable @angular-eslint/component-class-suffix */
+/* eslint-disable unicorn/prefer-global-this */
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Event, NavigationEnd, Router, RouterOutlet } from '@angular/router';
@@ -12,7 +14,6 @@ import { map } from 'rxjs';
   styleUrl: './app.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class App implements OnInit
 {
   private readonly _router = inject(Router);
@@ -26,11 +27,9 @@ export class App implements OnInit
 
   ngOnInit(): void
   {
-    this._router.events.subscribe((event: Event) =>
+    this._router.events.subscribe((event: Event): void =>
     {
-      if (event instanceof NavigationEnd)
-        // eslint-disable-next-line unicorn/prefer-global-this
-        setTimeout(() => window.HSStaticMethods.autoInit(), 50);
+      if (event instanceof NavigationEnd) setTimeout(() => window.HSStaticMethods.autoInit(), 50);
     });
 
     AOS.init({
