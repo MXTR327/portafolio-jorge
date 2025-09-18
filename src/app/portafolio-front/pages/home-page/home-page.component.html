@@ -1,126 +1,122 @@
-<section class="flex h-screen overflow-hidden md:gap-10 md:px-4 lg:px-7">
+@let firstFrase =
+  [
+    { text: 'CONSTRUYENDO', anim: 'fade-down-right' },
+    { text: 'CON', anim: 'fade-up-right' },
+    { text: 'HONESTIDAD', anim: 'fade-up-left' },
+  ];
+@let secondFrase =
+  [
+    { text: 'LADRILLO', anim: 'fade-up-right' },
+    { text: '— A —', anim: 'fade-up' },
+    { text: 'LADRILLO', anim: 'fade-up-left' },
+  ];
+<section
+  class="flex h-screen flex-col justify-center gap-7 overflow-hidden px-10 pt-10 md:flex-row md:gap-10 md:px-4 md:pt-0 lg:px-7"
+>
   <!-- 1ra columna -->
-  <div class="flex flex-col justify-center overflow-hidden md:flex-5">
+  <div class="flex flex-col justify-center gap-3 overflow-hidden md:flex-5 md:gap-1">
     <!-- Frase -->
-    <div
-      class="font-extrabold md:mb-3 md:text-3xl lg:mb-5 lg:text-4xl xl:text-5xl 2xl:mb-8 2xl:text-6xl"
-    >
+    <div class="flex flex-col font-extrabold">
       <!-- Construyendo confiabilidad -->
-      <h1 class="mb-2 flex flex-col overflow-hidden">
-        <span
-          data-aos="fade-down-right"
-          data-aos-delay="200"
-          data-aos-duration="900"
-          data-aos-easing="ease-in-out-back"
-          class="gradient-text"
-        >
-          CONSTRUYENDO
-        </span>
-        <span
-          data-aos="fade-up-left"
-          data-aos-delay="700"
-          data-aos-duration="900"
-          data-aos-easing="ease-in-out-back"
-          class="gradient-text self-end md:pr-15 lg:pr-36"
-        >
-          CON HONESTIDAD
-        </span>
+      <h1
+        class="grid text-center text-3xl md:grid-cols-[auto_auto] md:gap-2 md:text-start md:text-4xl lg:gap-5 lg:text-5xl xl:text-6xl 2xl:text-7xl"
+      >
+        @for (item of firstFrase; track item.text; let i = $index)
+        {
+          <span
+            class="gradient-text"
+            [attr.data-aos]="item.anim"
+            [attr.data-aos-delay]="500 + i * 300"
+            data-aos-duration="900"
+            data-aos-easing="ease-in-out-back"
+            [class]="{
+              'md:col-span-2': i === 0,
+              'md:ml-auto': i === 1,
+              'md:ml-3': i === 2,
+            }"
+          >
+            {{ item.text }}
+          </span>
+        }
       </h1>
       <!-- Fin construyendo confiabilidad -->
 
       <!-- Ladrillo a ladrillo -->
-      <h1 class="flex font-extrabold tracking-wide">
-        <span
-          class="bg-gradient-to-b from-[#ffb072] via-[#ff8a56] to-[#d9643a] bg-clip-text text-transparent drop-shadow-[1px_1px_0px_#e5e5e5]"
-          data-aos="fade-up-right"
-          data-aos-delay="1000"
-          data-aos-duration="900"
-          data-aos-easing="ease-in-out-back"
-        >
-          LADRILLO
-        </span>
-        <span
-          class="font-bold text-gray-400 drop-shadow-[0px_1px_0px_#d1d5db] md:mx-3 xl:mx-4 2xl:mx-8"
-          data-aos="fade-up"
-          data-aos-delay="1500"
-          data-aos-duration="500"
-        >
-          A
-        </span>
-        <span
-          class="bg-gradient-to-b from-[#ffb072] via-[#ff8a56] to-[#d9643a] bg-clip-text text-transparent drop-shadow-[1px_1px_0px_#e5e5e5]"
-          data-aos="fade-up-left"
-          data-aos-delay="1500"
-          data-aos-duration="700"
-          data-aos-easing="ease-in-out-back"
-        >
-          LADRILLO
-        </span>
+      <h1
+        class="flex flex-col items-center text-center text-2xl font-extrabold tracking-wide md:flex-row md:gap-5 md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl"
+      >
+        @for (item of secondFrase; track item.text; let i = $index, e = $even)
+        {
+          <span
+            [class]="
+              !e ? 'text-gray-400 drop-shadow-[0px_1px_0px_#d1d5db]' : 'text-gradient-orange'
+            "
+            [attr.data-aos]="item.anim"
+            [attr.data-aos-delay]="1200 + i * 300"
+            data-aos-duration="900"
+            data-aos-easing="ease-in-out-back"
+          >
+            {{ item.text }}
+          </span>
+        }
       </h1>
       <!-- Fin ladrillo a ladrillo -->
     </div>
     <!-- Fin frase -->
 
     <!-- Descripcion -->
-    <div
+    <p
       data-aos="fade-left"
       data-aos-delay="2000"
       data-aos-duration="900"
       data-aos-easing="ease-in-out-back"
+      class="text-sm text-gray-600 md:mb-3 md:text-base lg:mb-5 lg:text-xl 2xl:mb-8 2xl:text-2xl"
     >
-      <p class="text-gray-600 md:mb-3 md:text-base lg:mb-5 lg:text-xl 2xl:mb-8 2xl:text-2xl">
-        Soy <span class="font-semibold">Jorge</span>,
-        <span class="font-semibold">Maestro Albañil</span> con más de
-        <span class="font-semibold">20 años de experiencia</span> trabajando con
-        <span class="font-semibold">calidad</span> y <span class="font-semibold">compromiso</span>,
-        asegurándonos de que tu <span class="font-semibold">hogar</span> sea un lugar
-        <span class="font-semibold">seguro</span> y <span class="font-semibold">digno</span>.
-      </p>
+      Soy <span class="font-semibold">Jorge</span>,
+      <span class="font-semibold">Maestro Albañil</span> con más de
+      <span class="font-semibold">20 años de experiencia</span> trabajando con
+      <span class="font-semibold">calidad</span> y <span class="font-semibold">compromiso</span>,
+      asegurándonos de que tu <span class="font-semibold">hogar</span> sea un lugar
+      <span class="font-semibold">seguro</span> y <span class="font-semibold">digno</span>.
+    </p>
+    <!-- Fin Descripcion -->
 
-      <!-- Btn contacto -->
-      <button
-        class="relative inline-flex overflow-hidden rounded-lg p-[3px] select-none focus:outline-none active:scale-95 md:h-9 md:w-35 lg:h-12 lg:w-40"
-        data-aos="slide-left"
-        data-aos-delay="1800"
-        data-aos-duration="700"
-        data-aos-easing="ease-in-back"
-        fragment="contact"
-        [routerLink]="['/']"
+    <!-- Btn contacto -->
+    <button
+      class="relative inline-flex w-fit overflow-hidden rounded-xl p-[3px] select-none focus:outline-none active:scale-95"
+      data-aos="slide-right"
+      data-aos-delay="1800"
+      data-aos-duration="700"
+      data-aos-easing="ease-in-back"
+      [routerLink]="['/']"
+      fragment="contact"
+    >
+      <div
+        class="absolute inset-[-1000%] z-0 animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"
+      ></div>
+      <span
+        class="relative z-10 inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 py-3 font-medium text-white backdrop-blur-3xl md:text-sm lg:text-base"
       >
-        <span
-          class="absolute inset-[-1000%] z-0 animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"
-        ></span>
-        <span
-          class="relative z-10 inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-950 px-7 font-medium text-white backdrop-blur-3xl md:text-sm lg:text-base"
-        >
-          Contáctenos
-          <svg-icon
-            src="assets/icons/shared/icon-paper-plane.svg"
-            [svgStyle]="{ 'height.px': 12 }"
-          />
-        </span>
-      </button>
-      <!-- Fin btn contacto -->
-    </div>
-    <!-- Fin descripcion -->
+        Contáctenos
+        <svg-icon [svgStyle]="{ 'height.px': 12 }" src="assets/icons/shared/icon-paper-plane.svg">
+        </svg-icon>
+      </span>
+    </button>
+    <!-- Fin btn contacto -->
   </div>
   <!-- Fin 1ra columna -->
 
   <!-- 2da columna -->
   <div
+    class="flex items-center justify-center text-[280px] text-white md:flex-3 lg:flex-4 lg:text-[400px] xl:text-[500px] 2xl:text-[600px]"
     data-aos="slide-right"
     data-aos-delay="200"
     data-aos-duration="1000"
     data-aos-easing="ease-in-out-back"
-    class="flex items-center justify-center md:flex-4"
   >
-    <div class="coin text-white md:text-[280px] lg:text-[400px] xl:text-[500px] 2xl:text-[600px]">
-      <div class="side heads">
-        <svg-icon [src]="iconWorkerPath" />
-      </div>
-      <div class="side tails">
-        <svg-icon [src]="iconWorkerPath" />
-      </div>
+    <div class="coin">
+      <svg-icon class="side heads" [src]="iconWorkerPath"> </svg-icon>
+      <svg-icon class="side tails" [src]="iconWorkerPath"> </svg-icon>
     </div>
   </div>
   <!-- Fin 2da columna -->
