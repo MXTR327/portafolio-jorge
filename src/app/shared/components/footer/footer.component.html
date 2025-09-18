@@ -1,91 +1,71 @@
 <footer
-  class="w-full cursor-default overflow-hidden bg-gradient-to-b from-neutral-900 via-neutral-950 to-black py-20 text-gray-400 select-none"
+  class="flex h-screen w-full cursor-default flex-col justify-center overflow-hidden bg-gradient-to-b from-neutral-900 via-neutral-950 to-black text-gray-400 select-none md:h-auto"
 >
-  <div class="container mx-auto md:px-4 lg:px-7">
-    <!-- 1ra fila -->
-    <div class="flex w-full justify-between">
-      <!-- 1ra columna -->
-      <a
-        class="flex h-fit cursor-pointer items-center gap-2 text-gray-100 transition-transform duration-200 ease-in-out hover:scale-105"
-        data-aos="zoom-out-right"
-        data-aos-duration="700"
-        data-aos-once="false"
-        href="https://github.com/MXTR327"
-        target="_blank"
-      >
-        <svg-icon [src]="iconMaxPath" [svgStyle]="iconMaxStyle"> </svg-icon>
-        <p class="font-montserrat-alternates font-semibold">
-          MAXtr <br />
-          SERVICES
-        </p>
-      </a>
-
-      <!-- 2da Columna -->
-      <div
-        class="flex flex-col gap-3"
-        data-aos="zoom-out-right"
-        data-aos-delay="200"
-        data-aos-duration="800"
-        data-aos-once="false"
-      >
-        <h4 class="font-semibold text-gray-100">Información</h4>
-        <div>
-          <p>{{ place }}</p>
-          <p class="mb-1">{{ street }}</p>
-          <p>+51 {{ phone }}</p>
-        </div>
-      </div>
-
-      <!-- 3ra Columna -->
-      <div
-        class="flex flex-col gap-3"
-        data-aos="zoom-out-left"
-        data-aos-delay="400"
-        data-aos-duration="800"
-        data-aos-once="false"
-      >
-        <h4 class="font-semibold text-gray-100">Compañia</h4>
-        <div class="flex flex-col gap-2">
-          @for (linP of pagesList; track linP.name)
-          {
-            <a
-              class="cursor-pointer hover:text-gray-200"
-              data-aos="zoom-out-up"
-              data-aos-duration="700"
-              [fragment]="linP.id"
-              [routerLink]="['/']"
-            >
-              {{ linP.name }}
-            </a>
-          }
-        </div>
-      </div>
-
-      <!-- 4ta Columna -->
-      <div
-        class="flex flex-col items-center gap-2"
-        data-aos="zoom-out-left"
-        data-aos-delay="600"
-        data-aos-once="false"
-      >
-        <h4 class="font-semibold text-gray-100">Redes Sociales</h4>
-        <app-redes-contacto> </app-redes-contacto>
-      </div>
-    </div>
-    <!-- Fin 1ra fila -->
-
-    <!-- 2da fila -->
-    <div
-      class="mt-5 grid gap-y-2 sm:mt-12 sm:flex sm:items-center sm:justify-between sm:gap-y-0"
-      data-aos="fade-up-right"
-      data-aos-delay="1300"
+  <div
+    class="container mx-auto w-17/20 space-y-10 pt-20 pb-12 md:grid md:w-full md:grid-cols-4 md:gap-10 md:pt-22 lg:px-8 2xl:px-4"
+  >
+    <a
+      class="font-montserrat-alternates flex h-fit w-fit cursor-pointer items-center gap-2 rounded-2xl border-1 border-gray-800 px-3 py-2 font-semibold text-gray-100 hover:bg-white/10"
+      data-aos="zoom-out-up"
       data-aos-duration="800"
-      data-aos-once="true"
+      data-aos-easing="ease-in-out-back"
+      data-aos-once="false"
+      href="https://github.com/MXTR327"
+      target="_blank"
     >
-      <div class="flex flex-wrap items-center justify-between gap-2">
-        <p class="text-sm">© {{ year }} - Todos los derechos reservados a Ramsua-services.</p>
+      <svg-icon [src]="iconMaxPath" [svgStyle]="iconMaxStyle"> </svg-icon>
+      <h1>MAXtr<br />SERVICES</h1>
+    </a>
+
+    <div>
+      <h4 class="mb-5 font-semibold text-gray-100">Información</h4>
+      <div class="grid grid-cols-2 space-y-5 md:grid-cols-1">
+        @for (text of [place, street, '+51 ' + phone]; track text; let i = $index)
+        {
+          <p
+            data-aos="zoom-out-up"
+            data-aos-duration="500"
+            data-aos-easing="ease-in-out-back"
+            data-aos-once="false"
+            [attr.data-aos-delay]="350 + i * 150"
+          >
+            {{ text }}
+          </p>
+        }
       </div>
     </div>
-    <!-- Fin 2da fila -->
+
+    <div>
+      <h4 class="mb-5 font-semibold text-gray-100">Compañia</h4>
+      <div class="grid grid-cols-2 space-y-5 md:grid-cols-1">
+        @for (linP of pagesList; track linP.name; let i = $index)
+        {
+          <a
+            class="flex cursor-pointer hover:text-gray-200"
+            data-aos="zoom-out-up"
+            data-aos-duration="500"
+            data-aos-easing="ease-in-out-back"
+            data-aos-once="false"
+            [attr.data-aos-delay]="800 + i * 150"
+            [fragment]="linP.id"
+            [routerLink]="['/']"
+          >
+            {{ linP.name }}
+          </a>
+        }
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between md:flex-col md:justify-start">
+      <h4 class="font-semibold text-gray-100">Redes Sociales</h4>
+      <app-redes-contacto [animationDelay]="1300"> </app-redes-contacto>
+    </div>
+  </div>
+
+  <div class="w-full">
+    <hr class="border-gray-900" />
+    <div class="py-13 text-center" data-aos="zoom-out-left" data-aos-delay="600">
+      <p class="text-sm">© {{ year }}, All Rights Reserved. By RamsuaServices</p>
+    </div>
   </div>
 </footer>
