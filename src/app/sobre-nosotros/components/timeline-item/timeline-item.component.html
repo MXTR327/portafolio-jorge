@@ -1,74 +1,77 @@
 <!-- Caja Item -->
-<div
-  class="relative flex items-center rounded-full bg-gray-200 p-1.5 md:h-33 md:w-33 lg:h-40 lg:w-40"
+<li
+  class="flex min-h-20 justify-center md:min-h-40 md:items-center lg:px-8 xl:px-20 2xl:px-52"
   data-aos-duration="1200"
   data-aos-easing="ease-in-out-back"
+  [attr.data-aos-delay]="900 + index() * 200"
   [attr.data-aos]="isRight() ? 'fade-up-left' : 'fade-up-right'"
-  [attr.data-aos-delay]="index() * 200"
 >
-  @if (!isLast())
-  {
-    <div
-      class="absolute font-semibold md:w-70 lg:w-85 xl:w-112"
-      [class]="isRight() ? 'md:right-40 lg:right-50' : 'md:left-40 lg:left-50'"
-      [class.text-right]="isRight()"
-    >
-      <!-- Año -->
-      <h4
-        class="md:text-xl lg:text-2xl"
-        data-aos-duration="1000"
-        data-aos-easing="ease-in-out-back"
-        [attr.data-aos]="isRight() ? 'flip-up' : 'flip-down'"
-        [attr.data-aos-delay]="150 + index() * 200"
-      >
-        {{ timeRange().yearRange }}
-      </h4>
-
-      <!-- Título -->
-      <h4
-        class="mb-2 md:text-xl lg:text-2xl"
-        data-aos-duration="1400"
-        data-aos-easing="ease-out-back"
-        [attr.data-aos]="isRight() ? 'zoom-in-up' : 'zoom-in-down'"
-        [attr.data-aos-delay]="300 + index() * 200"
-      >
-        {{ timeRange().title }}
-      </h4>
-
-      <!-- Descripción -->
-      <p
-        class="font-normal text-gray-500 md:text-xs lg:text-base"
-        data-aos-duration="1600"
-        data-aos-easing="ease-in-out-back"
-        [attr.data-aos]="isRight() ? 'fade-up-left' : 'fade-up-right'"
-        [attr.data-aos-delay]="450 + index() * 200"
-      >
-        {{ timeRange().description }}
-      </p>
-    </div>
-
-    <!-- Imagen -->
+  <!-- Imagen -->
+  <div
+    class="absolute left-0 h-20 w-20 rounded-full bg-gray-200 p-1 md:left-1/2 md:-ml-20 md:h-40 md:w-40 md:p-1.5"
+  >
     <img
       class="h-full w-full overflow-clip rounded-full object-cover object-center"
       data-aos-duration="1000"
       data-aos-easing="ease-in-out-back"
-      [src]="timeRange().imagePath"
+      [attr.data-aos-delay]="1300 + index() * 200"
       [attr.data-aos]="isRight() ? 'zoom-in-up' : 'zoom-in-down'"
-      [attr.data-aos-delay]="600 + index() * 200"
+      [hidden]="isLast()"
+      [src]="timeRange().imagePath"
       alt="Imagen"
     />
-  }
-  @else
-  {
-    <div
-      class="flex h-full w-full items-center justify-center rounded-full bg-yellow-500 p-10 text-center font-semibold text-white md:text-xs lg:text-base"
+    <p
+      class="flex h-full w-full items-center justify-center rounded-full bg-yellow-500 text-center text-xs font-semibold text-white md:px-10 md:text-base"
       data-aos-duration="1000"
       data-aos-easing="ease-in-out-back"
+      [attr.data-aos-delay]="1300 + index() * 200"
       [attr.data-aos]="isRight() ? 'zoom-in-up' : 'zoom-in-down'"
-      [attr.data-aos-delay]="600 + index() * 200"
+      [hidden]="!isLast()"
     >
       {{ timeRange().description }}
+    </p>
+  </div>
+  <!-- Fin imagen -->
+
+  <!-- Info Timeline -->
+  <div
+    class="ml-25 flex w-full flex-col items-center md:ml-0"
+    [class.invisible]="isLast()"
+    [class]="
+      isRight() ? 'md:ml-120 lg:ml-145 xl:ml-170' : 'md:mr-120 md:text-right lg:mr-145 xl:mr-170'
+    "
+  >
+    <div class="space-y-2">
+      <div class="text-xl font-semibold md:text-2xl">
+        <h4
+          class="md:text-xl lg:text-2xl"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out-back"
+          [attr.data-aos-delay]="1300 + index() * 200"
+          [attr.data-aos]="isRight() ? 'flip-up' : 'flip-down'"
+        >
+          {{ timeRange().yearRange }}
+        </h4>
+        <h4
+          data-aos-duration="1400"
+          data-aos-easing="ease-out-back"
+          [attr.data-aos-delay]="1300 + index() * 200"
+          [attr.data-aos]="isRight() ? 'zoom-in-up' : 'zoom-in-down'"
+        >
+          {{ timeRange().title }}
+        </h4>
+      </div>
+      <p
+        class="text-sm text-gray-500 md:text-base"
+        data-aos-duration="1600"
+        data-aos-easing="ease-in-out-back"
+        [attr.data-aos-delay]="1300 + index() * 200"
+        [attr.data-aos]="isRight() ? 'fade-up-left' : 'fade-up-right'"
+      >
+        {{ timeRange().description }}
+      </p>
     </div>
-  }
-</div>
+  </div>
+  <!-- Fin info timeline -->
+</li>
 <!-- Fin caja item -->
