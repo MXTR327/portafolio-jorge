@@ -1,60 +1,70 @@
+@let titlesList =
+  [
+    { text: 'CONTÁCTENOS', anim: 'fade-down-left' },
+    {
+      text: 'Estamos Aquí Para Responder Tus Preguntas y Brindarle la Mejor Atención Posible',
+      anim: 'fade-up-right',
+    },
+  ];
 <section
-  class="flex flex-col overflow-hidden md:h-full md:gap-5 md:px-4 md:py-18 lg:gap-15 lg:px-7 2xl:my-18 2xl:h-screen 2xl:justify-center 2xl:gap-18 2xl:py-0 2xl:pt-0"
+  class="flex h-full flex-col gap-8 overflow-hidden p-5 py-18 md:gap-5 md:px-4 md:py-18 lg:gap-15 lg:px-7 2xl:my-18 2xl:h-screen 2xl:justify-center 2xl:gap-18 2xl:py-0 2xl:pt-0"
 >
   <!-- Titulos 1ra fila -->
   <div
-    class="space-y-4 text-center"
+    class="text-center"
     data-aos="fade-down-right"
     data-aos-duration="1500"
     data-aos-easing="ease-in-out-back"
   >
-    <h1
-      class="font-bold md:text-3xl 2xl:text-5xl"
-      data-aos="fade-down-left"
-      data-aos-duration="1500"
-      data-aos-easing="ease-in-out-back"
-    >
-      CONTÁCTENOS
-    </h1>
-    <p
-      class="text-gray-500 italic md:text-sm lg:text-base"
-      data-aos="fade-up-right"
-      data-aos-duration="1500"
-      data-aos-easing="ease-in-out-back"
-    >
-      Estamos Aquí Para Responder Tus Preguntas y Brindarle la Mejor Atención Posible
-    </p>
+    @for (item of titlesList; track item; let i = $index, l = $last)
+    {
+      <p
+        data-aos-duration="1400"
+        data-aos-easing="ease-in-out-back"
+        data-aos-once="true"
+        [attr.data-aos-delay]="0 + i * 300"
+        [attr.data-aos]="item.anim"
+        [class.text-gray-500]="i > 0"
+        [class]="
+          l ? 'mt-2 text-sm font-normal italic md:text-base' : 'text-2xl font-bold lg:text-4xl'
+        "
+      >
+        {{ item.text }}
+      </p>
+    }
   </div>
   <!-- Fin titulos 1ra fila -->
 
   <!-- Contenidos 2da fila -->
   <div
-    class="flex md:gap-7 lg:gap-10 xl:gap-20"
+    class="grid gap-10 md:flex md:gap-7 lg:gap-10 xl:gap-20"
     data-aos="fade-up-left"
     data-aos-duration="1500"
     data-aos-easing="ease-in-out-back"
   >
     <!-- Info 1ra col -->
     <div
-      class="w-full md:space-y-9 lg:space-y-15 2xl:space-y-20"
+      class="w-full space-y-8 md:space-y-9 lg:space-y-15 2xl:space-y-20"
       data-aos="fade-right"
       data-aos-duration="1500"
       data-aos-easing="ease-in-out-back"
     >
       <!-- 1ra fila -->
       <div
-        class="md:space-y-3 lg:space-y-4 2xl:space-y-7"
+        class="flex flex-col items-center gap-6 md:items-start md:gap-3 lg:gap-4 2xl:gap-7"
         data-aos="fade-down-right"
         data-aos-duration="1500"
         data-aos-easing="ease-in-out-back"
       >
-        <h1 class="font-semibold md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl">
-          Necesitas ayuda? Contacta yá
-        </h1>
-        <p class="text-gray-600 md:text-sm lg:text-base">
-          Nuestro equipo está listo para ayudar con su banca o necesidades de inversión. Disparar en
-          cualquier momento para un apoyo rápido, amable y experto.
-        </p>
+        <div class="space-y-6 text-center md:text-left">
+          <h1 class="text-2xl font-semibold md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl">
+            ¿<span class="hidden md:inline">Necesitas </span>Ayuda? Contácta ya
+          </h1>
+          <p class="text-justify text-sm text-gray-700 lg:text-base">
+            Siempre listos para ayudar con su banca o necesidades de inversión. Disparar en
+            cualquier momento para un apoyo rápido, amable y experto.
+          </p>
+        </div>
         <!-- Redes -->
         <app-redes-contacto> </app-redes-contacto>
         <!-- Fin redes -->
@@ -63,7 +73,7 @@
 
       <!-- 2da fila -->
       <div
-        class="md:space-y-4 md:text-sm lg:space-y-7.5 lg:text-base"
+        class="space-y-8 text-sm md:space-y-4 lg:space-y-7.5 lg:text-base"
         data-aos="fade-up-right"
         data-aos-duration="1500"
         data-aos-easing="ease-in-out-back"
@@ -71,17 +81,22 @@
         @for (infoPerson of infosPerson; track infoPerson; let i = $index)
         {
           <div
-            class="space-y-2"
+            class="space-y-2 text-gray-700"
             data-aos="fade-left"
             data-aos-duration="1500"
             data-aos-easing="ease-in-out-back"
             [attr.data-aos-delay]="i * 150"
           >
-            <div class="flex items-center gap-3.5">
-              <svg-icon [src]="infoPerson.iconPath" [svgStyle]="{ 'height.px': 20 }"> </svg-icon>
-              <h1 class="text-gray-600">{{ infoPerson.label }}</h1>
+            <div class="flex gap-3.5">
+              <svg-icon
+                class="text-black"
+                [src]="infoPerson.iconPath"
+                [svgStyle]="{ 'height.px': 23 }"
+              >
+              </svg-icon>
+              <h1>{{ infoPerson.label }}</h1>
             </div>
-            <span class="whitespace-pre-line text-gray-700">{{ infoPerson.text }}</span>
+            <span class="whitespace-pre-line">{{ infoPerson.text }}</span>
           </div>
         }
       </div>
@@ -91,7 +106,7 @@
 
     <!-- Formulario 2da col -->
     <app-contact-form
-      class="w-full md:pt-2 lg:pt-4 2xl:pt-9"
+      class="w-full md:pt-2 lg:pt-3 2xl:pt-7"
       data-aos="fade-up-left"
       data-aos-duration="1500"
       data-aos-easing="ease-in-out-back"

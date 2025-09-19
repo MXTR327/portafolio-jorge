@@ -3,7 +3,7 @@
     @if (type() === 'input')
     {
       <input
-        class="block w-full rounded-xl border border-gray-300 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none md:p-3 md:ps-9 md:text-sm lg:p-5 lg:ps-11 lg:text-base"
+        class="block w-full rounded-xl border border-gray-300 p-5 ps-9 text-sm placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none lg:p-5 lg:ps-11 lg:text-base"
         [class]="isValidField() ? 'border-red-500 focus:border-red-500' : ''"
         [id]="id()"
         [placeholder]="placeholder()"
@@ -17,7 +17,7 @@
     @else
     {
       <textarea
-        class="block w-full rounded-xl border border-gray-300 placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none md:p-3 md:ps-9 md:text-sm lg:p-5 lg:ps-11 lg:text-base"
+        class="block w-full rounded-xl border border-gray-300 p-5 ps-9 text-sm placeholder:text-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none lg:p-5 lg:ps-11 lg:text-base"
         [class]="isValidField() ? 'border-red-500 focus:border-red-500' : ''"
         [id]="id()"
         [placeholder]="placeholder()"
@@ -30,8 +30,8 @@
     }
 
     <svg-icon
-      [class]="type() === 'textarea' ? 'md:top-3.5 lg:top-5.5 xl:top-6' : 'inset-y-0'"
-      class="pointer-events-none absolute start-0 z-20 flex items-center text-gray-400 md:ps-3 lg:ps-4"
+      [class]="type() === 'textarea' ? 'top-5.5 xl:top-6' : 'inset-y-0'"
+      class="pointer-events-none absolute start-0 z-20 flex items-center ps-3 text-gray-400 lg:ps-4"
       [src]="iconPath()"
       [svgStyle]="{ 'height.px': 18 }"
     />
@@ -39,7 +39,7 @@
   @if (isValidField())
   {
     <p
-      class="absolute mt-1 flex w-full items-center gap-1 text-red-600 md:text-xs 2xl:text-sm"
+      class="absolute mt-1 flex w-full items-center gap-1 text-xs text-red-600 2xl:text-sm"
       id="hs-validation-name-error-helper"
     >
       <svg-icon [src]="iconErrorPath" [svgStyle]="{ 'height.px': 16 }" />

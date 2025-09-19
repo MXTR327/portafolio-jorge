@@ -1,29 +1,48 @@
-<section class="space-y-15 overflow-hidden pt-18">
+@let titlesList =
+  [
+    { text: 'SOBRE NOSOTROS', anim: 'slide-right' },
+    {
+      text: 'Más de 20 Años Levantando Hogares, Espacios y Sueños, Siempre con Dedicación y Compromiso',
+      anim: 'slide-left',
+    },
+  ];
+<section class="space-y-15 overflow-hidden px-5 pt-18 md:px-0">
   <!-- 1ra fila -->
-  <div class="space-y-4 text-center">
-    <h2
-      class="font-bold md:text-3xl"
-      data-aos="slide-right"
-      data-aos-delay="0"
-      data-aos-duration="900"
-      data-aos-easing="ease-in-out-back"
-      data-aos-once="true"
-    >
-      SOBRE NOSOTROS
-    </h2>
-    <p
-      class="text-gray-500 italic md:text-sm lg:text-base"
-      data-aos="slide-left"
-      data-aos-delay="500"
-      data-aos-duration="900"
-      data-aos-easing="ease-in-out-back"
-    >
-      Más de 20 Años Levantando Hogares, Espacios y Sueños, Siempre con Dedicación y Compromiso
-    </p>
+  <div class="text-center">
+    @for (item of titlesList; track item; let i = $index, l = $last)
+    {
+      <p
+        data-aos-duration="1400"
+        data-aos-easing="ease-in-out-back"
+        data-aos-once="true"
+        [attr.data-aos-delay]="0 + i * 300"
+        [attr.data-aos]="item.anim"
+        [class.text-gray-500]="i > 0"
+        [class]="
+          l ? 'mt-2 text-sm font-normal italic md:text-base' : 'text-2xl font-bold lg:text-4xl'
+        "
+      >
+        {{ item.text }}
+      </p>
+    }
   </div>
   <!-- Fin 1ra fila -->
 
   <!-- 2da fila -->
-  <app-about-us-timeline class="flex justify-center" data-aos="zoom-in-down" data-aos-delay="800" />
+  <ul class="relative flex flex-col gap-12 md:gap-20" data-aos="zoom-in-down" data-aos-delay="800">
+    <!-- Time Line -->
+    <div class="absolute top-0 bottom-0 left-10 w-0.5 bg-gray-200 md:top-10 md:left-1/2"></div>
+    <!-- Fin Time Line -->
+
+    @for (timeRange of timeRanges; track timeRange; let i = $index, l = $last, o = $odd)
+    {
+      <app-timeline-item
+        [index]="i"
+        [isLast]="l"
+        [isRight]="o"
+        [timeRange]="timeRange"
+      ></app-timeline-item>
+    }
+  </ul>
   <!-- Fin 2da fila -->
 </section>

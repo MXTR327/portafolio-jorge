@@ -1,5 +1,5 @@
 <a
-  class="btn-back-to-top font-montserrat-alternates select-none"
+  class="btn-back-to-top font-montserrat-alternates right-0 bottom-0 h-5 w-18 font-bold select-none md:right-3 md:bottom-1 md:h-8 md:w-34"
   [class.text-white]="isOnFooter()"
   (scroll)="onScroll()"
   data-aos="zoom-in-down"
@@ -10,18 +10,20 @@
   data-aos-once="false"
   data-aos-easing="ease-in-out-back"
 >
-  <div class="text gap-1 md:ml-8 md:text-sm 2xl:ml-8">
-    <span>Back</span>
-    <span>to</span>
-    <span>top</span>
+  <div class="text absolute flex h-full w-full gap-1 text-xs md:ml-6 md:text-sm">
+    <span class="inline md:hidden">Go</span>
+    <span class="hidden md:inline">Back</span>
+    <span class="hidden md:inline">to</span>
+    <span>Top</span>
   </div>
-  <div class="clone gap-1 md:ml-3 md:text-sm 2xl:ml-0 2xl:text-base">
-    <span>BACK</span>
-    <span>TO</span>
+  <div class="clone absolute flex h-full w-full gap-1 text-xs md:ml-2 md:text-sm">
+    <span class="inline md:hidden">GO</span>
+    <span class="hidden md:inline">BACK</span>
+    <span class="hidden md:inline">TO</span>
     <span>TOP</span>
   </div>
   <svg-icon
-    class="absolute right-0 md:top-3"
+    class="absolute top-2 right-0 md:top-[11px]"
     src="assets/icons/shared/icon-arrowup.svg"
     [svgStyle]="{ 'height.px': 22 }"
   />
