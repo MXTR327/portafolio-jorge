@@ -1,45 +1,50 @@
 <a [routerLink]="['/project', project().id]">
-  <div
-    class="shadow-white-neumorphic-flat flex h-full flex-col justify-between rounded-3xl border-1 border-gray-200 p-4 text-gray-500 transition-transform duration-200 ease-in-out hover:scale-103 md:gap-4 lg:gap-3"
+  <article
+    class="shadow-white-neumorphic-flat flex h-full flex-col justify-between gap-3 rounded-xl border border-gray-200 p-3 text-gray-500 transition-transform duration-200 ease-in-out hover:scale-103 md:gap-4 md:rounded-3xl md:p-4 lg:gap-3"
   >
-    <div class="grid md:grid-cols-4 md:gap-3 lg:grid-cols-1 lg:gap-0">
+    <div class="flex items-center gap-3 lg:grid lg:grid-cols-1 lg:gap-0">
       <img
-        class="col-span-1 w-full overflow-clip rounded-xl object-cover object-center md:h-36 lg:h-63"
+        class="h-27.5 min-h-27.5 min-w-31 overflow-clip rounded-lg object-cover object-center md:h-50 md:w-140 md:rounded-xl lg:h-85 lg:w-full xl:h-65"
         [src]="project().imgList[0]"
-        alt="Imagen"
+        alt="Imagen del proyecto {{ project().title }}"
       />
 
-      <div class="col-span-3 space-y-3 px-2">
-        <div
-          class="h-fit w-fit rounded-full text-xs text-gray-500 lg:mt-6 lg:bg-gray-100 lg:px-3 lg:py-1.5"
+      <div class="flex flex-col gap-4 md:gap-3">
+        <span
+          class="h-fit w-fit rounded-full text-xs text-gray-500 md:mx-1 md:bg-gray-100 md:px-3 md:py-1.5 md:text-sm lg:mt-6"
         >
-          {{ project().etiqueta }}
-        </div>
-        <div class="h-fit w-fit text-xl font-medium text-black">
-          {{ project().title }}
-        </div>
+          {{ project().etiqueta | titlecase }}
+        </span>
+
+        <h2 class="h-fit w-fit text-sm font-medium text-black md:px-2 md:text-xl">
+          {{ project().title | titlecase }}
+        </h2>
+
+        <p class="hidden h-fit w-fit text-xs md:block md:px-2 md:text-base lg:hidden">
+          {{ project().description | slice: 0 : 150 }}
+          {{ project().description.length > 150 ? '...' : '' }}
+        </p>
       </div>
     </div>
 
-    <div class="flex flex-col space-y-4 px-2">
-      <p class="h-fit w-fit">
+    <div class="flex flex-col gap-4 md:px-2">
+      <p class="hidden h-fit w-fit text-xs md:text-base lg:block">
         {{ project().description | slice: 0 : 150 }}
         {{ project().description.length > 150 ? '...' : '' }}
       </p>
 
-      <hr class="border-transparent md:hidden" />
-      <hr class="border-gray-200 lg:mx-2" />
+      <hr class="border-gray-200 md:mx-1 md:my-2" />
 
-      <div class="flex justify-between lg:mb-3 lg:px-2">
-        <div class="md:flex md:items-center md:gap-2 lg:flex-col lg:items-start">
-          <h5 class="text-xs">By</h5>
-          <h4 class="text-sm font-medium">Ramsua Services</h4>
+      <footer class="flex justify-between text-xs md:mb-3 md:text-sm">
+        <div class="flex gap-1 md:items-center md:gap-2 lg:flex-col lg:items-start">
+          <span class="text-xs">By</span>
+          <span class="text-black md:font-medium md:text-gray-500">Ramsua Services</span>
         </div>
-        <div class="md:flex md:items-center md:gap-2 lg:flex-col lg:items-end">
-          <h5 class="text-xs">Publicado el</h5>
-          <h4 class="text-sm font-medium">{{ project().date }}</h4>
+        <div class="flex gap-1 md:items-center md:gap-2 lg:flex-col lg:items-end">
+          <span class="text-xs">Publicado el</span>
+          <time class="text-black md:font-medium md:text-gray-500">{{ project().date }}</time>
         </div>
-      </div>
+      </footer>
     </div>
-  </div>
+  </article>
 </a>
