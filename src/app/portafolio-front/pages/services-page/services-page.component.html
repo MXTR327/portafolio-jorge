@@ -1,66 +1,62 @@
-<section class="space-y-10 overflow-hidden pt-18 xl:px-20 2xl:px-50">
+@let titlesList =
+  [
+    { text: 'SERVICIOS', anim: 'fade-left' },
+    { text: 'HECHOS PARA TI', anim: 'fade-up' },
+    { text: 'Soluciones Hechas Para Impulsar Tus Ideas', anim: 'fade-right' },
+  ];
+<section class="space-y-8 overflow-hidden px-5 pt-18 md:space-y-10 xl:px-30 2xl:px-50">
   <!-- 1ra fila -->
   <div
-    class="space-y-1 text-center font-bold text-gray-500"
+    class="space-y-1 text-center"
     data-aos="fade-down"
     data-aos-duration="1300"
-    [attr.data-aos-delay]="200"
     data-aos-easing="ease-in-out-back"
     data-aos-once="true"
+    [attr.data-aos-delay]="200"
   >
-    <h2
-      class="text-black md:text-3xl"
-      data-aos="fade-left"
-      data-aos-duration="1200"
-      [attr.data-aos-delay]="400"
-      data-aos-easing="ease-in-out-back"
-      data-aos-once="true"
-    >
-      SERVICIOS
-    </h2>
-    <h2
-      class="md:text-3xl"
-      data-aos="fade-up"
-      data-aos-duration="1400"
-      [attr.data-aos-delay]="600"
-      data-aos-easing="ease-in-out-back"
-    >
-      HECHOS PARA TI
-    </h2>
-    <p
-      class="mt-3 font-normal italic md:text-sm lg:text-base"
-      data-aos="fade-right"
-      data-aos-duration="1300"
-      [attr.data-aos-delay]="800"
-      data-aos-easing="ease-in-out-back"
-    >
-      Soluciones Diseñadas Para Impulsar Tus Ideas
-    </p>
+    @for (item of titlesList; track item; let i = $index, l = $last)
+    {
+      <p
+        data-aos-duration="1400"
+        data-aos-easing="ease-in-out-back"
+        data-aos-once="true"
+        [attr.data-aos-delay]="400 + i * 300"
+        [attr.data-aos]="item.anim"
+        [class.text-gray-500]="i > 0"
+        [class]="
+          l ? 'mt-2 text-sm font-normal italic md:text-base' : 'text-2xl font-bold lg:text-3xl'
+        "
+      >
+        {{ item.text }}
+      </p>
+    }
   </div>
   <!-- Fin 1ra fila -->
 
   <!-- 2da fila -->
-  <div class="grid h-full w-full grid-cols-2">
+  <div class="grid h-full w-full gap-5 md:grid-cols-2 md:gap-0">
     @for (service of servicesList; track service; let i = $index, e = $even, c = $count)
     {
       <div
-        class="relative flex h-full w-full gap-6 border-dashed border-gray-300 md:px-8 md:py-15 lg:px-13"
-        [class.border-r-1]="e"
-        [class.border-b-1]="i < c - 2"
-        [attr.data-aos]="e ? 'fade-left' : 'fade-right'"
+        class="relative grid h-full w-full gap-6 rounded-4xl border-1 border-gray-200 p-8 md:flex md:grid-cols-3 md:rounded-none md:border-0 md:border-dashed md:p-11"
         data-aos-duration="1400"
-        [attr.data-aos-delay]="i * 300"
         data-aos-easing="ease-in-out-back"
+        [attr.data-aos-delay]="i * 300"
+        [attr.data-aos]="e ? 'fade-left' : 'fade-right'"
+        [class]="{
+          'md:border-r-1': e,
+          'md:border-b-1': i < c - 2,
+        }"
       >
         <!-- Icono -->
         <svg-icon
+          data-aos-duration="1300"
+          data-aos-easing="ease-in-out-back"
+          [attr.data-aos-delay]="i * 350"
+          [attr.data-aos]="e ? 'fade-down-left' : 'fade-down-right'"
           [src]="service.iconPath"
           [svgStyle]="iconStyle"
-          [attr.data-aos]="e ? 'fade-down-left' : 'fade-down-right'"
-          data-aos-duration="1300"
-          [attr.data-aos-delay]="i * 350"
-          data-aos-easing="ease-in-out-back"
-        />
+        ></svg-icon>
         <!-- Fin icono -->
 
         <!-- Contenido -->
@@ -68,10 +64,10 @@
           <!-- Titulo -->
           <h1
             class="mb-2 text-lg font-semibold"
-            [attr.data-aos]="e ? 'fade-up-left' : 'fade-up-right'"
             data-aos-duration="1200"
-            [attr.data-aos-delay]="i * 400"
             data-aos-easing="ease-in-out-back"
+            [attr.data-aos-delay]="i * 400"
+            [attr.data-aos]="e ? 'fade-up-left' : 'fade-up-right'"
           >
             {{ service.title }}
           </h1>
@@ -79,11 +75,11 @@
 
           <!-- Descripcion -->
           <p
-            class="w-full max-w-85 text-sm text-gray-600"
-            [attr.data-aos]="e ? 'fade-left' : 'fade-right'"
+            class="w-full max-w-83 text-sm text-gray-600"
             data-aos-duration="1300"
-            [attr.data-aos-delay]="i * 450"
             data-aos-easing="ease-in-out-back"
+            [attr.data-aos-delay]="i * 450"
+            [attr.data-aos]="e ? 'fade-left' : 'fade-right'"
           >
             {{ service.description }}
           </p>
@@ -94,13 +90,13 @@
         <!-- Decorador lineas -->
         @if (e && i < c - 2)
         {
-          <div
-            class="absolute right-[-7px] bottom-[-7px] z-10 h-3 w-3 rounded-full border-1 border-gray-200 bg-gray-50"
-            [attr.data-aos]="e ? 'fade-up-left' : 'fade-up-right'"
+          <hr
+            class="absolute right-[-7px] bottom-[-7px] z-10 hidden h-3 w-3 rounded-full border-1 border-gray-200 bg-gray-50 md:block"
             data-aos-duration="1200"
-            [attr.data-aos-delay]="i * 500"
             data-aos-easing="ease-in-out-back"
-          ></div>
+            [attr.data-aos-delay]="i * 500"
+            [attr.data-aos]="e ? 'fade-up-left' : 'fade-up-right'"
+          />
         }
       </div>
     }
